@@ -1,4 +1,64 @@
+;;Creating the differents kind of agents
+breed [people person]
+people-own []
 
+breed [drivers driver]
+drivers-own [type-of-driver closest-costumer]
+
+to setup
+  clear-all
+
+  create-persons-fn
+  create-drivers-fn
+
+  ask drivers [
+    set closest-costumer min-one-of (people) [ distance myself ]
+    set heading towards closest-costumer
+  ]
+
+  reset-ticks
+end
+
+to go
+  if ticks = 1000 [stop]
+
+  ask drivers [
+    let xcord [xcor] of closest-costumer
+    let ycord [ycor] of closest-costumer
+    if abs(xcord - xcor) > 1 OR abs(ycord - ycor) > 1 [
+      forward 1
+    ]
+  ]
+
+  tick
+end
+
+to create-persons-fn
+  create-people 100 [
+    setxy random-xcor random-ycor
+    set shape "circle 2"
+    set color white
+    set size 0.5
+  ]
+end
+
+to create-drivers-fn
+  create-drivers 25 [
+    setxy random-xcor random-ycor
+    set shape "circle"
+    set color white
+    set size 0.5
+    set type-of-driver "uber"
+  ]
+
+  create-drivers 25 [
+    setxy random-xcor random-ycor
+    set shape "circle"
+    set color yellow
+    set size 0.5
+    set type-of-driver "uber"
+  ]
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
 210
@@ -14,18 +74,52 @@ GRAPHICS-WINDOW
 1
 1
 0
-1
-1
+0
+0
 1
 -16
 16
 -16
 16
-0
-0
+1
+1
 1
 ticks
 30.0
+
+BUTTON
+9
+10
+200
+43
+NIL
+setup\n
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+10
+46
+200
+79
+NIL
+go
+T
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
