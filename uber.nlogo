@@ -13,7 +13,6 @@ to setup
 
   ask drivers [
     set closest-costumer min-one-of (people) [ distance myself ]
-    set heading towards closest-costumer
   ]
 
   reset-ticks
@@ -22,13 +21,9 @@ end
 to go
   if ticks = 1000 [stop]
 
-  ask drivers [
-    let xcord [xcor] of closest-costumer
-    let ycord [ycor] of closest-costumer
-    if abs(xcord - xcor) > 1 OR abs(ycord - ycor) > 1 [
-      forward 1
-    ]
-  ]
+ ask drivers [
+   go-towards self closest-costumer
+ ]
 
   tick
 end
@@ -57,6 +52,25 @@ to create-drivers-fn
     set color yellow
     set size 0.5
     set type-of-driver "uber"
+  ]
+end
+
+to go-towards [from-turtle to-turtle]
+  ask from-turtle [
+
+    let xcord [xcor] of to-turtle
+    let ycord [ycor] of to-turtle
+
+    if distance to-turtle != 0 [
+
+      set heading towards to-turtle
+
+      ifelse abs(xcord - xcor) > 1 OR abs(ycord - ycor) > 1 [
+        forward 1
+      ][
+        forward distance to-turtle
+      ]
+    ]
   ]
 end
 @#$#@#$#@
