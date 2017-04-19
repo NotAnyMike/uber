@@ -1,10 +1,15 @@
-;;Creating the differents kind of agents
+;;Creating the differents kind of agents --------------------------------------------
 breed [people person]
-people-own []
+people-own [ destination-x destination-y own-driver]
+;; state would be 0 or 1 refering to inactive (i.e doing nothing) and active (wating for a driver or being transported)
+;; destination-x and y are the coordinates to the place it needs to be transported
+;; own-driver is the driver that is or will take her there, it could be empty when the turtle is in state 0
 
 breed [drivers driver]
-drivers-own [type-of-driver closest-costumer]
+drivers-own [type-of-driver closest-costumer state]
+;;----------------------------------------------------------------------------------
 
+;;Setup function --------------------------------------------------------------------
 to setup
   clear-all
 
@@ -18,12 +23,13 @@ to setup
   reset-ticks
 end
 
+;;Go function --------------------------------------------------------------------
 to go
   if ticks = 1000 [stop]
 
- ask drivers [
-   go-towards self closest-costumer
- ]
+  ask drivers [
+    go-towards self closest-costumer
+  ]
 
   tick
 end
