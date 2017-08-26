@@ -37,7 +37,7 @@ end
 to create-persons-fn
   create-people 100 [
     setxy random-xcor random-ycor
-    set shape "circle 2"
+    ;set shape "circle 2"
     set color white
     set size 0.5
   ]
@@ -46,7 +46,7 @@ end
 to create-drivers-fn
   create-drivers 25 [
     setxy random-xcor random-ycor
-    set shape "circle"
+    ;set shape "circle"
     set color white
     set size 0.5
     set type-of-driver "uber"

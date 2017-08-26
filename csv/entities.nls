@@ -1,0 +1,20 @@
+; Entities file
+
+bread [
+	vertices vertex
+]
+
+vertices-own [
+	id
+	expected-cost
+	conections
+	visited? 
+]
+
+undirected-link-bread [
+	edges edge
+]
+
+edges-own [
+	cost
+]

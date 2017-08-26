@@ -1,20 +1,27 @@
-;;SETUP function --------------------------------------------------------------------
+extensions [csv]
+
+__includes [
+  "globals.nls"
+  "entities.nls"
+]
+
+;SETUP function --------------------------------------------------------------------
 to setup
   clear-all
 
   file-open "test.csv"
-  set result csv:from-row file-read-line
+  let result csv:from-row file-read-line
   while [ not file-at-end? ] [
-    let row csv:from-row file-read-line
-    set result (map [?1 + ?2] result row)
+    set result csv:from-row file-read-line
+    ;set result (map [?1 + ?2] result row)
   ]
   file-close
-  report result
+  print result
 
   reset-ticks
 end
 
-;;Go function --------------------------------------------------------------------
+;Go function --------------------------------------------------------------------
 to go
   if ticks = 1000 [stop]
 
