@@ -6,6 +6,8 @@ Let's use the lib virtualenvwraper
 
 ## The structure of the files
 
+files will not containe header in order to simplify the code in netlogo
+
 ### File `vertices.csv`
 
 | id | from | to | cost
