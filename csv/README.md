@@ -8,7 +8,7 @@ This folder is an example of the code used to generate the planar graph
 
 ## The structure of the files
 
-files will not containe header in order to simplify the code in netlogo
+files will not contain header in order to simplify the code in netlogo
 
 ### File `vertices.csv`
 
