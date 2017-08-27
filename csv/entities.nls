@@ -1,6 +1,6 @@
 ; Entities file
 
-bread [
+breed [
 	vertices vertex
 ]
 
@@ -11,7 +11,7 @@ vertices-own [
 	visited? 
 ]
 
-undirected-link-bread [
+undirected-link-breed [
 	edges edge
 ]
 
