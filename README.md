@@ -10,7 +10,7 @@ files will not containe header in order to simplify the code in netlogo
 
 ### File `vertices.csv`
 
-* the `x` and `y` coordinates must be normalized to $(0,1)$ using min-max
+* the `x` and `y` coordinates must be normalized to (0,1) using min-max
 
 | id | x | y |
 | --- | --- | --- |
