@@ -16,5 +16,6 @@ undirected-link-breed [
 ]
 
 edges-own [
+	pk
 	cost
 ]
