@@ -3,14 +3,14 @@
 to setup
   clear-all
 
+	setup-importer
+
   create-persons-fn
   create-drivers-fn
 
   ask drivers [
-    set closest-costumer min-one-of (people) [ distance myself ]
+    set closest-costumer min-one-of (vertices) [ distance myself ]
   ]
-
-	setup-importer
 
   reset-ticks
 end

@@ -1,10 +1,10 @@
 __includes [
-  "core/entities.nls"
-  "core/functions.nls"
-
   "csv_import/globals.nls"
   "csv_import/entities.nls"
   "csv_import/create-graph.nls"
+
+  "core/entities.nls"
+  "core/functions.nls"
 ]
 @#$#@#$#@
 GRAPHICS-WINDOW
