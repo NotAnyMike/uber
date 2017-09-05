@@ -1,0 +1,12 @@
+;;Creating the differents kind of agents --------------------------------------------
+
+breed [people person]
+people-own [ destination-x destination-y own-driver]
+;; state would be 0 or 1 refering to inactive (i.e doing nothing) and active (wating for a driver or being transported)
+;; destination-x and y are the coordinates to the place it needs to be transported
+;; own-driver is the driver that is or will take her there, it could be empty when the turtle is in state 0
+
+breed [drivers driver]
+drivers-own [type-of-driver closest-costumer state]
+
+;;----------------------------------------------------------------------------------

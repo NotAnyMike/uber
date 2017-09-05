@@ -1,0 +1,71 @@
+;;Setup function --------------------------------------------------------------------
+
+to setup
+  clear-all
+
+  create-persons-fn
+  create-drivers-fn
+
+  ask drivers [
+    set closest-costumer min-one-of (people) [ distance myself ]
+  ]
+
+  reset-ticks
+end
+
+;;Go function --------------------------------------------------------------------
+to go
+  if ticks = 1000 [stop]
+
+  ask drivers [
+    go-towards self closest-costumer
+  ]
+
+  tick
+end
+
+to create-persons-fn
+  create-people 100 [
+    setxy random-xcor random-ycor
+    ;set shape "circle 2"
+    set color white
+    set size 0.5
+  ]
+end
+
+to create-drivers-fn
+  create-drivers 25 [
+    setxy random-xcor random-ycor
+    ;set shape "circle"
+    set color white
+    set size 0.5
+    set type-of-driver "uber"
+  ]
+
+  create-drivers 25 [
+    setxy random-xcor random-ycor
+    set shape "circle"
+    set color yellow
+    set size 0.5
+    set type-of-driver "uber"
+  ]
+end
+
+to go-towards [from-turtle to-turtle]
+  ask from-turtle [
+
+    let xcord [xcor] of to-turtle
+    let ycord [ycor] of to-turtle
+
+    if distance to-turtle != 0 [
+
+      set heading towards to-turtle
+
+      ifelse abs(xcord - xcor) > 1 OR abs(ycord - ycor) > 1 [
+        forward 1
+      ][
+        forward distance to-turtle
+      ]
+    ]
+  ]
+end
