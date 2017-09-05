@@ -1,16 +1,17 @@
 __includes [
-  "core/entities.nls"
-  "core/functions.nls"
+  "globals.nls"
+  "entities.nls"
+  "create-graph.nls"
 ]
 @#$#@#$#@
 GRAPHICS-WINDOW
 210
 10
-647
-448
+548
+349
 -1
 -1
-13.0
+30.0
 1
 10
 1
@@ -20,41 +21,24 @@ GRAPHICS-WINDOW
 0
 0
 1
--16
-16
--16
-16
-1
-1
+0
+10
+0
+10
+0
+0
 1
 ticks
 30.0
 
 BUTTON
-9
-10
-200
-43
-NIL
-setup\n
-NIL
-1
-T
-OBSERVER
-NIL
-NIL
-NIL
-NIL
-1
-
-BUTTON
-10
+14
+13
+80
 46
-200
-79
+setup
+setup
 NIL
-go
-T
 1
 T
 OBSERVER
