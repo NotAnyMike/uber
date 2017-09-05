@@ -10,6 +10,8 @@ to setup
     set closest-costumer min-one-of (people) [ distance myself ]
   ]
 
+	setup-importer
+
   reset-ticks
 end
 

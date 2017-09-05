@@ -2,19 +2,18 @@
 
 extensions [csv]
 
-to setup-globals
+to setup-globals-importer
 	set default-expected-cost -1
-	set max-x 10
-	set max-y 10
+	set max-x 32
+	set max-y 32
 end
 
-to setup
-	clear-all
+to setup-importer
 
-	setup-globals
+	setup-globals-importer
 
 	; read the vertices.csv file and for each line create a vertix (node)
-  file-open "vertices.csv"
+  file-open "streets/vertices.csv"
   while [ not file-at-end? ] [
 		; Create variable row which is a list
     let row csv:from-row file-read-line
@@ -31,10 +30,9 @@ to setup
 			set color white
 		]
   ]
-  file-close
-
+  file-close 
 	; read the edges.csv file and for each line create a link
-	file-open "edges.csv"
+	file-open "streets/edges.csv"
 	while [not file-at-end?] [
 		; Create variable row which is a list
 		let row csv:from-row file-read-line
@@ -64,10 +62,4 @@ to setup
 	file-close
 
   reset-ticks
-end
-
-to go
-  if ticks = 1000 [stop]
-
-  tick
 end
