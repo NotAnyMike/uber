@@ -8,10 +8,6 @@ to setup
   create-persons-fn
   create-drivers-fn
 
-  ask drivers [
-    set closest-costumer min-one-of (vertices) [ distance myself ]
-  ]
-
   reset-ticks
 end
 
@@ -20,7 +16,7 @@ to go
   if ticks = 1000 [stop]
 
   ask drivers [
-    go-towards self closest-costumer
+		act
   ]
 
   tick
@@ -42,6 +38,9 @@ to create-drivers-fn
     set color white
     set size 0.5
     set type-of-driver "uber"
+		set state 2
+		set path []
+    move-to  min-one-of (vertices) [ distance myself ]
   ]
 
   create-drivers 25 [
@@ -50,7 +49,45 @@ to create-drivers-fn
     set color yellow
     set size 0.5
     set type-of-driver "uber"
+		set state 2
+		set path []
+    move-to  min-one-of (vertices) [ distance myself ]
   ]
+end
+
+to act
+	if state = 2 [
+		action-2-driver
+	]
+end
+
+to action-2-driver 
+	let xcord xcor
+	let ycord ycor
+	let current_vertex sort vertices with [xcor = xcord and ycor = ycord]
+	if not empty? current_vertex [set current_vertex item 0 current_vertex]
+	if not empty? path [
+		if current_vertex = item 0 path [
+			;remove node from path
+			set path remove-item 0 path
+		]
+	]
+	if empty? path[
+		;get current node
+		if current_vertex = nobody [
+			set current_vertex min-one-of (vertices) [distance self]
+		]
+
+		;get get one of the neighboors randomly
+		;asign it to path
+		let goal nobody
+		ask current_vertex [
+			set goal one-of link-neighbors
+		]
+		if goal != nobody [set path (list goal)]
+	]
+	;move to path
+	go-towards self item 0 path
 end
 
 to go-towards [from-turtle to-turtle]

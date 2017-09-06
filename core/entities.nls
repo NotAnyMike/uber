@@ -7,7 +7,7 @@ people-own [ destination-x destination-y own-driver]
 ;; own-driver is the driver that is or will take her there, it could be empty when the turtle is in state 0
 
 breed [drivers driver]
-drivers-own [type-of-driver closest-costumer state]
+drivers-own [type-of-driver path state]
 ;; state should be 0,1,2
 
 ;;----------------------------------------------------------------------------------
