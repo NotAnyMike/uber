@@ -8,5 +8,6 @@ people-own [ destination-x destination-y own-driver]
 
 breed [drivers driver]
 drivers-own [type-of-driver closest-costumer state]
+;; state should be 0,1,2
 
 ;;----------------------------------------------------------------------------------
