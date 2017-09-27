@@ -15,26 +15,38 @@ end
 to go
   if ticks = 1000 [stop]
 
+	;; assign drivers to persons (for now choose any free driver randomly)
+	assing-drivers
+
+	ask people [
+		person-act
+	]
+
   ask drivers [
-		act
+		driver-act
   ]
 
   tick
 end
 
+; --------- creating turtles ----------
+
 to create-persons-fn
-  create-people 100 [
-    setxy random-xcor random-ycor
-    ;set shape "circle 2"
+  create-people number_of_people [
+		let random_vertice one-of vertices
+		set current_vertice random_vertice
+		move-to random_vertice
+
+    set shape "default"
     set color white
-    set size 0.5
+    set size 1
   ]
 end
 
 to create-drivers-fn
-  create-drivers 25 [
+  create-drivers number_of_ubers [
     setxy random-xcor random-ycor
-    ;set shape "circle"
+    set shape "circle 2"
     set color white
     set size 0.5
     set type-of-driver "uber"
@@ -43,60 +55,24 @@ to create-drivers-fn
     move-to  min-one-of (vertices) [ distance myself ]
   ]
 
-  create-drivers 25 [
+  create-drivers number_of_taxis [
     setxy random-xcor random-ycor
-    set shape "circle"
+    set shape "circle 2"
     set color yellow
     set size 0.5
-    set type-of-driver "uber"
+    set type-of-driver "taxi"
 		set state 2
 		set path []
     move-to  min-one-of (vertices) [ distance myself ]
   ]
 end
 
-to act
-	if state = 2 [
-		action-2-driver
-	]
-end
-
-to action-2-driver 
-	let xcord xcor
-	let ycord ycor
-	let current_vertex sort vertices with [xcor = xcord and ycor = ycord]
-	if not empty? current_vertex [set current_vertex item 0 current_vertex]
-	if not empty? path [
-		if current_vertex = item 0 path [
-			;remove node from path
-			set path remove-item 0 path
-		]
-	]
-	if empty? path[
-		;get current node
-		if current_vertex = nobody [
-			set current_vertex min-one-of (vertices) [distance self]
-		]
-
-		;get get one of the neighboors randomly
-		;asign it to path
-		let goal nobody
-		ask current_vertex [
-			set goal one-of link-neighbors
-		]
-		if goal != nobody [set path (list goal)]
-	]
-	;move to path
-	go-towards self item 0 path
-end
-
+; --------- movement function --------------
 to go-towards [from-turtle to-turtle]
   ask from-turtle [
+let xcord [xcor] of to-turtle let ycord [ycor] of to-turtle
 
-    let xcord [xcor] of to-turtle
-    let ycord [ycor] of to-turtle
-
-    if distance to-turtle != 0 [
+    ifelse distance to-turtle != 0 [
 
       set heading towards to-turtle
 
@@ -104,7 +80,24 @@ to go-towards [from-turtle to-turtle]
         forward 1
       ][
         forward distance to-turtle
+				move-to to-turtle
       ]
-    ]
+    ][move-to to-turtle]
   ]
+end
+
+; ------------ other functions -------------
+to assing-drivers
+	; for each person searching do 
+	ask people with [state = 1] [
+		let current_person self
+		if not empty? sort drivers with [state = 2] [
+			set own-driver one-of drivers with [state = 2]
+			ask own-driver [
+				going-to-customer-change
+				ask current_person [set state 3]
+				set customer current_person 
+			]
+		]
+	]
 end

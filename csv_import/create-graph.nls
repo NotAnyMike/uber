@@ -27,6 +27,7 @@ to setup-importer
 			set visited? false
 
 			set shape "dot"
+			set size 0.3
 			set color white
 		]
   ]

@@ -5,6 +5,9 @@ __includes [
 
   "core/entities.nls"
   "core/functions.nls"
+
+  "person/functions.nls"
+  "driver/functions.nls"
 ]
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -35,10 +38,10 @@ ticks
 30.0
 
 BUTTON
-9
-10
-200
-43
+15
+137
+113
+170
 NIL
 setup\n
 NIL
@@ -52,10 +55,10 @@ NIL
 1
 
 BUTTON
-10
-46
-200
-79
+115
+137
+207
+170
 NIL
 go
 T
@@ -67,6 +70,39 @@ NIL
 NIL
 NIL
 1
+
+INPUTBOX
+15
+10
+207
+70
+number_of_people
+5.0
+1
+0
+Number
+
+INPUTBOX
+115
+73
+207
+133
+number_of_taxis
+25.0
+1
+0
+Number
+
+INPUTBOX
+15
+73
+113
+133
+number_of_ubers
+25.0
+1
+0
+Number
 
 @#$#@#$#@
 ## WHAT IS IT?
