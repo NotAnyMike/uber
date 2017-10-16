@@ -4,8 +4,8 @@ extensions [csv]
 
 to setup-globals
 	set default-expected-cost -1
-	set max-x 10
-	set max-y 10
+	set max-x 30
+	set max-y 30
 end
 
 to setup
@@ -29,6 +29,7 @@ to setup
 
 			set shape "dot"
 			set color white
+			set size 0.1
 		]
   ]
   file-close
@@ -52,12 +53,12 @@ to setup
 			ask edges with [end1 = fromElement and end2 = toElement] [
 				set pk item 0 row
 				set cost item 3 row
-				set label item 3 row
+				;set label item 3 row
 			]
 			ask edges with [end1 = toElement and end2 = fromElement] [
 				set pk item 0 row
 				set cost item 3 row
-				set label item 3 row
+				;set label item 3 row
 			]
 		]
 	]	

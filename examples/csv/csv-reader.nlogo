@@ -7,8 +7,8 @@ __includes [
 GRAPHICS-WINDOW
 210
 10
-548
-349
+1148
+949
 -1
 -1
 30.0
@@ -22,9 +22,9 @@ GRAPHICS-WINDOW
 0
 1
 0
-10
+30
 0
-10
+30
 0
 0
 1
