@@ -27,6 +27,7 @@ to setup-importer
 			set visited? false
 
 			set shape "dot"
+			set size 0.3
 			set color white
 		]
   ]
@@ -50,12 +51,12 @@ to setup-importer
 			ask edges with [end1 = fromElement and end2 = toElement] [
 				set pk item 0 row
 				set cost item 3 row
-				set label item 3 row
+				;set label item 3 row
 			]
 			ask edges with [end1 = toElement and end2 = fromElement] [
 				set pk item 0 row
 				set cost item 3 row
-				set label item 3 row
+				;set label item 3 row
 			]
 		]
 	]	
