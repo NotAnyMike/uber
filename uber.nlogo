@@ -38,10 +38,10 @@ ticks
 30.0
 
 BUTTON
-15
-137
-113
-170
+14
+165
+112
+198
 NIL
 setup\n
 NIL
@@ -55,10 +55,10 @@ NIL
 1
 
 BUTTON
-115
-137
-207
-170
+114
+165
+206
+198
 NIL
 go
 T
@@ -72,10 +72,10 @@ NIL
 1
 
 INPUTBOX
-15
-10
-207
-70
+14
+38
+206
+98
 number_of_people
 5.0
 1
@@ -83,10 +83,10 @@ number_of_people
 Number
 
 INPUTBOX
-115
-73
-207
-133
+114
+101
+206
+161
 number_of_taxis
 25.0
 1
@@ -94,15 +94,70 @@ number_of_taxis
 Number
 
 INPUTBOX
-15
-73
-113
-133
+14
+101
+112
+161
 number_of_ubers
 25.0
 1
 0
 Number
+
+TEXTBOX
+14
+214
+164
+232
+Assignement policies
+11
+0.0
+1
+
+TEXTBOX
+15
+21
+165
+39
+Initial settings
+11
+0.0
+1
+
+CHOOSER
+13
+228
+206
+273
+choosing_customer_policy_code
+choosing_customer_policy_code
+"fifo" "randomly"
+0
+
+CHOOSER
+13
+277
+206
+322
+choosing_driver_policy_code
+choosing_driver_policy_code
+"closest" "fifo"
+0
+
+SLIDER
+13
+326
+206
+359
+radius_driver_policy
+radius_driver_policy
+0
+100
+37.0
+1
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?

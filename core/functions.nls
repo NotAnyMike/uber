@@ -89,9 +89,11 @@ end
 ; ------------ other functions -------------
 to assing-drivers
 	; for each person searching do 
+	; decide which policy to use for choosing the person
 	ask people with [state = 1] [
 		let current_person self
 		if not empty? sort drivers with [state = 2] [
+			; decide which policy to use for choosing the driver
 			set own-driver one-of drivers with [state = 2]
 			ask own-driver [
 				going-to-customer-change
