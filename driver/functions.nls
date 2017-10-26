@@ -87,6 +87,7 @@ to going-to-destination-change
 	set shape "target"
 end
 
+; ---------- this function takes care of executing the correct assignment function for drivers ------------
 to assignment_policy_fn_drivers [current_person]
 	if not empty? sort drivers with [state = 2] [
 		; decide which policy to use for choosing the driver
