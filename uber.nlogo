@@ -141,7 +141,7 @@ CHOOSER
 322
 choosing_driver_policy_code
 choosing_driver_policy_code
-"closest" "fifo"
+"closest" "fifo" "randomly"
 0
 
 SLIDER
