@@ -112,7 +112,7 @@ to assignment_policy_fn_drivers [current_person]
 			ask own-driver [
 				going-to-customer-change
 				ask current_person [
-					set_state_person 3
+					set_state_person 2
 				]
 				set customer current_person 
 			]

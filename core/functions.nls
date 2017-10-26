@@ -37,6 +37,8 @@ to create-persons-fn
 		set current_vertice random_vertice
 		move-to random_vertice
 
+		set history []
+
     set shape "default"
     set color white
     set size 1
