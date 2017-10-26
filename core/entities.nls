@@ -8,7 +8,7 @@ people-own [current_vertice own-driver state destination last_status_change]
 ; wating is the variable of how long the person has been waiting
 
 breed [drivers driver]
-drivers-own [type-of-driver path state customer]
+drivers-own [type-of-driver path state customer last_status_change]
 ; state should be 0,1,2
 
 ;----------------------------------------------------------------------------------

@@ -27,20 +27,22 @@ to get-out
 	move-to destination
 	show-turtle
 end
+	
+to assignment_policy_fn_persons
+	ifelse choosing_customer_policy_code = "randomly" [
+		randomly_policy_persons
+	][
+		if choosing_customer_policy_code = "fifo" [
+			fifo_policy_persons
+		]
+	]
+end
 
 ; ---------- randomly assignement policy for persons ----------
 to randomly_policy_persons
 	ask people with [state = 1] [
 		let current_person self
-		if not empty? sort drivers with [state = 2] [
-			; decide which policy to use for choosing the driver
-			set own-driver one-of drivers with [state = 2]
-			ask own-driver [
-				going-to-customer-change
-				ask current_person [set state 3]
-				set customer current_person 
-			]
-		]
+		assignment_policy_fn_drivers current_person
 	]
 end
 
@@ -49,14 +51,7 @@ to fifo_policy_persons
 	if not empty? sort people with [state = 1][
 		foreach sort-on [last_status_change] people with [state = 1][
 			[x] -> ask x [
-				if not empty? sort drivers with [state = 2] [
-					set own-driver one-of drivers with [state = 2]
-					ask own-driver [
-						going-to-customer-change
-						ask x [set state 3]
-						set customer x
-					]
-				]
+				assignment_policy_fn_drivers x
 			]
 		]
 	]

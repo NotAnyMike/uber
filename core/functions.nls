@@ -90,11 +90,5 @@ end
 to assing-drivers
 	; for each person searching do 
 	; decide which policy to use for choosing the person
-	ifelse choosing_customer_policy_code = "randomly" [
-		randomly_policy_persons
-	][
-		if choosing_customer_policy_code = "fifo" [
-			fifo_policy_persons
-		]
-	]
+	assignment_policy_fn_persons
 end
