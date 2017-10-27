@@ -27,6 +27,25 @@ end
 
 ;----------- election rule -------------
 to uber? [current_person]
+	let uber 0
+	let taxi 0
+	let n 1
+	foreach [history_uber] of current_person [
+		[delay] -> set uber uber +  delay / n 
+		set n n + 1
+	]
+
+	set n 1
+	foreach [history_taxi] of current_person [
+		[delay] -> set taxi taxi +  delay / n 
+		set n n + 1
+	]
+
+	ifelse uber > taxi [
+		return true
+	][
+		return false
+	]
 end
 
 ;----------- set_state_persons ---------
