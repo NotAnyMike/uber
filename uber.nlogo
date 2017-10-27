@@ -125,35 +125,35 @@ Initial settings
 1
 
 CHOOSER
-13
-228
+12
+253
 206
-273
-choosing_customer_policy_code
-choosing_customer_policy_code
+298
+choosing_customer_policy_code_uber
+choosing_customer_policy_code_uber
 "fifo" "randomly"
 0
 
 CHOOSER
-13
-277
+12
+302
 206
-322
-choosing_driver_policy_code
-choosing_driver_policy_code
+347
+choosing_driver_policy_code_uber
+choosing_driver_policy_code_uber
 "closest" "fifo" "randomly"
 2
 
 SLIDER
-13
-326
+12
+351
 206
-359
-radius_driver_policy
-radius_driver_policy
+384
+radius_driver_policy_uber
+radius_driver_policy_uber
 0
 100
-79.0
+56.0
 1
 1
 NIL
@@ -215,6 +215,61 @@ false
 PENS
 "ratio" 1.0 0 -16777216 true "" "plot count people with [uber? self = true] / number_of_people"
 ".5" 1.0 0 -3026479 true "" "plot 0.5"
+
+TEXTBOX
+12
+238
+162
+256
+Uber:
+11
+0.0
+1
+
+TEXTBOX
+15
+407
+165
+425
+Taxi
+11
+0.0
+1
+
+CHOOSER
+15
+424
+205
+469
+choosing_customer_policy_code_taxi
+choosing_customer_policy_code_taxi
+"fifo" "randomly"
+1
+
+CHOOSER
+15
+473
+206
+518
+choosing_driver_policy_code_taxi
+choosing_driver_policy_code_taxi
+"randomly" "fifo" "closest"
+2
+
+SLIDER
+15
+522
+207
+555
+radius_driver_policy_taxi
+radius_driver_policy_taxi
+0
+100
+50.0
+1
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
