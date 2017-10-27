@@ -69,21 +69,18 @@ to action-1-driver
 end
 
 to change-to-free
-	set state 2
-	set last_status_change date-and-time
+	set_state_driver 2
 	set shape "circle 2"
 	set customer nobody
 end
 
 to going-to-customer-change
-	set state 0
-	set last_status_change date-and-time
+	set_state_driver 0
 	set shape "circle"
 end
 
 to going-to-destination-change
-	set state 1
-	set last_status_change date-and-time
+	set_state_driver 1
 	set shape "target"
 end
 
@@ -118,4 +115,9 @@ to assignment_policy_fn_drivers [current_person]
 			]
 		]
 	]
+end
+
+to set_state_driver [value]
+	set state value
+	set last_status_change ticks
 end

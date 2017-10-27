@@ -37,7 +37,8 @@ to create-persons-fn
 		set current_vertice random_vertice
 		move-to random_vertice
 
-		set history []
+		set history_uber []
+		set history_taxi []
 
     set shape "default"
     set color white

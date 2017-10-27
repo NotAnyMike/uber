@@ -25,14 +25,26 @@ to get-out
 	show-turtle
 end
 
+;----------- election rule -------------
+to uber? [current_person]
+end
+
 ;----------- set_state_persons ---------
 to set_state_person [value]
 	if state = 1 AND value = 2 [
-		set history fput (timer - last_status_change) history
+		if is-driver? own-driver [
+			ifelse [type-of-driver] of own-driver = "taxi" [
+				set history_taxi fput (ticks - last_status_change) history_uber
+			][
+				if [type-of-driver] of own-driver = "uber" [
+					set history_uber fput (ticks - last_status_change) history_uber
+				]
+			]
+		]
 	]
 	;set last_status_change date-and-time
 	set state value
-	set last_status_change timer
+	set last_status_change ticks
 end 
 ;-----------------------------
 	
