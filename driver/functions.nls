@@ -87,8 +87,14 @@ end
 ; ---------- this function takes care of executing the correct assignment function for drivers ------------
 to assignment_policy_fn_drivers [current_person]
 	if not empty? sort drivers with [state = 2] [
+
+		let type_of_driver? "taxi"
+		if uber? current_person [
+			set type_of_driver? "uber"
+		]
+
 		; decide which policy to use for choosing the driver
-		let drivers_set drivers with [distance current_person <= radius_driver_policy / 100 * (max list max-x max-y) AND state = 2]
+		let drivers_set drivers with [distance current_person <= radius_driver_policy / 100 * (max list max-x max-y) AND state = 2 AND type-of-driver = type_of_driver?]
 
 		let driverToBeAssigned nobody
 

@@ -26,7 +26,7 @@ to get-out
 end
 
 ;----------- election rule -------------
-to uber? [current_person]
+to-report uber? [current_person]
 	let uber 0
 	let taxi 0
 	let n 1
@@ -41,10 +41,14 @@ to uber? [current_person]
 		set n n + 1
 	]
 
-	ifelse uber > taxi [
-		return true
+	ifelse uber < taxi [
+		report true
 	][
-		return false
+		ifelse uber = taxi [
+			report one-of [true false]
+		][
+			report false
+		]
 	]
 end
 

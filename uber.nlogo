@@ -77,7 +77,7 @@ INPUTBOX
 206
 98
 number_of_people
-5.0
+200.0
 1
 0
 Number
@@ -142,7 +142,7 @@ CHOOSER
 choosing_driver_policy_code
 choosing_driver_policy_code
 "closest" "fifo" "randomly"
-0
+2
 
 SLIDER
 13
@@ -153,11 +153,68 @@ radius_driver_policy
 radius_driver_policy
 0
 100
-37.0
+79.0
 1
 1
 NIL
 HORIZONTAL
+
+PLOT
+652
+11
+990
+154
+Count
+tick
+#
+0.0
+10.0
+0.0
+10.0
+true
+true
+"" ""
+PENS
+"ubers being used" 1.0 0 -16777216 true "" "plot count drivers with [type-of-driver = \"uber\" AND state != 2]"
+"taxis being used" 1.0 0 -2674135 true "" "plot count drivers with [type-of-driver = \"taxi\" AND state != 2]"
+
+PLOT
+653
+161
+991
+290
+People
+NIL
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+true
+"" ""
+PENS
+"waiting" 1.0 0 -16777216 true "" "plot count people with [state = 1]"
+"being transported" 1.0 0 -2674135 true "" "plot count people with [state = 2]"
+
+PLOT
+654
+295
+991
+449
+uber vs taxis
+ratio
+ticks
+0.0
+10.0
+0.0
+1.0
+true
+false
+"" ""
+PENS
+"ratio" 1.0 0 -16777216 true "" "plot count people with [uber? self = true] / number_of_people"
+".5" 1.0 0 -3026479 true "" "plot 0.5"
 
 @#$#@#$#@
 ## WHAT IS IT?
