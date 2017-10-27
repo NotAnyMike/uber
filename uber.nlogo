@@ -129,8 +129,8 @@ CHOOSER
 253
 206
 298
-choosing_customer_policy_code_uber
-choosing_customer_policy_code_uber
+choosing_customer_policy_code
+choosing_customer_policy_code
 "fifo" "randomly"
 0
 
@@ -142,7 +142,7 @@ CHOOSER
 choosing_driver_policy_code_uber
 choosing_driver_policy_code_uber
 "closest" "fifo" "randomly"
-2
+0
 
 SLIDER
 13
@@ -153,7 +153,7 @@ radius_driver_policy_uber
 radius_driver_policy_uber
 0
 100
-62.0
+77.0
 1
 1
 NIL
@@ -228,9 +228,9 @@ Uber
 
 TEXTBOX
 15
-423
+425
 165
-441
+443
 Taxi
 11
 0.0
