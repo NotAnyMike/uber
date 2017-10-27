@@ -135,25 +135,25 @@ choosing_customer_policy_code_uber
 0
 
 CHOOSER
-12
-302
-206
-347
+13
+328
+207
+373
 choosing_driver_policy_code_uber
 choosing_driver_policy_code_uber
 "closest" "fifo" "randomly"
 2
 
 SLIDER
-12
-351
-206
-384
+13
+377
+207
+410
 radius_driver_policy_uber
 radius_driver_policy_uber
 0
 100
-56.0
+62.0
 1
 1
 NIL
@@ -217,20 +217,20 @@ PENS
 ".5" 1.0 0 -3026479 true "" "plot 0.5"
 
 TEXTBOX
-12
-238
-162
-256
-Uber:
+16
+313
+166
+331
+Uber
 11
 0.0
 1
 
 TEXTBOX
 15
-407
+423
 165
-425
+441
 Taxi
 11
 0.0
@@ -238,19 +238,9 @@ Taxi
 
 CHOOSER
 15
-424
-205
-469
-choosing_customer_policy_code_taxi
-choosing_customer_policy_code_taxi
-"fifo" "randomly"
-1
-
-CHOOSER
-15
-473
+442
 206
-518
+487
 choosing_driver_policy_code_taxi
 choosing_driver_policy_code_taxi
 "randomly" "fifo" "closest"
@@ -258,9 +248,9 @@ choosing_driver_policy_code_taxi
 
 SLIDER
 15
-522
+491
 207
-555
+524
 radius_driver_policy_taxi
 radius_driver_policy_taxi
 0
@@ -270,6 +260,16 @@ radius_driver_policy_taxi
 1
 NIL
 HORIZONTAL
+
+TEXTBOX
+12
+237
+162
+255
+People policies
+11
+0.0
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
