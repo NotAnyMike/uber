@@ -1,4 +1,4 @@
-;; FILE FOR PERSON'S FUNCTIONS
+; FILE FOR PERSON'S FUNCTIONS
 
 to person-act 
 	if state = 0 [

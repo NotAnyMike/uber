@@ -89,8 +89,10 @@ to assignment_policy_fn_drivers [current_person]
 	if not empty? sort drivers with [state = 2] [
 
 		let type_of_driver? "taxi"
+		let radius_driver_policy radius_driver_policy_taxi
 		if uber? current_person [
 			set type_of_driver? "uber"
+			set radius_driver_policy radius_driver_policy_uber
 		]
 
 		; decide which policy to use for choosing the driver
