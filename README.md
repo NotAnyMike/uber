@@ -13,13 +13,13 @@ Use the lib `virtualenvwraper` and install the requirements in `requirements.txt
 * `2`: wating for costumer policy or free
 
 ## Person states
+The following are the different states in which a person cab be in:
 * `0`: free
 * `1`: searching driver
 * `3`: wating for driver to arrive
 * `2`: being driven
 
 ## Thoughts on the General Model
-
 The model must have several variables in order to diffirentiate taxis and ubers, some of them must be intrinsic to the service and another type of characteristics must be about strategy. Differentiating the services by the confortableness is not enough given the new trend of decreasing quality of uber's confortability.
 
 ### Main variables related to Uber and Taxis which can be used to differentiate them
