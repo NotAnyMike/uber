@@ -80,8 +80,8 @@ let xcord [xcor] of to-turtle let ycord [ycor] of to-turtle
   ]
 end
 
-; ------------ move to closest function ------------
-to move-closest 
+; ------------ move through path function ------------
+to move-th-path 
     ;if the number of elements in the list is not zero (is not empty)
     if length path > 0 [
       ;rotate to the first node
