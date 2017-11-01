@@ -23,8 +23,7 @@ The following are the different states in which a person cab be in:
 The model must have several variables in order to diffirentiate taxis and ubers, some of them must be intrinsic to the service and another type of characteristics must be about strategy. Differentiating the services by the confortableness is not enough given the new trend of decreasing quality of uber's confortability.
 
 ### Main variables related to Uber and Taxis which can be used to differentiate them
-One important issue to discuse is wheter or not take into account normal taxi drivers (i.e. taken in the street) because it can help us to differentiate drivers with the variable security. Thinking a little bit more, I would say the main reason why people take taxi would be because it is cheaper, and then, build the decision rule from othem
-* Price: The prices is a clear incentive to use Uber instead of taking a taxi, in order to analyse this part better there is a need to have more information of the tarifs of uber and taxi. The taximentro can be simulated.
+One important issue to discuse is wheter or not take into account normal taxi drivers (i.e. taken in the street) because it can help us to differentiate drivers with the variable security. Thinking a little bit more, I would say the main reason why people take taxi would be because it is cheaper, and then, build the decision rule from othem * Price: The prices is a clear incentive to use Uber instead of taking a taxi, in order to analyse this part better there is a need to have more information of the tarifs of uber and taxi. The taximentro can be simulated.
 * Easiness (but this can be no longer relevant): It is easier to take a Uber than a taxi, but this can have changed lately.
 * Security: Some times people say that taking Uber is more secure, but lately with the uber pool I have seen some ubers which are not as secure, anyway there are more bad cab drivers than uber drivers (I would say)
 * Fast in case of emergency: The dynamic rate allows to have always an uber free, and in case of rush hour taking a cab can take 3 or 2 times longer than a uber, but it would also be cheaper
@@ -42,5 +41,20 @@ One important issue to discuse is wheter or not take into account normal taxi dr
 * variables which differentiate: Custimer atention, precios, position in the map, a bias in favor of the taxis only if they are really really close (1/x^2), more I have taken taxis, more I will take
 * Talk to mario: Mike 15
 * Talk to Angelica of how to we make desitions: Mike 15
-* No return: viernes depues de casa de junca
+* No return: viernes depues de casa de junca, Brian
 * Camilo: lunes dikjstra
+
+Camilo:
+* 14 Nov: Find information about where does people take more **UBERS** (if it's possible find the same information about taxis, but uber is **mandatory**)
+* 6 Nov: Dikjstra
+
+Brian:
+* 14 Nov: Information to decide wheather or not to take into account the street tax drivers
+* 10 Nov: No-return issue fixed
+* 10 Nov: Map simplied
+
+Mike:
+* 14 Nov: How to model uncertanty in the prices using a probability distribution
+* 14 Nov: Talk to Mario Garcia
+* 14 Nov: Talk to Angelica
+
