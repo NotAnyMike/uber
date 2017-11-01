@@ -19,13 +19,14 @@ to action-2-driver
 	let ycord ycor
 	let current_vertex sort vertices with [xcor = xcord and ycor = ycord]
 	if not empty? current_vertex [set current_vertex item 0 current_vertex]
-	if not empty? path [
-		if current_vertex = item 0 path [
-			;remove node from path
-			set path remove-item 0 path
-		]
-	]
+	;if not empty? path [
+		;if current_vertex = item 0 path [
+			; remove node from path
+			;set path remove-item 0 path
+;		]
+;	]
 	if empty? path[
+    ;TODO here is the place to implement free movement policy
 		;get current node
 		if current_vertex = nobody [
 			set current_vertex min-one-of (vertices) [distance self]
@@ -38,9 +39,12 @@ to action-2-driver
 			set goal one-of link-neighbors
 		]
 		if goal != nobody [set path (list goal)]
+  
 	]
+move-closest
 	;move to path
-	go-towards self item 0 path
+
+
 end
 
 to action-0-driver
@@ -52,7 +56,7 @@ to action-0-driver
 		going-to-destination-change
 	][
 		;; else move to customer
-		go-towards self customer
+		
 	]
 end
 
@@ -64,59 +68,22 @@ to action-1-driver
 		change-to-free
 	][
 		; else move to customer
-		go-towards self [destination] of customer
+		
 	]
 end
 
 to change-to-free
 	set state 2
-	set last_status_change date-and-time
 	set shape "circle 2"
 	set customer nobody
 end
 
 to going-to-customer-change
 	set state 0
-	set last_status_change date-and-time
 	set shape "circle"
 end
 
 to going-to-destination-change
 	set state 1
-	set last_status_change date-and-time
 	set shape "target"
-end
-
-; ---------- this function takes care of executing the correct assignment function for drivers ------------
-to assignment_policy_fn_drivers [current_person]
-	if not empty? sort drivers with [state = 2] [
-		; decide which policy to use for choosing the driver
-		let drivers_set drivers with [distance current_person <= radius_driver_policy / 100 * (max list max-x max-y) AND state = 2]
-
-		let driverToBeAssigned nobody
-
-		ifelse choosing_driver_policy_code = "closest" [
-			set driverToBeAssigned min-one-of drivers_set [distance current_person]
-		][
-			ifelse choosing_driver_policy_code = "fifo" [
-				set driverToBeAssigned min-one-of drivers_set [last_status_change]
-			][
-				if choosing_driver_policy_code = "randomly" [
-					set driverToBeAssigned one-of drivers_set	
-				]
-			]
-		]
-
-		if driverToBeAssigned != nobody [
-			set own-driver driverToBeAssigned ; perhaps use ask current_person [set own-dri...
-			ask own-driver [
-				going-to-customer-change
-				ask current_person [
-					set state 3
-					set last_status_change date-and-time
-				]
-				set customer current_person 
-			]
-		]
-	]
 end
