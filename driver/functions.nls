@@ -41,7 +41,7 @@ to action-2-driver
 		if goal != nobody [set path (list goal)]
   
 	]
-move-closest
+move-th-path
 	;move to path
 
 
