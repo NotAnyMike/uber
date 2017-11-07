@@ -1,0 +1,129 @@
+;;Setup function --------------------------------------------------------------------
+
+to setup
+  clear-all
+
+	setup-importer
+
+  create-persons-fn
+  create-drivers-fn
+
+  reset-ticks
+end
+
+;;Go function --------------------------------------------------------------------
+to go
+  if ticks = 1000 [stop]
+
+  ask drivers [
+	driver-act
+  ]
+
+  tick
+end
+
+; --------- creating turtles ----------
+
+to create-persons-fn
+  create-people number_of_people [
+		let random_vertice one-of vertices
+		set current_vertice random_vertice
+		move-to random_vertice
+
+    set shape "default"
+    set color white
+    set size 1
+  ]
+end
+
+to create-drivers-fn
+  create-drivers number_of_ubers [
+    setxy random-xcor random-ycor
+    set shape "circle 2"
+    set color white
+    set size 0.5
+    set type-of-driver "uber"
+	set state 2
+	set path (list vertex 1 vertex 200)
+    move-to  min-one-of (vertices) [ distance myself ]
+  ]
+
+  create-drivers number_of_taxis [
+    setxy random-xcor random-ycor
+    set shape "circle 2"
+    set color yellow
+    set size 0.5
+    set type-of-driver "taxi"
+		set state 2
+		set path []
+    move-to  min-one-of (vertices) [ distance myself ]
+  ]
+end
+
+; --------- movement function (deprecated) -------------
+; This function is deprecated because of a newer one. Use at one's risk
+to go-towards [from-turtle to-turtle]
+  ask from-turtle [
+let xcord [xcor] of to-turtle let ycord [ycor] of to-turtle
+
+    ifelse distance to-turtle != 0 [
+
+      set heading towards to-turtle
+
+      ifelse abs(xcord - xcor) > 1 OR abs(ycord - ycor) > 1 [
+        forward 1
+      ][
+        forward distance to-turtle
+		move-to to-turtle
+      ]
+    ][move-to to-turtle]
+  ]
+end
+
+; ------------ move to closest function ------------
+to move-closest 
+    ;if the number of elements in the list is not zero (is not empty)
+    if length path > 0 [
+      ;rotate to the first node
+      face item 0 path
+
+      ;create local variables that correspond to the coordenates of the first note in the list
+      
+      let xcordi [xcor] of item 0 path
+      let ycordi [ycor] of item 0 path
+
+      ; if these coordenates of the drivers are different from the nodes ones then advance one unit
+      ; and if the distance between them is less than the unit, then just advance to that first element of the list (the coordenate)
+      ifelse xcor != xcordi and ycor != ycordi [
+        ifelse distance item 0 path < 1 [
+          fd distance item 0 path
+          move-to item 0 path 
+        ]
+        [fd 1]
+      ]
+      [
+        set path remove-item 0 path
+      ]
+    ]
+  
+end
+
+
+
+; ------------ other functions -------------
+to assing-drivers
+	; for each person searching do 
+	; decide which policy to use for choosing the person
+	ask people with [state = 1] [
+		let current_person self
+		if not empty? sort drivers with [state = 2] [
+			; decide which policy to use for choosing the driver
+			set own-driver one-of drivers with [state = 2]
+			ask own-driver [
+				going-to-customer-change
+				ask current_person [set state 3]
+				set customer current_person 
+			]
+		]
+	]
+end
