@@ -116,14 +116,16 @@ to assignment_policy_fn_drivers [current_person]
 			
 		][
 
-			ifelse choosing_driver_policy_code_taxi = "closest" [
-				set driverToBeAssigned min-one-of drivers_set [distance current_person]
-			][
-				ifelse choosing_driver_policy_code_taxi = "fifo" [
-					set driverToBeAssigned min-one-of drivers_set [last_status_change]
+			if type_of_driver? = "taxi" [
+				ifelse choosing_driver_policy_code_taxi = "closest" [
+					set driverToBeAssigned min-one-of drivers_set [distance current_person]
 				][
-					if choosing_driver_policy_code_taxi = "randomly" [
-						set driverToBeAssigned one-of drivers_set	
+					ifelse choosing_driver_policy_code_taxi = "fifo" [
+						set driverToBeAssigned min-one-of drivers_set [last_status_change]
+					][
+						if choosing_driver_policy_code_taxi = "randomly" [
+							set driverToBeAssigned one-of drivers_set	
+						]
 					]
 				]
 			]
