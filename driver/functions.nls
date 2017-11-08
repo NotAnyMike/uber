@@ -100,16 +100,34 @@ to assignment_policy_fn_drivers [current_person]
 
 		let driverToBeAssigned nobody
 
-		ifelse choosing_driver_policy_code = "closest" [
-			set driverToBeAssigned min-one-of drivers_set [distance current_person]
-		][
-			ifelse choosing_driver_policy_code = "fifo" [
-				set driverToBeAssigned min-one-of drivers_set [last_status_change]
+		ifelse type_of_driver? = "uber" [
+
+			ifelse choosing_driver_policy_code_uber = "closest" [
+				set driverToBeAssigned min-one-of drivers_set [distance current_person]
 			][
-				if choosing_driver_policy_code = "randomly" [
-					set driverToBeAssigned one-of drivers_set	
+				ifelse choosing_driver_policy_code_uber = "fifo" [
+					set driverToBeAssigned min-one-of drivers_set [last_status_change]
+				][
+					if choosing_driver_policy_code_uber = "randomly" [
+						set driverToBeAssigned one-of drivers_set	
+					]
 				]
 			]
+			
+		][
+
+			ifelse choosing_driver_policy_code_taxi = "closest" [
+				set driverToBeAssigned min-one-of drivers_set [distance current_person]
+			][
+				ifelse choosing_driver_policy_code_taxi = "fifo" [
+					set driverToBeAssigned min-one-of drivers_set [last_status_change]
+				][
+					if choosing_driver_policy_code_taxi = "randomly" [
+						set driverToBeAssigned one-of drivers_set	
+					]
+				]
+			]
+
 		]
 
 		if driverToBeAssigned != nobody [
