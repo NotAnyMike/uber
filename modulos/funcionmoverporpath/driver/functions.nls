@@ -41,7 +41,7 @@ to action-2-driver
 		if goal != nobody [set path (list goal)]
   
 	]
-move-th-path
+move-closest
 	;move to path
 
 
@@ -86,38 +86,4 @@ end
 to going-to-destination-change
 	set state 1
 	set shape "target"
-end
-
-; ---------- this function takes care of executing the correct assignment function for drivers ------------
-to assignment_policy_fn_drivers [current_person]
-	if not empty? sort drivers with [state = 2] [
-		; decide which policy to use for choosing the driver
-		let drivers_set drivers with [distance current_person <= radius_driver_policy / 100 * (max list max-x max-y) AND state = 2]
-
-		let driverToBeAssigned nobody
-
-		ifelse choosing_driver_policy_code = "closest" [
-			set driverToBeAssigned min-one-of drivers_set [distance current_person]
-		][
-			ifelse choosing_driver_policy_code = "fifo" [
-				set driverToBeAssigned min-one-of drivers_set [last_status_change]
-			][
-				if choosing_driver_policy_code = "randomly" [
-					set driverToBeAssigned one-of drivers_set	
-				]
-			]
-		]
-
-		if driverToBeAssigned != nobody [
-			set own-driver driverToBeAssigned ; perhaps use ask current_person [set own-dri...
-			ask own-driver [
-				going-to-customer-change
-				ask current_person [
-					set state 3
-					set last_status_change date-and-time
-				]
-				set customer current_person 
-			]
-		]
-	]
 end
