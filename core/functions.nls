@@ -127,3 +127,13 @@ to assing-drivers
 		]
 	]
 end
+
+; ------- here starts dikjstra -------
+
+to d [start_vertex end_vertex]
+  ask start_vertex [
+    print link-neighbors
+  ]
+end
+
+; ------- here diksjtra finish -----
