@@ -13,7 +13,7 @@ to setup-importer
 	setup-globals-importer
 
 	; read the vertices.csv file and for each line create a vertix (node)
-  file-open "streets/vertices.csv"
+  file-open "streets/vertices-simple.csv"
   while [ not file-at-end? ] [
 		; Create variable row which is a list
     let row csv:from-row file-read-line
@@ -33,7 +33,7 @@ to setup-importer
   ]
   file-close 
 	; read the edges.csv file and for each line create a link
-	file-open "streets/edges.csv"
+	file-open "streets/edges-simple.csv"
 	while [not file-at-end?] [
 		; Create variable row which is a list
 		let row csv:from-row file-read-line
