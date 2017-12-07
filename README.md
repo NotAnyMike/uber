@@ -19,15 +19,16 @@ The following are the different states in which a person cab be in:
 * `3`: wating for driver to arrive
 * `2`: being driven
 
-## Thoughts on the General Model
+## Thoughts on the General Model
 The model must have several variables in order to diffirentiate taxis and ubers, some of them must be intrinsic to the service and another type of characteristics must be about strategy. Differentiating the services by the confortableness is not enough given the new trend of decreasing quality of uber's confortability.
 
 ## Decision Rule
 
 The following are the variables that the Decision Rule must take into account:
 
-* Price
-* Heuristic of Familiarity
+* Price: but the **taximetro** and the **Uber price calculator** (this includes the dynamic rare) must be created
+* Heuristic of Familiarity: the lastest type of driver have weights more.
+* The uncertanty in the price of the taxi fare
 * to be continued
 
 ### Main variables related to Uber and Taxis which can be used to differentiate them
@@ -37,9 +38,9 @@ One important issue to discuse is wheter or not take into account normal taxi dr
 * Security: Some times people say that taking Uber is more secure, but lately with the uber pool I have seen some ubers which are not as secure, anyway there are more bad cab drivers than uber drivers (I would say)
 * Fast in case of emergency: The dynamic rate allows to have always an uber free, and in case of rush hour taking a cab can take 3 or 2 times longer than a uber, but it would also be cheaper
 * The diversity of cars, taxis are much more limited with the type of cars they have.
-* The dynamic rate in taxis works different, they have overcharge fixed tarifs.
+* The dynamic rate in taxis works different, they have overcharge fixed tarifs (this is included in the price).
 * The uncertanty about the price of the taxi service: how to model the uncertanty in the decision rule
-* The uncertanty about wheather or not the taxi driver will take the service: The problem here is how to avoid asking the same driver over and over and how to assign the driver to a customer no matter what.
+* The uncertanty about wheather or not the taxi driver will take the service: The problem here is how to avoid asking the same driver over and over and how to assign the driver to a customer no matter what. (Although this is not completetly true given that now the taxis using apps cannot reject the passanger)
 * The knowledge of where does the customer is going: How to model this.
 
 ### TODO:
