@@ -128,12 +128,12 @@ to assing-drivers
 	]
 end
 
-; ------- here starts dikjstra -------
+; ------- here starts dijkstra -------
 
 to d [start_vertex end_vertex]
   ask start_vertex [
-    print link-neighbors
+    print link-neighbors 
   ]
 end
 
-; ------- here diksjtra finish -----
+; ------- here dijkstra finish -----
