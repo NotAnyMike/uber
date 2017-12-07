@@ -130,10 +130,40 @@ end
 
 ; ------- here starts dijkstra -------
 
-to d [start_vertex end_vertex]
+to-report dijkstra [start_vertex end_vertex]
+  ;initialization
+  ask vertices [
+    set expected-cost 1E50
+    set visited? false
+    set predecessor nobody
+    set color 9.9
+    set size 0.3
+    ]
+ 
+  let mylist []
+
   ask start_vertex [
-    print link-neighbors 
+    set color blue
+    set size 2
   ]
+
+  let current_vertex start_vertex
+  let vertex_selected nobody
+  ask current_vertex [
+    set vertex_selected one-of edge-neighbors with [self != start_vertex and not member? self mylist]
+  ]
+  
+  print vertex_selected
+
+
+
+  ask end_vertex [
+    set color red
+    set size 2
+  ]
+
+  ;ask turtle-set mylist [show self]
+  report mylist
 end
 
 ; ------- here dijkstra finish -----
