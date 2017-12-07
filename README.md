@@ -22,6 +22,14 @@ The following are the different states in which a person cab be in:
 ## Thoughts on the General Model
 The model must have several variables in order to diffirentiate taxis and ubers, some of them must be intrinsic to the service and another type of characteristics must be about strategy. Differentiating the services by the confortableness is not enough given the new trend of decreasing quality of uber's confortability.
 
+## Decision Rule
+
+The following are the variables that the Decision Rule must take into account:
+
+* Price
+* Heuristic of Familiarity
+* to be continued
+
 ### Main variables related to Uber and Taxis which can be used to differentiate them
 One important issue to discuse is wheter or not take into account normal taxi drivers (i.e. taken in the street) because it can help us to differentiate drivers with the variable security. Thinking a little bit more, I would say the main reason why people take taxi would be because it is cheaper, and then, build the decision rule from othem
 * Price: The prices is a clear incentive to use Uber instead of taking a taxi, in order to analyse this part better there is a need to have more information of the tarifs of uber and taxi. The taximentro can be simulated.

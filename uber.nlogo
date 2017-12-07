@@ -153,7 +153,7 @@ radius_driver_policy_uber
 radius_driver_policy_uber
 0
 100
-77.0
+50.0
 1
 1
 NIL
@@ -184,37 +184,18 @@ PLOT
 991
 290
 People
-NIL
-NIL
-0.0
-10.0
-0.0
-10.0
-true
-true
-"" ""
-PENS
-"waiting" 1.0 0 -16777216 true "" "plot count people with [state = 1]"
-"being transported" 1.0 0 -2674135 true "" "plot count people with [state = 2]"
-
-PLOT
-654
-295
-991
-449
-uber vs taxis
-ratio
 ticks
+%
 0.0
-10.0
+1.0
 0.0
 1.0
 true
-false
+true
 "" ""
 PENS
-"ratio" 1.0 0 -16777216 true "" "plot count people with [uber? self = true] / number_of_people"
-".5" 1.0 0 -3026479 true "" "plot 0.5"
+"waiting" 1.0 0 -16777216 true "" "plot (count people with [state = 1]) / number_of_people"
+"being transported" 1.0 0 -2674135 true "" "plot (count people with [state = 2]) / number_of_people"
 
 TEXTBOX
 16
@@ -270,6 +251,25 @@ People policies
 11
 0.0
 1
+
+PLOT
+654
+295
+991
+449
+uber vs taxis
+ticks
+ratio
+0.0
+10.0
+0.0
+1.0
+true
+false
+"" ""
+PENS
+"ratio" 1.0 0 -16777216 true "" "plot count people with [uber? self = true] / number_of_people"
+".5" 1.0 0 -3026479 true "" "plot 0.5"
 
 @#$#@#$#@
 ## WHAT IS IT?

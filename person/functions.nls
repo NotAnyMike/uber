@@ -30,18 +30,18 @@ to-report uber? [current_person]
 	let uber 0
 	let taxi 0
 
-	; calculating the heutistic fro history ---------------
+	; calculating the heutistic for history ---------------
 	let uber-hist 0
 	let taxi-hist 0
 	let n 1
 	foreach [history_uber] of current_person [
-		[delay] -> set uber-hist uber +  delay / n 
+		[delay_uber] -> set uber-hist uber-hist +  delay_uber / n 
 		set n n + 1
 	]
 
 	set n 1
 	foreach [history_taxi] of current_person [
-		[delay] -> set taxi-hist taxi-hist +  delay / n 
+		[delay_taxi] -> set taxi-hist taxi-hist +  delay_taxi / n 
 		set n n + 1
 	]
 
@@ -51,7 +51,7 @@ to-report uber? [current_person]
 		ifelse taxi-hist = 0 [
 			set uber-hist 0
 		][
-			set uber-hist 1 - (uber / taxi-hist)
+			set uber-hist 1 - (uber-hist / taxi-hist)
 		]
 		set taxi-hist 0
 	][
