@@ -44,7 +44,7 @@ to create-drivers-fn
     set size 0.5
     set type-of-driver "uber"
 	set state 2
-	set path (list vertex 1 vertex 200)
+	set path (list vertex 6 vertex 2)
     move-to  min-one-of (vertices) [ distance myself ]
   ]
 
