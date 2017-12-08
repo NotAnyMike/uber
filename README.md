@@ -29,7 +29,7 @@ The following are the variables that the Decision Rule must take into account:
 * Price: but the **taximetro** and the **Uber price calculator** (this includes the dynamic rare) must be created
 * Heuristic of Familiarity: the lastest type of driver have weights more.
 * The uncertanty in the price of the taxi fare
-* to be continued
+* to be continued (I don't know what to put here)
 
 ### Main variables related to Uber and Taxis which can be used to differentiate them
 One important issue to discuse is wheter or not take into account normal taxi drivers (i.e. taken in the street) because it can help us to differentiate drivers with the variable security. Thinking a little bit more, I would say the main reason why people take taxi would be because it is cheaper, and then, build the decision rule from othem
