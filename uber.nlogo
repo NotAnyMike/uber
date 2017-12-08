@@ -142,7 +142,7 @@ CHOOSER
 choosing_driver_policy_code_uber
 choosing_driver_policy_code_uber
 "closest" "fifo" "randomly"
-0
+2
 
 SLIDER
 13
