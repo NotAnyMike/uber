@@ -25,7 +25,7 @@ to get-out
 	show-turtle
 end
 
-;----------- election rule -------------
+;----------- decision rule -------------
 to-report uber? [current_person]
 	let uber 0
 	let taxi 0
@@ -35,13 +35,13 @@ to-report uber? [current_person]
 	let taxi-hist 0
 	let n 1
 	foreach [history_uber] of current_person [
-		[delay_uber] -> set uber-hist uber-hist +  delay_uber / n 
+		[delay_uber] -> set uber-hist uber-hist + delay_uber / n 
 		set n n + 1
 	]
 
 	set n 1
 	foreach [history_taxi] of current_person [
-		[delay_taxi] -> set taxi-hist taxi-hist +  delay_taxi / n 
+		[delay_taxi] -> set taxi-hist taxi-hist + delay_taxi / n 
 		set n n + 1
 	]
 
@@ -63,18 +63,25 @@ to-report uber? [current_person]
 		]
 		set uber-hist 0
 	]
-	; calculating the heutistic for history ---------------
-	set uber uber-hist
-	set taxi taxi-hist
+	; -----------------------------------------------------
+
+
+	; calculating heuristic familiarity -------------------
+	; -----------------------------------------------------
+
+	; calculating price heuristic -------------------------
 	; -----------------------------------------------------
 
 	; adding all together ---------------------------------
+	set uber uber-hist
+	set taxi taxi-hist
 	; -----------------------------------------------------
 
 	ifelse uber > taxi [
 		report true
 	][
 		ifelse uber = taxi [
+			; if tie chose randomly
 			report one-of [true false]
 		][
 			report false
