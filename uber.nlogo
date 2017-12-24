@@ -11,9 +11,9 @@ __includes [
 ]
 @#$#@#$#@
 GRAPHICS-WINDOW
-210
+408
 10
-647
+845
 448
 -1
 -1
@@ -38,10 +38,10 @@ ticks
 30.0
 
 BUTTON
-14
-165
-112
-198
+12
+154
+110
+187
 NIL
 setup\n
 NIL
@@ -55,10 +55,10 @@ NIL
 1
 
 BUTTON
-114
-165
-206
-198
+112
+154
+204
+187
 NIL
 go
 T
@@ -72,10 +72,10 @@ NIL
 1
 
 INPUTBOX
-14
-38
-206
-98
+12
+27
+204
+87
 number_of_people
 200.0
 1
@@ -83,10 +83,10 @@ number_of_people
 Number
 
 INPUTBOX
-114
-101
-206
-161
+112
+90
+204
+150
 number_of_taxis
 25.0
 1
@@ -94,10 +94,10 @@ number_of_taxis
 Number
 
 INPUTBOX
-14
-101
-112
-161
+12
+90
+110
+150
 number_of_ubers
 25.0
 1
@@ -105,20 +105,20 @@ number_of_ubers
 Number
 
 TEXTBOX
-14
-214
-164
-232
-Assignement policies
+12
+217
+395
+259
+Assignement policies ------------------------------------------
 11
 0.0
 1
 
 TEXTBOX
-15
-21
-165
-39
+13
+10
+163
+28
 Initial settings
 11
 0.0
@@ -135,20 +135,20 @@ choosing_customer_policy_code
 0
 
 CHOOSER
-13
-328
-207
-373
+213
+254
+407
+299
 choosing_driver_policy_code_uber
 choosing_driver_policy_code_uber
 "closest" "fifo" "randomly"
 2
 
 SLIDER
-13
-377
-207
-410
+213
+303
+407
+336
 radius_driver_policy_uber
 radius_driver_policy_uber
 0
@@ -160,9 +160,9 @@ NIL
 HORIZONTAL
 
 PLOT
-652
+850
 11
-990
+1188
 154
 Count
 tick
@@ -179,9 +179,9 @@ PENS
 "taxis being used" 1.0 0 -2674135 true "" "plot count drivers with [type-of-driver = \"taxi\" AND state != 2]"
 
 PLOT
-653
+851
 161
-991
+1189
 290
 People
 ticks
@@ -198,40 +198,40 @@ PENS
 "being transported" 1.0 0 -2674135 true "" "plot (count people with [state = 2]) / number_of_people"
 
 TEXTBOX
-16
-313
-166
-331
+216
+239
+366
+257
 Uber
 11
 0.0
 1
 
 TEXTBOX
-15
-425
-165
-443
+215
+351
+365
+369
 Taxi
 11
 0.0
 1
 
 CHOOSER
-15
-442
-206
-487
+215
+368
+406
+413
 choosing_driver_policy_code_taxi
 choosing_driver_policy_code_taxi
 "randomly" "fifo" "closest"
 2
 
 SLIDER
-15
-491
-207
-524
+215
+417
+407
+450
 radius_driver_policy_taxi
 radius_driver_policy_taxi
 0
@@ -253,9 +253,9 @@ People policies
 1
 
 PLOT
-654
+852
 295
-991
+1189
 449
 uber vs taxis
 ticks
@@ -270,6 +270,17 @@ false
 PENS
 "ratio" 1.0 0 -16777216 true "" "plot count people with [uber? self = true] / number_of_people"
 ".5" 1.0 0 -3026479 true "" "plot 0.5"
+
+SWITCH
+13
+303
+206
+336
+perfect_memory
+perfect_memory
+1
+1
+-1000
 
 @#$#@#$#@
 ## WHAT IS IT?

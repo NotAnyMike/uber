@@ -33,16 +33,13 @@ to-report uber? [current_person]
 	; calculating the heutistic for history ---------------
 	let uber-hist 0
 	let taxi-hist 0
-	let n 1
-	foreach [history_uber] of current_person [
-		[delay_uber] -> set uber-hist uber-hist + delay_uber / n 
-		set n n + 1
-	]
-
-	set n 1
-	foreach [history_taxi] of current_person [
-		[delay_taxi] -> set taxi-hist taxi-hist + delay_taxi / n 
-		set n n + 1
+	let i 0
+	let n length [history_uber] of current_person
+	repeat n [
+	;foreach [history_uber] of current_person [
+		set uber-hist uber-hist + item i [history_uber] of current_person / ( i + 1 )
+		set taxi-hist taxi-hist + item i [history_taxi] of current_person / ( i + 1 )
+		set i i + 1
 	]
 
 	; regularizing results
@@ -94,10 +91,12 @@ to set_state_person [value]
 	if state = 1 AND value = 2 [
 		if is-driver? own-driver [
 			ifelse [type-of-driver] of own-driver = "taxi" [
-				set history_taxi fput (ticks - last_status_change) history_uber
+				set history_taxi fput (ticks - last_status_change) history_taxi
+				set history_uber fput 0 history_uber
 			][
 				if [type-of-driver] of own-driver = "uber" [
 					set history_uber fput (ticks - last_status_change) history_uber
+					set history_taxi fput 0 history_taxi
 				]
 			]
 		]
