@@ -4,6 +4,7 @@ globals [
 	number_of_ubers
 
 	choosing_customer_policy_code
+	perfect_memory
 
 	choosing_driver_policy_code_taxi
 	radius_driver_policy_taxi

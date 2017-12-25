@@ -40,6 +40,7 @@ to-report uber? [current_person]
 		set uber-hist uber-hist + item i [history_uber] of current_person / ( i + 1 )
 		set taxi-hist taxi-hist + item i [history_taxi] of current_person / ( i + 1 )
 		set i i + 1
+		if perfect_memory [set i 0]
 	]
 
 	; regularizing results
