@@ -202,7 +202,7 @@ TEXTBOX
 239
 366
 257
-Uber
+Uber policies\n
 11
 0.0
 1
@@ -212,7 +212,7 @@ TEXTBOX
 351
 365
 369
-Taxi
+Taxi policies
 11
 0.0
 1
