@@ -156,10 +156,11 @@ to dijkstra [start_vertex end_vertex]
 			set vertex_selected one-of edge-neighbors with [self != start_vertex and not member? self mylist]
 			if vertex_selected = nobody [set vertex_selected one-of edge-neighbors] 
 			set mylist lput vertex_selected mylist
+			set current_vertex vertex_selected
 		]
   ]
   
-  print vertex_selected
+  ;print vertex_selected
 
    ;ask end_vertex [
      ;set color red

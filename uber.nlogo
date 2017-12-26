@@ -88,7 +88,7 @@ INPUTBOX
 206
 161
 number_of_taxis
-1.0
+25.0
 1
 0
 Number
@@ -99,7 +99,7 @@ INPUTBOX
 112
 161
 number_of_ubers
-1.0
+25.0
 1
 0
 Number
