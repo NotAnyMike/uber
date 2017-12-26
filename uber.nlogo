@@ -132,7 +132,7 @@ CHOOSER
 choosing_customer_policy_code
 choosing_customer_policy_code
 "fifo" "randomly"
-0
+1
 
 CHOOSER
 13
@@ -164,8 +164,8 @@ BUTTON
 383
 176
 416
-NIL
 dijkstra
+let start_vertex one-of vertices\nlet end_vertex one-of vertices with [self != start_vertex]\nask one-of drivers [dijkstra start_vertex end_vertex]
 NIL
 1
 T
