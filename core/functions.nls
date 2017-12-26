@@ -129,9 +129,7 @@ to assing-drivers
 end
 
 ; ------- here starts dijkstra -------
-
-;to-report dijkstra
-to dijkstra
+report dijkstra [start_vertex end_vertex]
 
   ;initialization
   ask vertices [
@@ -140,41 +138,37 @@ to dijkstra
     set predecessor nobody
     set color 9.9
     set size 0.3
-    ]
+  ]
  
   let mylist []
-  let start_vertex one-of vertices
-  let end_vertex one-of vertices with [self != start_vertex]
+  ;let start_vertex one-of vertices
+  ;let end_vertex one-of vertices with [self != start_vertex]
 
   ask start_vertex [
     set color blue
     set size 2
   ]
-
-  
+ 
   let current_vertex start_vertex
   let vertex_selected nobody
   repeat 5 [
-  ask current_vertex [
-    set vertex_selected one-of edge-neighbors with [self != start_vertex and not member? self mylist]
-    if vertex_selected = nobody [set vertex_selected one-of edge-neighbors] 
-    set mylist lput vertex_selected mylist
+		ask current_vertex [
+			set vertex_selected one-of edge-neighbors with [self != start_vertex and not member? self mylist]
+			if vertex_selected = nobody [set vertex_selected one-of edge-neighbors] 
+			set mylist lput vertex_selected mylist
+		]
   ]
-  ]
-
   
   print vertex_selected
-
-
 
   ask end_vertex [
     set color red
     set size 2
   ]
 
-  ;ask turtle-set mylist [show self]
-  ;report mylist
+  ;ask turtle-set mylist [show self] (what is this for?)
   print mylist
+	set path mylist
 end
 
 ; ------- here dijkstra finish -----
