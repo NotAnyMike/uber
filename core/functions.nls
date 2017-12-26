@@ -129,7 +129,7 @@ to assing-drivers
 end
 
 ; ------- here starts dijkstra -------
-report dijkstra [start_vertex end_vertex]
+to dijkstra [start_vertex end_vertex]
 
   ;initialization
   ask vertices [
