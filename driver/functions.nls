@@ -1,4 +1,4 @@
-;; FUNCTIONS FOR THE DRIVER TURTLES
+;;FUNCTIONS FOR THE DRIVER TURTLES
 
 to driver-act
 	ifelse state = 2 [
@@ -34,11 +34,13 @@ to action-2-driver
 
 		;get get one of the neighboors randomly
 		;asign it to path
-		let goal nobody
-		ask current_vertex [
-			set goal one-of link-neighbors
-		]
-		if goal != nobody [set path (list goal)]
+		;let goal nobody
+		;ask current_vertex [
+			;set goal one-of link-neighbors
+		;]
+		;if goal != nobody [set path (list goal)]
+		
+		dijkstra current_vertex one-of vertices with [self != current_vertex]
   
 	]
 move-th-path

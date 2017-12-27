@@ -7,8 +7,8 @@ breed [
 vertices-own [
 	id
 	expected-cost
-	conections
-	visited? 
+	visited?
+	predecessor 
 ]
 
 undirected-link-breed [

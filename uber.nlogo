@@ -132,7 +132,7 @@ CHOOSER
 choosing_customer_policy_code
 choosing_customer_policy_code
 "fifo" "randomly"
-0
+1
 
 CHOOSER
 13
@@ -158,6 +158,23 @@ radius_driver_policy
 1
 NIL
 HORIZONTAL
+
+BUTTON
+26
+383
+176
+416
+dijkstra
+let start_vertex one-of vertices\nlet end_vertex one-of vertices with [self != start_vertex]\nask one-of drivers [dijkstra start_vertex end_vertex]
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
 
 @#$#@#$#@
 ## WHAT IS IT?

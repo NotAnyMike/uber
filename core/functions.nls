@@ -3,7 +3,7 @@
 to setup
   clear-all
 
-	setup-importer
+	setup-importer 
 
   create-persons-fn
   create-drivers-fn
@@ -43,8 +43,8 @@ to create-drivers-fn
     set color white
     set size 0.5
     set type-of-driver "uber"
-	set state 2
-	set path (list vertex 1 vertex 200)
+		set state 2
+		set path (list vertex 6 vertex 2)
     move-to  min-one-of (vertices) [ distance myself ]
   ]
 
@@ -127,3 +127,49 @@ to assing-drivers
 		]
 	]
 end
+
+; ------- here starts dijkstra -------
+to dijkstra [start_vertex end_vertex]
+
+  ;initialization
+  ask vertices [
+    set expected-cost 1E50
+    set visited? false
+    set predecessor nobody
+    ;set color 9.9
+    ;set size 0.3
+  ]
+ 
+  let mylist []
+  ;let start_vertex one-of vertices
+  ;let end_vertex one-of vertices with [self != start_vertex]
+
+   ;ask start_vertex [
+    ;set color blue
+    ;set size 2
+   ;]
+ 
+  let current_vertex start_vertex
+  let vertex_selected nobody
+  repeat 20 [
+		ask current_vertex [
+			set vertex_selected one-of edge-neighbors with [self != start_vertex and not member? self mylist]
+			if vertex_selected = nobody [set vertex_selected one-of edge-neighbors] 
+			set mylist lput vertex_selected mylist
+			set current_vertex vertex_selected
+		]
+  ]
+  
+  ;print vertex_selected
+
+   ;ask end_vertex [
+     ;set color red
+     ;set size 2
+   ;]
+
+  ;ask turtle-set mylist [show self] (what is this for?)
+  ;print mylist
+	set path mylist
+end
+
+; ------- here dijkstra finish -----
