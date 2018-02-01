@@ -3,7 +3,7 @@
 to setup
   clear-all
 
-	setup-importer 
+	setup-importer
 
   create-persons-fn
   create-drivers-fn
@@ -13,7 +13,7 @@ end
 
 ;;Go function --------------------------------------------------------------------
 to go
-  if ticks = 10000 [stop]
+  if ticks = 1000 [stop]
 
   ask drivers [
 	driver-act
@@ -30,9 +30,6 @@ to create-persons-fn
 		set current_vertice random_vertice
 		move-to random_vertice
 
-		set history_uber []
-		set history_taxi []
-
     set shape "default"
     set color white
     set size 1
@@ -46,8 +43,8 @@ to create-drivers-fn
     set color white
     set size 0.5
     set type-of-driver "uber"
-		set state 2
-		set path (list vertex 6 vertex 2)
+	set state 2
+	set path (list vertex 1 vertex 200)
     move-to  min-one-of (vertices) [ distance myself ]
   ]
 
@@ -83,8 +80,8 @@ let xcord [xcor] of to-turtle let ycord [ycor] of to-turtle
   ]
 end
 
-; ------------ move through path function ------------
-to move-th-path 
+; ------------ move to closest function ------------
+to move-closest 
     ;if the number of elements in the list is not zero (is not empty)
     if length path > 0 [
       ;rotate to the first node
@@ -130,77 +127,3 @@ to assing-drivers
 		]
 	]
 end
-
-; ------- here starts dijkstra -------
-to dijkstra [start_vertex end_vertex]
-
-  ;initialization
-  ask vertices [
-    set expected-cost 1E50
-    set visited? false
-    set predecessor nobody
-		set size 0.3
-		set color white
-  ]
-
-	ask start_vertex [set expected-cost 0]
-	;print start_vertex
-	;print end_vertex
-
-  let current_vertex start_vertex
-  
-	while [current_vertex != end_vertex][
-		;create neighbors list
-		ask current_vertex [
-			;print count in-edge-neighbors
-			ask in-edge-neighbors [
-				;correct cost of each neighbor
-				;print current_vertex
-
-				;calculte  new expected cost
-				let new_cost [expected-cost] of current_vertex + [cost] of edge-with current_vertex
-
-				;compare costs
-				if expected-cost > new_cost[
-					;set costs
-					set expected-cost new_cost
-					set predecessor current_vertex
-				]
-			]
-		]
-
-		;make current as visited
-		ask current_vertex [set visited? true]
-
-		;set current to the lowest of them all
-		set current_vertex min-one-of vertices with [visited? = false] [expected-cost]
-	]
-
-	;reconstruct path
-	let mypath []
-	let current_driver self
-	ask end_vertex [ fill_path mypath current_driver	]
-
-	;foreach path [ [x] -> ask x [set size 2]]
-	;ask start_vertex [
-		;set color blue
-		;set size 4
-	;]
-	;ask end_vertex [
-		;set color red
-		;set size 4
-	;]
-end
-
-to fill_path [mypath driver_agent]
-	ifelse predecessor != nobody [
-		set mypath fput predecessor mypath
-		ask predecessor [fill_path mypath driver_agent]
-	][
-		ask driver_agent[
-			set path mypath
-		]
-	]
-end
-
-; ------- here dijkstra finish -----

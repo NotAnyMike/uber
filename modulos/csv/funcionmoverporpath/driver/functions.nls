@@ -1,0 +1,89 @@
+;; FUNCTIONS FOR THE DRIVER TURTLES
+
+to driver-act
+	ifelse state = 2 [
+		action-2-driver
+	][
+		ifelse state = 0 [
+			action-0-driver
+		][
+			if state = 1 [
+				action-1-driver
+			]
+		]
+	]
+end
+
+to action-2-driver 
+	let xcord xcor
+	let ycord ycor
+	let current_vertex sort vertices with [xcor = xcord and ycor = ycord]
+	if not empty? current_vertex [set current_vertex item 0 current_vertex]
+	;if not empty? path [
+		;if current_vertex = item 0 path [
+			; remove node from path
+			;set path remove-item 0 path
+;		]
+;	]
+	if empty? path[
+    ;TODO here is the place to implement free movement policy
+		;get current node
+		if current_vertex = nobody [
+			set current_vertex min-one-of (vertices) [distance self]
+		]
+
+		;get get one of the neighboors randomly
+		;asign it to path
+		let goal nobody
+		ask current_vertex [
+			set goal one-of link-neighbors
+		]
+		if goal != nobody [set path (list goal)]
+  
+	]
+move-closest
+	;move to path
+
+
+end
+
+to action-0-driver
+	;; if position is equal of customer: ask costumer to get in and change state
+	ifelse xcor = [xcor] of customer and ycor = [ycor] of customer [
+		ask customer [
+			get-in
+		]
+		going-to-destination-change
+	][
+		;; else move to customer
+		
+	]
+end
+
+to action-1-driver
+	ifelse xcor = [xcor] of [destination] of customer and ycor = [ycor] of [destination] of customer [
+		ask customer [
+			get-out
+		]
+		change-to-free
+	][
+		; else move to customer
+		
+	]
+end
+
+to change-to-free
+	set state 2
+	set shape "circle 2"
+	set customer nobody
+end
+
+to going-to-customer-change
+	set state 0
+	set shape "circle"
+end
+
+to going-to-destination-change
+	set state 1
+	set shape "target"
+end

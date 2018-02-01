@@ -11,9 +11,9 @@ __includes [
 ]
 @#$#@#$#@
 GRAPHICS-WINDOW
-408
+210
 10
-845
+647
 448
 -1
 -1
@@ -38,10 +38,10 @@ ticks
 30.0
 
 BUTTON
-12
-154
-110
-187
+14
+165
+112
+198
 NIL
 setup\n
 NIL
@@ -55,10 +55,10 @@ NIL
 1
 
 BUTTON
-112
-154
-204
-187
+114
+165
+206
+198
 NIL
 go
 T
@@ -72,215 +72,92 @@ NIL
 1
 
 INPUTBOX
-12
-27
-204
-87
+14
+38
+206
+98
 number_of_people
-200.0
+0.0
 1
 0
 Number
 
 INPUTBOX
-112
-90
-204
-150
+114
+101
+206
+161
 number_of_taxis
-25.0
+0.0
 1
 0
 Number
 
 INPUTBOX
-12
-90
-110
-150
+14
+101
+112
+161
 number_of_ubers
-25.0
+1.0
 1
 0
 Number
 
 TEXTBOX
-12
-217
-395
-259
-Assignement policies ------------------------------------------
+14
+214
+164
+232
+Assignement policies
 11
 0.0
 1
 
 TEXTBOX
-13
-10
-163
-28
+15
+21
+165
+39
 Initial settings
 11
 0.0
 1
 
 CHOOSER
-12
-253
+13
+228
 206
-298
+273
 choosing_customer_policy_code
 choosing_customer_policy_code
 "fifo" "randomly"
-1
+0
 
 CHOOSER
-213
-254
-407
-299
-choosing_driver_policy_code_uber
-choosing_driver_policy_code_uber
-"closest" "fifo" "randomly"
-2
-
-SLIDER
-213
-303
-407
-336
-radius_driver_policy_uber
-radius_driver_policy_uber
-0
-100
-50.0
-1
-1
-NIL
-HORIZONTAL
-
-PLOT
-850
-11
-1188
-154
-Count
-tick
-#
-0.0
-10.0
-0.0
-10.0
-true
-true
-"" ""
-PENS
-"ubers being used" 1.0 0 -16777216 true "" "plot count drivers with [type-of-driver = \"uber\" AND state != 2]"
-"taxis being used" 1.0 0 -2674135 true "" "plot count drivers with [type-of-driver = \"taxi\" AND state != 2]"
-
-PLOT
-851
-161
-1189
-290
-People
-ticks
-%
-0.0
-1.0
-0.0
-1.0
-true
-true
-"" ""
-PENS
-"waiting" 1.0 0 -16777216 true "" "plot (count people with [state = 1]) / number_of_people"
-"being transported" 1.0 0 -2674135 true "" "plot (count people with [state = 2]) / number_of_people"
-
-TEXTBOX
-216
-239
-366
-257
-Uber policies\n
-11
-0.0
-1
-
-TEXTBOX
-215
-351
-365
-369
-Taxi policies
-11
-0.0
-1
-
-CHOOSER
-215
-368
-406
-413
-choosing_driver_policy_code_taxi
-choosing_driver_policy_code_taxi
-"randomly" "fifo" "closest"
-2
-
-SLIDER
-215
-417
-407
-450
-radius_driver_policy_taxi
-radius_driver_policy_taxi
-0
-100
-50.0
-1
-1
-NIL
-HORIZONTAL
-
-TEXTBOX
-12
-237
-162
-255
-People policies
-11
-0.0
-1
-
-PLOT
-852
-295
-1189
-449
-uber vs taxis
-ticks
-ratio
-0.0
-10.0
-0.0
-1.0
-true
-false
-"" ""
-PENS
-"ratio" 1.0 0 -16777216 true "" "plot count people with [uber? self = true] / number_of_people"
-".5" 1.0 0 -3026479 true "" "plot 0.5"
-
-SWITCH
 13
-303
+277
 206
-336
-perfect_memory
-perfect_memory
+322
+choosing_driver_policy_code
+choosing_driver_policy_code
+"closest" "fifo"
+0
+
+SLIDER
+13
+326
+206
+359
+radius_driver_policy
+radius_driver_policy
+0
+100
+51.0
 1
 1
--1000
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?

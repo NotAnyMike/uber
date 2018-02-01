@@ -1,4 +1,4 @@
-;; FUNCTIONS FOR THE DRIVER TURTLES
+;;FUNCTIONS FOR THE DRIVER TURTLES
 
 to driver-act
 	ifelse state = 2 [
@@ -19,13 +19,14 @@ to action-2-driver
 	let ycord ycor
 	let current_vertex sort vertices with [xcor = xcord and ycor = ycord]
 	if not empty? current_vertex [set current_vertex item 0 current_vertex]
-	if not empty? path [
-		if current_vertex = item 0 path [
-			;remove node from path
-			set path remove-item 0 path
-		]
-	]
+	;if not empty? path [
+		;if current_vertex = item 0 path [
+			; remove node from path
+			;set path remove-item 0 path
+;		]
+;	]
 	if empty? path[
+    ;TODO here is the place to implement free movement policy
 		;get current node
 		if current_vertex = nobody [
 			set current_vertex min-one-of (vertices) [distance self]
@@ -33,14 +34,19 @@ to action-2-driver
 
 		;get get one of the neighboors randomly
 		;asign it to path
-		let goal nobody
-		ask current_vertex [
-			set goal one-of link-neighbors
-		]
-		if goal != nobody [set path (list goal)]
+		;let goal nobody
+		;ask current_vertex [
+			;set goal one-of link-neighbors
+		;]
+		;if goal != nobody [set path (list goal)]
+		
+		dijkstra current_vertex one-of vertices with [self != current_vertex]
+  
 	]
+move-th-path
 	;move to path
-	go-towards self item 0 path
+
+
 end
 
 to action-0-driver
@@ -52,7 +58,7 @@ to action-0-driver
 		going-to-destination-change
 	][
 		;; else move to customer
-		go-towards self customer
+		
 	]
 end
 
@@ -64,7 +70,7 @@ to action-1-driver
 		change-to-free
 	][
 		; else move to customer
-		go-towards self [destination] of customer
+		
 	]
 end
 
