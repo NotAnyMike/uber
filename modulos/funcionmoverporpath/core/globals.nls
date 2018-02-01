@@ -1,9 +1,0 @@
-globals [ 
-	number_of_people
-	number_of_taxis
-	number_of_ubers
-
-	choosing_customer_policy_code
-	choosing_driver_policy_code
-	radius_driver_policy
-]

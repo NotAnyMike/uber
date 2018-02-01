@@ -132,7 +132,7 @@ CHOOSER
 choosing_customer_policy_code
 choosing_customer_policy_code
 "fifo" "randomly"
-1
+0
 
 CHOOSER
 213
