@@ -33,11 +33,14 @@ to action-2-driver
 
 		;get get one of the neighboors randomly
 		;asign it to path
-		let goal nobody
-		ask current_vertex [
-			set goal one-of link-neighbors
+		let goal one-of vertices with [self != current_vertex]
+		if goal != current_vertex [
+			dijkstra current_vertex goal
 		]
-		if goal != nobody [set path (list goal)]
+		;ask current_vertex [
+		;	set goal one-of link-neighbors
+		;]
+		;if goal != nobody [set path (list goal)]
 	]
 	;move to path
 	go-towards self item 0 path
