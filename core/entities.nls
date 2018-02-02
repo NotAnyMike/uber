@@ -1,14 +1,29 @@
 ; Creating the differents kind of agents --------------------------------------------
 
 breed [people person]
-people-own [current_vertice own-driver state destination last_status_change history_uber history_taxi]
+people-own [
+	current_vertice
+	own-driver
+	state
+	destination
+	last_status_change
+	history_uber
+	history_taxi
+]
 ; state would be 0 or 1 refering to inactive (i.e doing nothing) and active (wating for a driver or being transported)
 ; destination-x and y are the coordinates to the place it needs to be transported
 ; own-driver is the driver that is or will take her there, it could be empty when the turtle is in state 0
 ; wating is the variable of how long the person has been waiting
 
 breed [drivers driver]
-drivers-own [type-of-driver path state customer last_status_change]
+drivers-own [
+	type-of-driver
+	path
+	state 
+	customer 
+	last_status_change
+	last_vertex ; the idea here is to use this vertex in order to be the first element in path to avoid flying cars
+]
 ; state should be 0,1,2
 
 ;----------------------------------------------------------------------------------

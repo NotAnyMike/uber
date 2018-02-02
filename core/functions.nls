@@ -26,6 +26,11 @@ to go
 		driver-act
   ]
 
+	ask drivers with [last_vertex = nobody] [
+		print "last_vertex empty"
+		print self
+	]
+
   tick
 end
 
@@ -49,31 +54,35 @@ end
 to create-drivers-fn
   create-drivers number_of_ubers [
     setxy random-xcor random-ycor
+		let vertex-to-move min-one-of (vertices) [ distance myself ]
     set shape "circle 2"
     set color white
     set size 0.5
     set type-of-driver "uber"
 		set state 2
 		set path []
-    move-to  min-one-of (vertices) [ distance myself ]
+		set last_vertex vertex-to-move
+    move-to  vertex-to-move
   ]
 
   create-drivers number_of_taxis [
     setxy random-xcor random-ycor
+		let vertex-to-move min-one-of (vertices) [ distance myself ]
     set shape "circle 2"
     set color yellow
     set size 0.5
     set type-of-driver "taxi"
 		set state 2
 		set path []
-    move-to  min-one-of (vertices) [ distance myself ]
+		set last_vertex vertex-to-move
+    move-to  vertex-to-move
   ]
 end
 
 ; --------- movement function --------------
 to go-towards [from-turtle to-turtle]
   ask from-turtle [
-let xcord [xcor] of to-turtle let ycord [ycor] of to-turtle
+		let xcord [xcor] of to-turtle let ycord [ycor] of to-turtle
 
     ifelse distance to-turtle != 0 [
 
@@ -96,6 +105,20 @@ to assing-drivers
 	assignment_policy_fn_persons
 end
 
+; ------------ move through path function ------------
+to move-in-path 
+	; if path not empty
+	ifelse not empty? path [
+		ifelse distance item 0 path = 0 [
+			; check if current vertex is item 0 nd if true delete
+			set last_vertex item 0 path
+			set path remove-item 0 path	
+		][
+			; else move
+			go-towards self item 0 path
+		]
+	][print "empty"]
+end
 ; ------- here starts dijkstra -------
 to dijkstra [start_vertex end_vertex]
 
@@ -109,18 +132,14 @@ to dijkstra [start_vertex end_vertex]
   ]
 
 	ask start_vertex [set expected-cost 0]
-	;print start_vertex
-	;print end_vertex
 
   let current_vertex start_vertex
   
 	while [current_vertex != end_vertex][
 		;create neighbors list
 		ask current_vertex [
-			;print count in-edge-neighbors
 			ask in-edge-neighbors [
 				;correct cost of each neighbor
-				;print current_vertex
 
 				;calculte  new expected cost
 				let new_cost [expected-cost] of current_vertex + [cost] of edge-with current_vertex
@@ -142,7 +161,7 @@ to dijkstra [start_vertex end_vertex]
 	]
 
 	;reconstruct path
-	let mypath []
+	let mypath fput end_vertex []
 	let current_driver self
 	ask end_vertex [ fill_path mypath current_driver	]
 

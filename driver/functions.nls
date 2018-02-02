@@ -17,45 +17,46 @@ end
 to action-2-driver 
 	let xcord xcor
 	let ycord ycor
+	let initial_vertex last_vertex ; the vertex where it was last stanted
 	let current_vertex sort vertices with [xcor = xcord and ycor = ycord]
 	if not empty? current_vertex [set current_vertex item 0 current_vertex]
 	if not empty? path [
 		if current_vertex = item 0 path [
 			;remove node from path
 			set path remove-item 0 path
+			set last_vertex current_vertex
 		]
 	]
 	if empty? path[
-		;get current node
+		; get current node
 		if current_vertex = nobody [
 			set current_vertex min-one-of (vertices) [distance self]
 		]
 
 		;get get one of the neighboors randomly
 		;asign it to path
-		let goal one-of vertices with [self != current_vertex]
-		if goal != current_vertex [
-			dijkstra current_vertex goal
+		let goal one-of vertices with [self != initial_vertex]
+		if goal != last_vertex [
+			dijkstra last_vertex goal
 		]
-		;ask current_vertex [
-		;	set goal one-of link-neighbors
-		;]
-		;if goal != nobody [set path (list goal)]
 	]
 	;move to path
-	go-towards self item 0 path
+	;go-towards self item 0 path
+	move-in-path
 end
 
 to action-0-driver
-	;; if position is equal of customer: ask costumer to get in and change state
+	; if position is equal of customer: ask costumer to get in and change state
 	ifelse xcor = [xcor] of customer and ycor = [ycor] of customer [
 		ask customer [
 			get-in
 		]
 		going-to-destination-change
+		dijkstra last_vertex [destination] of customer
 	][
 		;; else move to customer
-		go-towards self customer
+		; go-towards self customer
+		move-in-path
 	]
 end
 
@@ -67,7 +68,8 @@ to action-1-driver
 		change-to-free
 	][
 		; else move to customer
-		go-towards self [destination] of customer
+		;go-towards self [destination] of customer
+		move-in-path
 	]
 end
 
@@ -75,6 +77,7 @@ to change-to-free
 	set_state_driver 2
 	set shape "circle 2"
 	set customer nobody
+	set path []
 end
 
 to going-to-customer-change
@@ -143,6 +146,8 @@ to assignment_policy_fn_drivers [current_person]
 					set_state_person 2
 				]
 				set customer current_person 
+				dijkstra last_vertex [current_vertice] of current_person
+
 			]
 		]
 	]
