@@ -54,7 +54,7 @@ to action-0-driver
 		going-to-destination-change
 		dijkstra last_vertex [destination] of customer
 	][
-		;; else move to customer
+		; else move to customer
 		; go-towards self customer
 		move-in-path
 	]
