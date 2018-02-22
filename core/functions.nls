@@ -38,7 +38,12 @@ end
 
 to create-persons-fn
   create-people number_of_people [
-		let random_vertice one-of vertices
+		; get x and y
+		let x random-normal 0.5 0.25
+		let y random-normal 0.5 0.25
+		set x x * 32
+		set y y * 32
+		let random_vertice min-one-of vertices [ distancexy x y ]
 		set current_vertice random_vertice
 		move-to random_vertice
 
