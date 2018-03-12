@@ -51,14 +51,45 @@ to action-0-driver
 		ask customer [
 			get-in
 		]
-		going-to-destination-change
+
+    going-to-destination-change
 		dijkstra last_vertex [destination] of customer
+    
+    price-drive path
+    
 	][
 		; else move to customer
 		; go-towards self customer
 		move-in-path
 	]
 end
+
+to price-drive [path-d]
+  ;; This "function" evaluates path's cost of customer destination
+    let initial-xcor 0
+    let initial-ycor 0
+    let final-xcor 0
+    let final-ycor 0
+    let magnitude 0
+    let total-cost 0
+    let f 0
+    let numbers-path 0
+    let range-path []
+    set numbers-path length path-d - 1
+    set range-path n-values numbers-path [ i -> i ]
+    
+    foreach range-path [ [i] ->
+     set f i + 1
+     set initial-xcor [xcor] of item i path-d
+     set initial-ycor [ycor] of item i path-d
+     set final-xcor [xcor] of item f path-d
+     set final-ycor [ycor] of item f path-d
+     set magnitude sqrt(((final-xcor - initial-xcor) * (final-xcor - initial-xcor)) + ((final-ycor - initial-ycor) * (final-ycor - initial-ycor)))
+     set total-cost total-cost + magnitude
+   ]
+  print total-cost
+end
+
 
 to action-1-driver
 	ifelse xcor = [xcor] of [destination] of customer and ycor = [ycor] of [destination] of customer [

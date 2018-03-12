@@ -3,10 +3,11 @@
 to setup
   clear-all
 
-	setup-importer
-
-  create-persons-fn
-  create-drivers-fn
+	setup-importer ; Import graph
+  
+  create-persons-fn ; Create turtle persons
+  create-drivers-fn ; Create turtle driver
+  
 
   reset-ticks
 end
@@ -19,11 +20,11 @@ to go
 	assing-drivers
 
 	ask people [
-		person-act
+		person-act ; This is a function that define states of the turtle
 	]
 
   ask drivers [
-		driver-act
+		driver-act ; This is a function that define states of the turtle
   ]
 
 	ask drivers with [last_vertex = nobody] [

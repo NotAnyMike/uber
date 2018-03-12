@@ -77,7 +77,7 @@ INPUTBOX
 204
 87
 number_of_people
-200.0
+3.0
 1
 0
 Number
@@ -88,7 +88,7 @@ INPUTBOX
 204
 150
 number_of_taxis
-25.0
+1.0
 1
 0
 Number
@@ -99,7 +99,7 @@ INPUTBOX
 110
 150
 number_of_ubers
-25.0
+0.0
 1
 0
 Number
@@ -624,7 +624,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0
+NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
