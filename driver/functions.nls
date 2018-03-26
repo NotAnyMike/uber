@@ -90,12 +90,16 @@ to price-drive [path-d]
     set magnitude (sqrt(((final-xcor - initial-xcor) * (final-xcor - initial-xcor)) + ((final-ycor - initial-ycor) * (final-ycor - initial-ycor)))) / 0.86
     set total-cost total-cost + magnitude
  ]
+  
+  ; Taxi (Cobs) price funciton approximation
   set price-taxi ((total-cost * 1000) * 0.8198) + 4020.7
+  
+  ; Uber price function aproximation
   set price-uber (total-cost * 708.48) + 3533.3
   
-  print price-taxi
-  print price-uber
-  print total-cost
+  ;print price-taxi
+  ;print price-uber
+  ;print total-cost
 
 end
 
