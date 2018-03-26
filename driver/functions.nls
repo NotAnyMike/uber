@@ -66,28 +66,37 @@ end
 
 to price-drive [path-d]
   ;; This "function" evaluates path's cost of customer destination
-    let initial-xcor 0
-    let initial-ycor 0
-    let final-xcor 0
-    let final-ycor 0
-    let magnitude 0
-    let total-cost 0
-    let f 0
-    let numbers-path 0
-    let range-path []
-    set numbers-path length path-d - 1
-    set range-path n-values numbers-path [ i -> i ]
+  let initial-xcor 0
+  let initial-ycor 0
+  let final-xcor 0
+  let final-ycor 0
+  let magnitude 0
+  let total-cost 0
+  let f 0
+  let numbers-path 0
+  let range-path []
+  let price-taxi 0
+  let price-uber 0
+  
+  set numbers-path length path-d - 1
+  set range-path n-values numbers-path [ i -> i ]
     
-    foreach range-path [ [i] ->
-     set f i + 1
-     set initial-xcor [xcor] of item i path-d
-     set initial-ycor [ycor] of item i path-d
-     set final-xcor [xcor] of item f path-d
-     set final-ycor [ycor] of item f path-d
-     set magnitude sqrt(((final-xcor - initial-xcor) * (final-xcor - initial-xcor)) + ((final-ycor - initial-ycor) * (final-ycor - initial-ycor)))
-     set total-cost total-cost + magnitude
-   ]
+  foreach range-path [ [i] ->
+    set f i + 1
+    set initial-xcor [xcor] of item i path-d
+    set initial-ycor [ycor] of item i path-d
+    set final-xcor [xcor] of item f path-d
+    set final-ycor [ycor] of item f path-d
+    set magnitude (sqrt(((final-xcor - initial-xcor) * (final-xcor - initial-xcor)) + ((final-ycor - initial-ycor) * (final-ycor - initial-ycor)))) / 0.86
+    set total-cost total-cost + magnitude
+ ]
+  set price-taxi ((total-cost * 1000) * 0.8198) + 4020.7
+  set price-uber (total-cost * 708.48) + 3533.3
+  
+  print price-taxi
+  print price-uber
   print total-cost
+
 end
 
 
