@@ -5,12 +5,22 @@ extensions [
 to go
 	clear-all
 	create-turtles 500 [spam_turtle]
-	file-open "org.csv"
 end
 
 to read_csv
+	; create list
+	let org []
+
+	file-close-all
+	file-open "org.csv"
 	let data csv:from-row file-read-line
-	print data
+	while [not file-at-end?][
+		let row csv:from-row file-read-line
+		print row
+		set org lput row org
+	]
+	file-close
+	print org
 end
 
 to spam_turtle
