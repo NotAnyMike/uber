@@ -1,0 +1,21 @@
+to go
+	print "hola"
+end
+
+to spam_turtle
+	let selection_variable random-float 1
+	ifelse [selection_variable >= 0.14748212 [
+	][
+		ifelse [selection_variable <= 0.06246545+0.14748212][
+		][
+			ifelse [selection_variable <= 0.06246545+0.14748212+0.12778556][
+			][
+				ifelse [selection_variable <= 0.06246545+0.14748212+0.12778556+0.05122205][
+				][
+					ifelse [selection_variable <= ][
+					][
+					]
+				]
+			]
+			]
+end
