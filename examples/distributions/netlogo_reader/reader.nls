@@ -1,6 +1,16 @@
+extensions [
+	csv
+]
+
 to go
 	clear-all
 	create-turtles 500 [spam_turtle]
+	file-open "org.csv"
+end
+
+to read_csv
+	let data csv:from-row file-read-line
+	print data
 end
 
 to spam_turtle
