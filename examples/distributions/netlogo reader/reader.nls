@@ -1,21 +1,85 @@
 to go
-	print "hola"
+	clear-all
+	create-turtles 500 [spam_turtle]
 end
 
 to spam_turtle
 	let selection_variable random-float 1
-	ifelse [selection_variable >= 0.14748212 [
-	][
-		ifelse [selection_variable <= 0.06246545+0.14748212][
+		ifelse selection_variable <= 0.0589076926461 [
+			let std 4.79687352 ^ 0.5
+			let mean_x 17.21594148
+			let mean_y 23.35642785
+			set xcor random-normal mean_x std
+			set ycor random-normal mean_y std
 		][
-			ifelse [selection_variable <= 0.06246545+0.14748212+0.12778556][
+			ifelse selection_variable <= 0.159509378808 [
+				let std 5.76783959 ^ 0.5
+				let mean_x 14.71597898
+				let mean_y 11.72505276
+				set xcor random-normal mean_x std
+				set ycor random-normal mean_y std
 			][
-				ifelse [selection_variable <= 0.06246545+0.14748212+0.12778556+0.05122205][
+				ifelse selection_variable <= 0.272358589727 [
+					let std 3.5589742 ^ 0.5
+					let mean_x 23.37362569
+					let mean_y 19.53475229
+					set xcor random-normal mean_x std
+					set ycor random-normal mean_y std
 				][
-					ifelse [selection_variable <= ][
+					ifelse selection_variable <= 0.421499626303 [
+						let std 1.88239705 ^ 0.5
+						let mean_x 21.79014152
+						let mean_y 15.06277941
+						set xcor random-normal mean_x std
+						set ycor random-normal mean_y std
 					][
+						ifelse selection_variable <= 0.523491125955 [
+							let std 7.30075889 ^ 0.5
+							let mean_x 8.42682263
+							let mean_y 12.55426437
+							set xcor random-normal mean_x std
+							set ycor random-normal mean_y std
+						][
+							ifelse selection_variable <= 0.632798297164 [
+								let std 4.58858553 ^ 0.5
+								let mean_x 17.433444
+								let mean_y 17.17340446
+								set xcor random-normal mean_x std
+								set ycor random-normal mean_y std
+							][
+								ifelse selection_variable <= 0.721765150246 [
+									let std 3.76270473 ^ 0.5
+									let mean_x 25.74473293
+									let mean_y 24.73987733
+									set xcor random-normal mean_x std
+									set ycor random-normal mean_y std
+								][
+									ifelse selection_variable <= 0.81460925385 [
+										let std 8.27410957 ^ 0.5
+										let mean_x 14.30748432
+										let mean_y 7.55353224
+										set xcor random-normal mean_x std
+										set ycor random-normal mean_y std
+									][
+										ifelse selection_variable <= 0.951160244548 [
+											let std 2.40096828 ^ 0.5
+											let mean_x 19.77660225
+											let mean_y 10.90994196
+											set xcor random-normal mean_x std
+											set ycor random-normal mean_y std
+										][
+											let std 3.03140931 ^ 0.5
+											let mean_x 11.35440047
+											let mean_y 20.38406686
+											set xcor random-normal mean_x std
+											set ycor random-normal mean_y std
+										]
+									]
+								]
+							]
+						]
 					]
 				]
 			]
-			]
+		]
 end
