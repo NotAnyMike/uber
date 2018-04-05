@@ -1,3 +1,4 @@
 **/*.swp
+*.swo
 **/*.tmp.nlogo
 .ipybn_checkpoints/
