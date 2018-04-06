@@ -1,13 +1,3 @@
 globals [ 
-	number_of_people
-	number_of_taxis
-	number_of_ubers
-
-	choosing_customer_policy_code
-	perfect_memory
-
-	choosing_driver_policy_code_taxi
-	radius_driver_policy_taxi
-	choosing_driver_policy_code_uber
-	radius_driver_policy_uber
+	gm_org
 ]
