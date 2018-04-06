@@ -45,7 +45,7 @@ to create-persons-fn
     set shape "default"
     set color white
     set size 1
-		spam_from_gaussian_mixture 0 -1 gm_org
+		span_from_gaussian_mixture 0 -1 gm_org
   ]
 end
 
@@ -203,9 +203,9 @@ to read_csv
 end
 ; -----------------------------------------
 
-; ------- spam from gaussian mixture distribution --------
+; ------- span from gaussian mixture distribution --------
 
-to spam_from_gaussian_mixture [ n threshold dists ]
+to span_from_gaussian_mixture [ n threshold dists ]
 	if threshold = -1 [
 		set threshold random-float 1
 	]
@@ -213,14 +213,14 @@ to spam_from_gaussian_mixture [ n threshold dists ]
 		let mean_x item 3 item n dists
 		let mean_y item 4 item n dists
 		let std item 2 item n dists
-		spam_with_mean_and_std mean_x mean_y std
+		span_with_mean_and_std mean_x mean_y std
 	][
 		set n n + 1
-		spam_from_gaussian_mixture n threshold dists
+		span_from_gaussian_mixture n threshold dists
 	]
 end
 
-to spam_with_mean_and_std [ mean_x mean_y std ]
+to span_with_mean_and_std [ mean_x mean_y std ]
 	let xcord random-normal mean_x std
 	let ycord random-normal mean_y std
 
