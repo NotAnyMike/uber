@@ -32,9 +32,9 @@ ticks
 BUTTON
 31
 23
-94
+205
 56
-NIL
+From Gaussian Mixture
 go
 NIL
 1
@@ -53,6 +53,23 @@ BUTTON
 103
 NIL
 read_csv
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+33
+111
+164
+144
+From list of lists
+alternative_go
 NIL
 1
 T
