@@ -95,7 +95,9 @@ to price-drive [path-d]
   set price-taxi ((total-cost * 1000) * 0.8198) + 4020.7
   
   ; Uber price function aproximation
-  set price-uber (total-cost * 708.48) + 3533.3
+  ;set price-uber (total-cost * 708.48) + 3533.3 + 500 * (Estados de personas libres (count) Estados conductores (libres) )
+  
+  ;; Retornar los valores y clasificar los precios para uber y taxi
   
   ;print price-taxi
   ;print price-uber
