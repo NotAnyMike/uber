@@ -1,0 +1,805 @@
+[33mcommit 2822ef543a94cf8b03b282def2102e0133fea9d7[m[33m ([m[1;36mHEAD -> [m[1;32mUberDaniel[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/gaussian-mixture[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Fri Apr 6 15:49:49 2018 -0500
+
+    Changing spam->span
+
+[33mcommit a1b1a6aae5d9372584ad8d8c20e289041576bed1[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Fri Apr 6 15:30:54 2018 -0500
+
+    changing name of folder examples to modules
+
+[33mcommit 9a29723acf23e81654c3c6732e830209c915c649[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Fri Apr 6 15:30:08 2018 -0500
+
+    Adding spaning from graussian mixtures to the main project
+
+[33mcommit ef37bf879d8fb980a792eb8542bd64def9bc1581[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Thu Apr 5 21:37:16 2018 -0500
+
+    using list of list to generate distribution
+
+[33mcommit ba5b260f32a0d4e20bc16af982344303b124f497[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Thu Apr 5 18:16:50 2018 -0500
+
+    correcting map proportions
+
+[33mcommit 2de0a89340ed9bec99e94fd7becc087d5b7c624e[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Thu Apr 5 18:13:02 2018 -0500
+
+    updating gitignore
+
+[33mcommit 868178b8145ad6215e1cc3a73193896e26ca2411[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Tue Apr 3 18:04:42 2018 -0500
+
+    Adding button to read csv and create list of lists
+
+[33mcommit fc4ae00bb953d9d7cdb828b0b31abb98e9eacf79[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Tue Apr 3 18:03:20 2018 -0500
+
+    Using a list of lists to store in memory the distribution
+
+[33mcommit ddfde1570d083122f61c91a0defc601e61a0676b[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Tue Apr 3 17:44:52 2018 -0500
+
+    Reading gaussian mixture from csv
+
+[33mcommit d70732f7f6d5a4c53a6c439d936989c81aff12a9[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Tue Apr 3 17:03:09 2018 -0500
+
+    adding example in netlogo
+
+[33mcommit 012f20cd0386a4ab736b3ecdedf56c13a7e6cf72[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Tue Apr 3 11:15:00 2018 -0500
+
+    Adding example files to use gaussian mixtures
+
+[33mcommit 3cd80707523c2c1774b46bb4adeb20d6287bb978[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Mon Apr 2 15:51:03 2018 -0500
+
+    recontruction using gaussian mixture works
+
+[33mcommit 8716203551c25367af0d7f7f2586913031fb427d[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Mon Apr 2 15:03:15 2018 -0500
+
+    Reconstruction the kde
+
+[33mcommit 8ba800f9be42943cba0ea524bbd5cdf0456c8831[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Thu Mar 29 11:09:19 2018 -0500
+
+    Adding Gaussian Mixture Models
+
+[33mcommit 5550f74d9ff010f5a64fcbc9f5ef7b1fe68b0615[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Wed Mar 28 13:30:43 2018 -0500
+
+    Adding images and improving on gaussian mixture notebook
+
+[33mcommit 6a1238141874492128d0e7100576878088148a42[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Wed Mar 28 11:49:05 2018 -0500
+
+    Adding db cleaned and generating distributions
+
+[33mcommit bf009932f9edefff19933323a9d251a8f0727c62[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Tue Mar 27 22:17:44 2018 -0500
+
+    Adding db of the encuesta de movilidad and the very first exploratory analysis of the same db
+
+[33mcommit 94f3dc57a7e4493cb676185349c2397be5027c04[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Thu Feb 22 10:54:12 2018 -0500
+
+    adding persons span based on a normal distribution
+
+[33mcommit 9a4820f7b34173a80c4f6004cc66ca64257c800b[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Thu Feb 8 10:21:09 2018 -0500
+
+    adding testing on jupyter regarding bimodal distributions
+
+[33mcommit 590fc0e6ca0f4f8471ac8d3e4ce21836768a3cd0[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Thu Feb 1 21:28:45 2018 -0500
+
+    one comma
+
+[33mcommit 87a08c8b3edf5b6e28f34b40a0e0d064ecc66626[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Thu Feb 1 21:28:17 2018 -0500
+
+    Dijkstra is workking, next: some test
+
+[33mcommit ccb77a7061283b00d74b1a11a087a0869006e7f4[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Thu Feb 1 18:13:56 2018 -0500
+
+    adding dikjstra to the action2-driver
+
+[33mcommit bddd98670bcdb9f9c4826f429e2deb08deada172[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Thu Feb 1 17:59:12 2018 -0500
+
+    Adding dijkstra (cp ps because I didn't have time
+
+[33mcommit 15ed5c21d7931fb231a7f3f639e24f7eb8d71cd0[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Thu Feb 1 16:48:41 2018 -0500
+
+    Revert "Merging with master"
+    
+    This reverts commit 765f5d968ca2a0456b878bd5658b2c857363b55b, reversing
+    changes made to 669a66b4baff964cca1581265b58273db8f4c2fc.
+    
+    undoing merge because it deleted some important information from my
+    branch
+
+[33mcommit 765f5d968ca2a0456b878bd5658b2c857363b55b[m
+Merge: 669a66b 9ba191d
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Thu Feb 1 16:28:35 2018 -0500
+
+    Merging with master
+
+[33mcommit 9ba191db27e42decc44d5912d13bd26615a2c50f[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Thu Feb 1 16:21:08 2018 -0500
+
+    removing graphical part of dijkstra
+
+[33mcommit 9b1c74881706bd75c1931a62404681b991aa07f2[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Wed Jan 31 08:55:39 2018 -0500
+
+    dijkstra is working, next do some tests
+
+[33mcommit ad6f7e1c58a0366fc1bac648d229588043683e87[m
+Merge: 345c32e b600b43
+Author: Mike W <mikewoodcockc@gmail.com>
+Date:   Wed Dec 27 05:40:20 2017 -0500
+
+    Merge pull request #13 from NotAnyMike/dijkstra
+    
+    Dijkstra
+
+[33mcommit b600b43e1281d8d1f956a3bd7495ca5da450deb6[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Wed Dec 27 05:37:36 2017 -0500
+
+    Chaging to a list of 20
+
+[33mcommit 13aa7c557af0fcc20dbfd823479cca92ea40b636[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Tue Dec 26 09:23:18 2017 -0500
+
+    fixing error of creating a list of 10 with only 2 unique vertex
+
+[33mcommit 3e71ae60bdd93976f6468b1d46b4b1e9b81660b9[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Tue Dec 26 09:04:26 2017 -0500
+
+    updating interface and making a list with 10 vertices for easy debbuging
+
+[33mcommit 54b2e69f3a00f1cbaf368b98a9d135e7fcbe23d4[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Tue Dec 26 08:45:45 2017 -0500
+
+    changing dijkstra function type
+
+[33mcommit c6812a136311b23281d9add94d4e5bfb53611d84[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Tue Dec 26 08:39:37 2017 -0500
+
+    updating dijkstra algorithm to work as an ask
+
+[33mcommit daa6bd8b1d6390dd1ff16427e1cadeddfc1808c1[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Tue Dec 26 08:39:17 2017 -0500
+
+    updating dijkstra button
+
+[33mcommit 669a66b4baff964cca1581265b58273db8f4c2fc[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Mon Dec 25 14:24:56 2017 -0500
+
+    updating interface labels
+
+[33mcommit 393d72e0839af4c1b3ca0aabe75f0079579ee9d6[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Mon Dec 25 14:24:05 2017 -0500
+
+    Adding perfect memory policy
+
+[33mcommit f994c7f2852df2302ca847bd831523eaa33c28dd[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Sun Dec 24 09:40:06 2017 -0500
+
+    Updating the interface with perfect_memory and fixing #16
+
+[33mcommit f6f2727bcded94400a1c6a622dd98e975fbbd6f1[m
+Author: CamiloAndrés <camayorquina@unal.edu.co>
+Date:   Sat Dec 23 16:06:57 2017 -0500
+
+    restoring README with dijkstra info and adding more details
+
+[33mcommit 6dcd59c02c61910efdb85b89e098b7ca830580a7[m
+Author: CamiloAndrés <camayorquina@unal.edu.co>
+Date:   Sat Dec 23 14:55:11 2017 -0500
+
+    updating dijkstra's documentation
+
+[33mcommit e6018f3a76d2b8f41061584cfd911c28150dfb23[m
+Author: CamiloAndrés <camayorquina@unal.edu.co>
+Date:   Sat Dec 23 14:02:52 2017 -0500
+
+    returning to bogota simplified graph
+
+[33mcommit 24a1b18ea6aa90fafcccdd551a83e6b5b8c0a0bb[m
+Author: CamiloAndrés <camayorquina@unal.edu.co>
+Date:   Sat Dec 23 14:01:37 2017 -0500
+
+    adding dijkstra button
+
+[33mcommit 3a2f88ce174aaff756c75cac295b724a31e15dd3[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Sat Dec 23 12:00:29 2017 -0500
+
+    updating decision rule documentation file (small changes)
+
+[33mcommit 00fd48cdefa4d0a65beea127b266f3df18f4e562[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Sat Dec 23 11:57:39 2017 -0500
+
+    Adding decision rule documentation and updating the comments on the decision rule code
+
+[33mcommit fd10dc4e43bb541269b8854fe5e10377d8c7f8de[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Sat Dec 23 11:35:26 2017 -0500
+
+    updating readme
+
+[33mcommit 1567f6142a736dd46b0c2a539e27a882e63ad5ae[m
+Author: CamiloAndrés <camayorquina@unal.edu.co>
+Date:   Tue Dec 12 12:31:42 2017 -0500
+
+    first dummy dijkstra version
+
+[33mcommit 399a804e301575811750954349b6a71fc03bfd1c[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Fri Dec 8 14:21:17 2017 -0500
+
+    Updating readme file
+
+[33mcommit c774eff050da7499c67be6d8073551d0a1bff973[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Fri Dec 8 08:59:26 2017 -0500
+
+    updating .nlogo
+
+[33mcommit 33cd584728e8419ebdbf992a89ddb07d0a879d11[m
+Author: CamiloAndrés <camayorquina@unal.edu.co>
+Date:   Thu Dec 7 12:49:45 2017 -0500
+
+    first steps for dummy dijkstra
+
+[33mcommit de025c7b00d7bebaf9669a27ecd1db1d91dc833f[m
+Author: CamiloAndrés <camayorquina@unal.edu.co>
+Date:   Thu Dec 7 12:46:41 2017 -0500
+
+    adding new vertices-own variables for dijkstra
+
+[33mcommit 0ea5bf50a940ac0b5971bbd255fcfc5750e2c9c9[m
+Author: CamiloAndrés <camayorquina@unal.edu.co>
+Date:   Thu Dec 7 12:42:56 2017 -0500
+
+    adding new vertices-own variables for dijkstra
+
+[33mcommit 069d53aba78d738ab15dddb17d6cb5184507b6b3[m
+Author: Mike W <mikewoodcockc@gmail.com>
+Date:   Thu Dec 7 11:05:34 2017 -0500
+
+    Updating readme.md
+
+[33mcommit 98bd9a3f96e8c66a72f135e41ae3bf3396a4828e[m
+Author: CamiloAndrés <camayorquina@unal.edu.co>
+Date:   Wed Dec 6 21:03:49 2017 -0500
+
+    load simple graph
+
+[33mcommit 65245acdcf2ca29ce085e61fc25c759d7c619708[m
+Author: CamiloAndrés <camayorquina@unal.edu.co>
+Date:   Wed Dec 6 21:01:26 2017 -0500
+
+    changing path for the simple graph
+
+[33mcommit 03fa9d78daa56756b63d888777a65693a21190f0[m
+Author: CamiloAndrés <camayorquina@unal.edu.co>
+Date:   Wed Dec 6 20:46:25 2017 -0500
+
+    coping simple graph for testing
+
+[33mcommit dc342a0775c18f916507c24e5e3964c3b4bd8964[m
+Author: CamiloAndrés <camayorquina@unal.edu.co>
+Date:   Wed Dec 6 20:36:09 2017 -0500
+
+    correcting Dijkktra name
+
+[33mcommit 984b55978149fa53f6b28a9493a9e3f0f88ac082[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Wed Dec 6 20:23:19 2017 -0500
+
+    Fixing uber bias and changing initial settings
+
+[33mcommit 3cc5b94891dba31873abc6105a3dcf74dd93c2ff[m
+Author: CamiloAndrés <camayorquina@unal.edu.co>
+Date:   Tue Dec 5 11:04:40 2017 -0500
+
+    first commit
+
+[33mcommit cc4dc87aefce95f34cf2dbb8c5b416ffa5fc530b[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Thu Nov 16 04:09:43 2017 -0500
+
+    updating and correcting some erros in functions drivers
+
+[33mcommit 779529a7460b72f7971cf8562d3195d4f832fa95[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Thu Nov 16 02:24:12 2017 -0500
+
+    Updating readme
+
+[33mcommit ee17a296aa404112bfd2eff6f3ba12cfb00192a0[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Wed Nov 8 01:45:56 2017 -0500
+
+    Adding small if to policy discrimination between drivers' type
+
+[33mcommit b850016eb0f4daea362092625900ec108950e30d[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Wed Nov 8 01:37:51 2017 -0500
+
+    Making assignement policy driver fn discriminate between drivers and their policies
+
+[33mcommit 345c32e158695f7e1756f6a487328d40c7b1333f[m
+Merge: 1cbace7 6b385a1
+Author: Mike W <mikewoodcockc@gmail.com>
+Date:   Wed Nov 8 00:38:26 2017 -0500
+
+    Merge pull request #8 from NotAnyMike/move-to-path
+    
+    Move to path
+
+[33mcommit 6b385a176fadd377d0046a5c2998a6b7fd7782cd[m
+Author: CamiloAndrés <camayorquina@unal.edu.co>
+Date:   Tue Nov 7 11:02:13 2017 -0500
+
+    Re-adding the function assignment_policy_fn_drivers
+
+[33mcommit ef6fa7915f8eb79fe3b138778bdfa8b112ef26e7[m
+Author: CamiloAndrés <camayorquina@unal.edu.co>
+Date:   Tue Nov 7 10:34:27 2017 -0500
+
+    Changing the name of the folder examples for modulos
+
+[33mcommit af7d2f3b768dd6d477a047cfd75bfbecfe102312[m
+Author: CamiloAndrés <camayorquina@unal.edu.co>
+Date:   Tue Nov 7 10:28:42 2017 -0500
+
+    Adding example folder for the move-th-path function
+
+[33mcommit db8ef3a197408c9a30ab5a90a82c304da6c6624e[m
+Author: Camilo Mayorquín <camayorquina@unal.edu.co>
+Date:   Mon Nov 6 23:21:57 2017 -0500
+
+    Adding example folder for the move-th-path function
+
+[33mcommit 6a773a03f7d80adc5e1a6f1027209a80f7476fa8[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Wed Nov 1 15:42:13 2017 -0500
+
+    Updating todos list
+
+[33mcommit cf3ba6d91ec9b3e47b7491aef873de05b3808e08[m
+Author: Camilo Mayorquín <camayorquina@unal.edu.co>
+Date:   Wed Nov 1 11:58:51 2017 -0500
+
+    Replacing the new function name when called by action2
+    
+    Replacing 'move-to-closest' with 'move-th-path' in 'to-action-2-driver'
+
+[33mcommit bb175fc8c851a88c2ffa53da178e4243088f60e0[m
+Author: Camilo Mayorquín <camayorquina@unal.edu.co>
+Date:   Wed Nov 1 11:55:59 2017 -0500
+
+    Changing function name 'move-to-closest' to 'move-th-path'
+    
+    Better name to what the function does
+
+[33mcommit 1978293569a5490beb6b26a1dc1bb82fc891cbaa[m
+Author: Camilo Mayorquín <camayorquina@unal.edu.co>
+Date:   Wed Nov 1 11:50:53 2017 -0500
+
+    Updating driver function with the newe one
+    
+    Adding funtion to move thorugh math
+
+[33mcommit 697dc8edec5c0494e98a8d07b81b2b2be7eee961[m
+Author: Camilo Mayorquín <camayorquina@unal.edu.co>
+Date:   Wed Nov 1 11:48:13 2017 -0500
+
+    Updating functions with the new one
+    
+    adding the function to move through path
+
+[33mcommit 7cc6a7711e1bda8549823ad03749bd224b975a6d[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Tue Oct 31 19:32:43 2017 -0500
+
+    updating todos
+
+[33mcommit 2a8e4a80624ea4847d1dccf5c008f00533175565[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Mon Oct 30 17:20:35 2017 -0500
+
+    updating variables to differentitate uber and cabs
+
+[33mcommit 00b1fc97fb8176bc2a1732b1dd4f12f44f554f63[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Mon Oct 30 17:16:51 2017 -0500
+
+    updating variables to differentitate uber and cabs
+
+[33mcommit d5425ba6817889af007d3b5736480d1b272e3e38[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Mon Oct 30 16:57:08 2017 -0500
+
+    updating variables to differentitate uber and cabs
+
+[33mcommit 49b515702199bc945e595864235108e1262efc45[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Fri Oct 27 12:12:13 2017 -0500
+
+    Updating interface
+
+[33mcommit ebab0209b9bfed7d858d97ea2153dda7690d4f72[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Fri Oct 27 11:04:10 2017 -0500
+
+    updating the correct policies for differentiating drivers
+
+[33mcommit 3bcc0e9104d0ab213e9f9e8bb0c400856b281276[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Fri Oct 27 10:58:49 2017 -0500
+
+    differentiating policies
+
+[33mcommit cf06652693ea6ae75497fe9167f8aa4545c21763[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Thu Oct 26 22:01:48 2017 -0500
+
+    adding some plots
+
+[33mcommit 1a18428283d918d28c48cead81d419a030b87adf[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Thu Oct 26 20:20:24 2017 -0500
+
+    Creating election rule
+
+[33mcommit cb2cb3f637263e99e81b409c99688c4939934972[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Thu Oct 26 20:06:22 2017 -0500
+
+    Using ticks instead of timer in last-status-change and adding that function to driver
+
+[33mcommit 1b69b84d6d7b4a0f4c095db880d4eeefc71a3ef7[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Thu Oct 26 16:16:53 2017 -0500
+
+    Adding history to persons
+
+[33mcommit 893013fc3575f008bdf3bbc6b8a674b7963650e7[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Thu Oct 26 15:03:12 2017 -0500
+
+    adding setter to person state
+
+[33mcommit 1cbace7082fa8c24ae69b7665fd06187f0a70b48[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Thu Oct 26 12:14:09 2017 -0500
+
+    Adding minor comments to functions.nls
+
+[33mcommit be84ecc7c2ec62a35966d066835d5613fbecc5c3[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Thu Oct 26 12:06:24 2017 -0500
+
+    adding randomly in the list of the driver assignment policies
+
+[33mcommit 9f1f0e7e9ad9a812e8ec8299ae7688e6c832d4e9[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Thu Oct 26 11:38:43 2017 -0500
+
+    Finishing implementing assignment policies for both persons and drivers
+
+[33mcommit 53630d7e929115aacdd5a82f71c6e6882137a64a[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Wed Oct 25 18:12:42 2017 -0500
+
+    Solving fifo and random for persons
+
+[33mcommit 75edc5c8f2bfe423599e88f7ea8c6b6c5a97efcc[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Mon Oct 23 10:55:29 2017 -0500
+
+    Second changes
+
+[33mcommit 11366369b14f567d95994d2d445e6cf68b3cedab[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Mon Oct 23 09:56:37 2017 -0500
+
+    adding frist code of the assignement policies
+
+[33mcommit 71301585b7dbf27c3c4bffdba4684650da910879[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Sun Oct 22 22:47:19 2017 -0500
+
+    adding readme in core folder
+
+[33mcommit 7e9d406d406c14f0f511c5beef3b8fe472629624[m
+Merge: 8aa0df9 2dca32b
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Fri Oct 20 12:13:13 2017 -0500
+
+    Merge with test
+
+[33mcommit 8aa0df9c6a58ad5305570835364d01bd98827a1b[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Fri Oct 20 12:08:30 2017 -0500
+
+    Adding semicolons
+
+[33mcommit 2dca32bb140f0d840f7f3b3695d3b0ec61f24214[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Fri Oct 20 12:05:43 2017 -0500
+
+    Removing semicolons
+
+[33mcommit 165bb3f2775cd24049c960ac62dc088fdfeb09b0[m
+Merge: 3313db9 b610c9c
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Fri Oct 20 10:14:06 2017 -0500
+
+    Merging with interactions1
+
+[33mcommit b610c9cbb571daaecb924bc68529c860de0ecacb[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Fri Oct 20 00:36:08 2017 -0500
+
+    changing to the more complicated file, but not copying the csv to the real model
+
+[33mcommit 796c8727372e563054d15ca19d227625cf46482f[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Fri Oct 20 00:09:18 2017 -0500
+
+    updating new file
+
+[33mcommit 081cafaa8ed2d4ab36e707dafc580e5a5e92a98e[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Fri Oct 20 00:08:21 2017 -0500
+
+    updating files to work with new exported csv files
+
+[33mcommit a9f57e6dcc74e0249d661886ea5d36e037701a48[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Fri Oct 20 00:07:16 2017 -0500
+
+    updating gitignore
+
+[33mcommit 3d29a5a31cecf3471ae1b9d27f546c318a5c92bf[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Thu Oct 19 23:48:13 2017 -0500
+
+    solving error with the exporter
+
+[33mcommit 3313db9b2fb6c5cb338c0d75f5041e205e45f281[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Mon Oct 16 11:53:45 2017 -0500
+
+    making example of csv reader look better by reducing dots' sizes and removing labesl
+
+[33mcommit 90aadd0317f250318b232b13e5ac68bf388e2adc[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Wed Sep 27 12:51:47 2017 -0500
+
+    Adding all the other interactions but always with uniform  distributions
+
+[33mcommit 987fa681518f11e30a55ede89526fcafea452f96[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Tue Sep 5 22:16:21 2017 -0500
+
+    Creating action-2-uber function, now the drivers move randomly in the streets
+
+[33mcommit be00e5dc403f3e3383059c0974ce4ee38ebaef2f[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Tue Sep 5 19:10:24 2017 -0500
+
+    updating readme!
+
+[33mcommit 64dc0930d5cff84dedea8a0080cb3e2f45aeb20d[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Tue Sep 5 18:52:05 2017 -0500
+
+    minor changes
+
+[33mcommit 2e22b2da09f8fa6e852ffc2ecee9ea42aabce856[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Tue Sep 5 18:33:39 2017 -0500
+
+    joining the importer and the core
+
+[33mcommit 1608f304f7424a3998602f6cac6235e1147c8220[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Tue Sep 5 18:25:47 2017 -0500
+
+    Fixing minor errors
+
+[33mcommit bfa85043aad38de88dba961154b8c8649a446e9e[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Tue Sep 5 18:23:28 2017 -0500
+
+    removing and adding necessary files
+
+[33mcommit d2ae73e4fb4b33e7257013a2972c1b79c0d86890[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Tue Sep 5 18:21:19 2017 -0500
+
+    Re-modularizising project
+
+[33mcommit a59e30277a812ae40b9d96f7b4302f8972ebaf34[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Tue Sep 5 18:17:25 2017 -0500
+
+    Changing name of folder
+
+[33mcommit 193d057e0c71769cac1bcd29b3b6c77bfbcf16dd[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Tue Sep 5 18:16:48 2017 -0500
+
+    modularizing code
+
+[33mcommit 8841a55586338e169d035468746303866888bc7f[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Thu Aug 31 15:56:24 2017 -0500
+
+    Updating readme
+
+[33mcommit 6f849a8289ccaa459134e83e4f3faa4409427ef5[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Thu Aug 31 15:56:00 2017 -0500
+
+    Adding requirements.txt
+
+[33mcommit ff3fed26a54c40b2aabce62084e42c949467c3aa[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Thu Aug 31 15:53:28 2017 -0500
+
+    Adding the exporter algorith (shp2csv)
+
+[33mcommit 9316d2fa60995aeb03ae3355c7004e5777d46e90[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Wed Aug 30 20:53:50 2017 -0500
+
+    Adding new files exported from algorithm and adding pk to edges and fixinig minor errors
+
+[33mcommit aebde3d39265c9f1fb2e57c1ca965126195a73ce[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Sat Aug 26 21:23:01 2017 -0500
+
+    updating gitignore
+
+[33mcommit 17f3c9748806f3e5193adb64558f88f50cd0b2ae[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Sat Aug 26 21:14:38 2017 -0500
+
+    Updating readme and adding gitingnore file
+
+[33mcommit 2737f67e61cb7375e9c5f57c4a79c75d4479a346[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Sat Aug 26 21:04:01 2017 -0500
+
+    Updating both readme files
+
+[33mcommit fe36c6f43040da2b7bc758aec78356ec08709383[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Sat Aug 26 20:59:20 2017 -0500
+
+    adding second readme file
+
+[33mcommit 1f8eb5dbb139834c2dc522810d387edfebeb2f78[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Sat Aug 26 20:57:55 2017 -0500
+
+    updating readme
+
+[33mcommit fe66b48039958cc1349c84b2d4b86382686d25de[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Sat Aug 26 20:56:12 2017 -0500
+
+    Reading from both csv files and creating a graph with its costs
+
+[33mcommit 98e140b29415517b276ff964fa96abfae4c18df3[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Sat Aug 26 17:54:52 2017 -0500
+
+    updating csv files
+
+[33mcommit 2ba7ed32ea4fd003da7e1cef7366d1edba56af79[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Sat Aug 26 17:48:52 2017 -0500
+
+    adding basic structure (entities)
+
+[33mcommit b4b3fb7446aac434f154a4e35ba69d9f9e2e63c7[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Sat Aug 26 16:30:40 2017 -0500
+
+    reading normal csv and printing its values
+
+[33mcommit e9f0ebbcc6153335229973f3f179fa81cec5094f[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Sat Aug 26 16:16:22 2017 -0500
+
+    Fixing readme title
+
+[33mcommit 14fdcbd552466a958cf24a5688a6379f1158bf44[m
+Author: Mike W <mwc1.0@hotmail.com>
+Date:   Sat Aug 26 16:09:13 2017 -0500
+
+    updating read me
+
+[33mcommit 7fd6bdb0ee49433b7eded4de1e0cf24e47aa4d8c[m
+Author: Mike Woodcock <mwc1.0@hotmail.com>
+Date:   Wed Apr 19 15:01:51 2017 -0500
+
+    adding some attributes to person
+
+[33mcommit dc4a761f1f38ea98c1c0dabacbc8cc70857d1b5e[m
+Author: Mike Woodcock <mwc1.0@hotmail.com>
+Date:   Tue Apr 18 11:56:51 2017 -0500
+
+    Adding the go-towards function,
+    
+    with 100 people it is not interesting, change it to 1 and every driver
+    will tend towards the only person
+
+[33mcommit 624fb9ef855bc04ba47b2f9c3cfbe81cdecd1c43[m
+Author: Mike Woodcock <mwc1.0@hotmail.com>
+Date:   Mon Apr 17 15:10:37 2017 -0500
+
+    Adding persons and drivers and making drivers go to the closes person
+
+[33mcommit 0c71d8bf4a7d17bd9fe9bc8ce5974aa7c51974f5[m
+Author: Mike Woodcock <mwc1.0@hotmail.com>
+Date:   Mon Apr 17 09:10:17 2017 -0500
+
+    adding netlogo file
+
+[33mcommit e188f6125d8340bf4bd2ab8f7be2863fbdcb7730[m
+Author: Mike Woodcock <mwc1.0@hotmail.com>
+Date:   Mon Apr 17 09:03:39 2017 -0500
+
+    first commit
