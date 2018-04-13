@@ -285,6 +285,23 @@ perfect_memory
 1
 -1000
 
+BUTTON
+205
+27
+303
+85
+Export Data
+export_data
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
 @#$#@#$#@
 ## WHAT IS IT?
 
