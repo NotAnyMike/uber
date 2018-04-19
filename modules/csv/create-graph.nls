@@ -1,0 +1,74 @@
+; here come all the functions
+
+extensions [csv]
+
+to setup-globals
+	set default-expected-cost -1
+	set max-x 30
+	set max-y 30
+end
+
+to setup
+	clear-all
+
+	setup-globals
+
+	; read the vertices.csv file and for each line create a vertix (node)
+  file-open "vertices.csv"
+  while [ not file-at-end? ] [
+		; Create variable row which is a list
+    let row csv:from-row file-read-line
+
+    ; Create vertix
+		create-vertices 1 [
+			set id item 0 row
+			setxy item 1 row * max-x item 2 row * max-y
+			set expected-cost default-expected-cost 
+			set conections nobody
+			set visited? false
+
+			set shape "dot"
+			set color white
+			set size 0.1
+		]
+  ]
+  file-close
+
+	; read the edges.csv file and for each line create a link
+	file-open "edges.csv"
+	while [not file-at-end?] [
+		; Create variable row which is a list
+		let row csv:from-row file-read-line
+
+		; Create link --- this is a little inefficient
+		let fromElement item 0 sort vertices with [id = item 1 row]
+		ask fromElement [
+			; Get vertex at the other end
+			let toElement item 0 sort vertices with [id = item 2 row]
+
+			; create the link
+			create-edge-with toElement
+
+			; Set the cost for that new link
+			ask edges with [end1 = fromElement and end2 = toElement] [
+				set pk item 0 row
+				set cost item 3 row
+				;set label item 3 row
+			]
+			ask edges with [end1 = toElement and end2 = fromElement] [
+				set pk item 0 row
+				set cost item 3 row
+				;set label item 3 row
+			]
+		]
+	]	
+	file-close
+
+  reset-ticks
+end
+
+to go
+  if ticks = 1000 [stop]
+
+  tick
+end

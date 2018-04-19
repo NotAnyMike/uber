@@ -4,10 +4,10 @@ to setup
   clear-all
 
 	setup-importer ; Import graph
-  
+	read_csv
+
   create-persons-fn ; Create turtle persons
   create-drivers-fn ; Create turtle driver
-  
 
   reset-ticks
 end
@@ -39,21 +39,13 @@ end
 
 to create-persons-fn
   create-people number_of_people [
-		; get x and y
-		let x random-normal 0.5 0.25
-		let y random-normal 0.5 0.25
-		set x x * 32
-		set y y * 32
-		let random_vertice min-one-of vertices [ distancexy x y ]
-		set current_vertice random_vertice
-		move-to random_vertice
-
 		set history_uber []
 		set history_taxi []
 
     set shape "default"
     set color white
     set size 1
+		span_from_gaussian_mixture 0 -1 gm_org
   ]
 end
 
@@ -194,3 +186,54 @@ to fill_path [mypath driver_agent]
 end
 
 ; ------- here dijkstra finish -----
+
+; ------- read distribution from csv -------
+to read_csv
+	; create list
+	set gm_org []
+
+	file-close-all
+	file-open "distributions/org.csv"
+	let data csv:from-row file-read-line
+	while [not file-at-end?][
+		let row csv:from-row file-read-line
+		set gm_org lput row gm_org
+	]
+	file-close
+end
+; -----------------------------------------
+
+; ------- span from gaussian mixture distribution --------
+
+to span_from_gaussian_mixture [ n threshold dists ]
+	if threshold = -1 [
+		set threshold random-float 1
+	]
+	ifelse item 1 item n dists >= threshold [
+		let mean_x item 3 item n dists
+		let mean_y item 4 item n dists
+		let std item 2 item n dists
+		span_with_mean_and_std mean_x mean_y std
+	][
+		set n n + 1
+		span_from_gaussian_mixture n threshold dists
+	]
+end
+
+to span_with_mean_and_std [ mean_x mean_y std ]
+	let xcord random-normal mean_x std
+	let ycord random-normal mean_y std
+
+	if xcord > max-x [set xcord max-x]
+	if ycord > max-y [set ycord max-y]
+	if xcord < 0 [set xcord 0]
+	if ycord < 0 [set ycord 0]
+
+	set xcor xcord
+	set ycor ycord
+
+	let vertex-to-move min-one-of (vertices) [ distance myself ]
+	set current_vertice vertex-to-move
+	move-to vertex-to-move
+end
+; -----------------------------------------------------------

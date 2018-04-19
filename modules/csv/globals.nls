@@ -1,0 +1,10 @@
+; Global variables
+
+globals [
+	;  --- In order to know how big the world is ----
+	max-x
+	max-y
+	; -----------------------------------------------
+
+	default-expected-cost
+]

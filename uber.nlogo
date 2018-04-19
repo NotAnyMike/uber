@@ -5,6 +5,7 @@ __includes [
 
   "core/entities.nls"
   "core/functions.nls"
+  "core/globals.nls"
 
   "person/functions.nls"
   "driver/functions.nls"
