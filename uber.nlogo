@@ -14,9 +14,9 @@ __includes [
 ]
 @#$#@#$#@
 GRAPHICS-WINDOW
-408
+401
 10
-845
+838
 448
 -1
 -1
@@ -62,8 +62,8 @@ BUTTON
 154
 204
 187
-NIL
 go
+go\nexport_data
 T
 1
 T
@@ -291,7 +291,7 @@ BUTTON
 303
 85
 Export Data
-export_data
+export-data\ncreatex_csv
 NIL
 1
 T
@@ -301,6 +301,28 @@ NIL
 NIL
 NIL
 1
+
+INPUTBOX
+206
+90
+303
+150
+xticks
+1000.0
+1
+0
+Number
+
+INPUTBOX
+306
+90
+384
+150
+Obs
+2
+1
+0
+String
 
 @#$#@#$#@
 ## WHAT IS IT?
