@@ -79,7 +79,7 @@ to price-drive [path-d]
   let price-uber 0
   
   set numbers-path length path-d - 1
-  set range-path n-values numbers-path [ i -> i ]
+  ;set range-path n-values numbers-path [ i -> i ]
     
   foreach range-path [ [i] ->
     set f i + 1
