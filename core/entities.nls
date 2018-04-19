@@ -1,5 +1,5 @@
 ; Creating the differents kind of agents --------------------------------------------
-
+;
 breed [people person]
 people-own [
 	current_vertice
@@ -7,8 +7,8 @@ people-own [
 	state
 	destination
 	last_status_change
-	history_uber
-	history_taxi
+	history_uber ; Uber's memory
+	history_taxi ; Taxi's memory
 ]
 ; state would be 0 or 1 refering to inactive (i.e doing nothing) and active (wating for a driver or being transported)
 ; destination-x and y are the coordinates to the place it needs to be transported
@@ -17,10 +17,10 @@ people-own [
 
 breed [drivers driver]
 drivers-own [
-	type-of-driver
+	type-of-driver ; Taxi or Uber?
 	path
 	state 
-	customer 
+	customer ; What's meaning this argument? 
 	last_status_change
 	last_vertex ; the idea here is to use this vertex in order to be the first element in path to avoid flying cars
 ]
