@@ -318,11 +318,45 @@ INPUTBOX
 90
 384
 150
-Obs
-2
+observation
+1
 1
 0
 String
+
+BUTTON
+209
+154
+281
+187
+go new
+go\nexport_data_new\ncreate_csv_general_new
+T
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+285
+154
+374
+187
+go replace
+go\nexport_data_rep\ncreate_csv_general_rep
+T
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
 
 @#$#@#$#@
 ## WHAT IS IT?

@@ -6,15 +6,51 @@ end
 ;; Generando archivo csv con datos de observación xticks
 to create_csv
 	;;let turtles_list (list ([who] of person 431) ([xcor] of person 431) ([ycor] of person 431))
-	;;file-delete "modules/export_data_from_Nlogo/data/data_turtles.csv"
-	file-open (word "modules/export_data_from_Nlogo/data/" "data_turtles_" obs "_" ticks  ".csv")
-	file-type "ID," file-type"x," file-type "y," file-type "Heading," file-print "breed."
+	file-delete (word "modules/export_data_from_Nlogo/data/" observation "/data_turtles_" observation "_" ticks  ".csv")
+	file-open (word "modules/export_data_from_Nlogo/data/" "data_turtles_" observation "_" ticks  ".csv")
+	file-type "ID," file-type"x," file-type "y," file-type "Heading," file-print "breed"
+	ask turtles [file-type who file-type "," file-type xcor file-type "," file-type ycor file-type "," file-type heading file-type "," file-print breed ]
+
+	;;file-type turtles_list
+	file-close
+end
+;;-------------------------------------------------------------------------------------------------
+
+;;GENERAR NUEVA OBSERVACIÓN 
+
+to export_data_new
+	if ticks mod xticks = 0 [create_csv_new]
+end
+;; Generando archivo csv con datos de observación xticks
+to create_csv_new
+	;;file-delete (word "modules/export_data_from_Nlogo/data/" "data_turtles_" observation "_" ticks  ".csv")
+	file-open (word "modules/export_data_from_Nlogo/data/" "data_turtles_" observation "_" ticks  ".csv")
+	file-type "ID," file-type"x," file-type "y," file-type "Heading," file-print "breed"
+	ask turtles [file-type who file-type "," file-type xcor file-type "," file-type ycor file-type "," file-type heading file-type "," file-print breed ]
+
+	;;file-type turtles_list
+	file-close
+end
+;;-------------------------------------------------------------------------------------------------
+
+;;REEMPLAZAR OBSERVACIÓN
+to export_data_rep
+	if ticks mod xticks = 0 [create_csv_rep]
+end
+;; Generando archivo csv con datos de observación xticks
+to create_csv_rep
+	;;let turtles_list (list ([who] of person 431) ([xcor] of person 431) ([ycor] of person 431))
+	file-delete (word "modules/export_data_from_Nlogo/data/" "data_turtles_" observation "_" ticks  ".csv")
+	file-open (word "modules/export_data_from_Nlogo/data/" "data_turtles_" observation "_" ticks  ".csv")
+	file-type "ID," file-type"x," file-type "y," file-type "Heading," file-print "breed"
 	ask turtles [file-type who file-type "," file-type xcor file-type "," file-type ycor file-type "," file-type heading file-type "," file-print breed ]
 
 	;;file-type turtles_list
 	file-close
 end
 
+;;-------------------------------------------------------------------------------------------------
+;;1er
 to export-data
 	createx_csv
 end
@@ -22,9 +58,40 @@ end
 to createx_csv
 	;;let turtles_list (list ([who] of person 431) ([xcor] of person 431) ([ycor] of person 431))
 	;;file-delete "modules/export_data_from_Nlogo/data/data_turtles.csv"
-	file-open (word "modules/export_data_from_Nlogo/data/" "btn_data_turtles_" obs "_" ticks   ".csv")
-	file-type "ID," file-type"x," file-type "y," file-type "Heading," file-print "breed."
+	file-open (word "modules/export_data_from_Nlogo/data/" "btn_data_turtles_" observation "_" ticks   ".csv")
+	file-type "ID," file-type"x," file-type "y," file-type "Heading," file-print "breed"
 	ask turtles [file-type who file-type "," file-type xcor file-type "," file-type ycor file-type "," file-type heading file-type "," file-print breed ]
+
+	;;file-type turtles_list
+	file-close
+end
+
+;;-------------------------------------------------------------------------------------------------
+
+;;INFORMACIÓN GENERAL NUEVA
+
+;; Generando archivo csv con datos GENERALES
+to create_csv_general_new
+	;;let turtles_list (list ([who] of person 431) ([xcor] of person 431) ([ycor] of person 431))
+	;;file-delete (word "modules/export_data_from_Nlogo/data/" "GENERAL_" observation "_" ticks  ".csv")
+	file-open (word "modules/export_data_from_Nlogo/data/" "GENERAL_" observation "_" ".csv")
+	file-type "observation," file-type "#_PEOPLE," file-type"#_UBERS," file-type "#_TAXIS," file-print "xticks," 
+	ask turtles [file-type observation file-type "," file-type number_of_people file-type "," file-type number_of_ubers file-type "," file-type number_of_taxis file-type "," file-print xticks ]
+
+	;;file-type turtles_list
+	file-close
+end
+
+;;-------------------------------------------------------------------------------------------------
+;;INFORMACIÓN GENERAL REEMPLAZAR
+
+;; Generando archivo csv con datos GENERALES
+to create_csv_general_rep
+	;;let turtles_list (list ([who] of person 431) ([xcor] of person 431) ([ycor] of person 431))
+	file-delete (word "modules/export_data_from_Nlogo/data/" "GENERAL_" observation "_"".csv")
+	file-open (word "modules/export_data_from_Nlogo/data/" "GENERAL_" observation "_"".csv")
+	file-type "observation" file-type "#_PEOPLE," file-type"#_UBERS," file-type "#_TAXIS," file-print "xticks," 
+	ask turtles [file-type observation file-type "," file-type number_of_people file-type "," file-type number_of_ubers file-type "," file-type number_of_taxis file-type "," file-print xticks  ]
 
 	;;file-type turtles_list
 	file-close
