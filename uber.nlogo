@@ -11,7 +11,6 @@ __includes [
   "driver/functions.nls"
 ]
 
-
 @#$#@#$#@
 GRAPHICS-WINDOW
 408
@@ -80,7 +79,7 @@ INPUTBOX
 204
 87
 number_of_people
-3.0
+100.0
 1
 0
 Number
@@ -91,7 +90,7 @@ INPUTBOX
 204
 150
 number_of_taxis
-1.0
+25.0
 1
 0
 Number
@@ -102,7 +101,7 @@ INPUTBOX
 110
 150
 number_of_ubers
-0.0
+25.0
 1
 0
 Number
@@ -145,7 +144,7 @@ CHOOSER
 choosing_driver_policy_code_uber
 choosing_driver_policy_code_uber
 "closest" "fifo" "randomly"
-2
+0
 
 SLIDER
 213
@@ -227,8 +226,8 @@ CHOOSER
 413
 choosing_driver_policy_code_taxi
 choosing_driver_policy_code_taxi
-"randomly" "fifo" "closest"
-2
+"closest" "fifo" "randomly"
+0
 
 SLIDER
 215
