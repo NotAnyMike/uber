@@ -1,3 +1,5 @@
 globals [ 
 	gm_org
+	time
+	total_ticks
 ]

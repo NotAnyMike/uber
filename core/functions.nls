@@ -3,6 +3,8 @@
 to setup
   clear-all
 
+	set total_ticks 10000
+
 	setup-importer ; Import graph
 	read_csv
 
@@ -14,7 +16,9 @@ end
 
 ; Go function --------------------------------------------------------------------
 to go
-  if ticks = 10000 [stop]
+  if ticks = total_ticks [stop]
+
+	calculate_time
 
 	;; assign drivers to persons (for now choose any free driver randomly)
 	assing-drivers
@@ -237,3 +241,9 @@ to span_with_mean_and_std [ mean_x mean_y std ]
 	move-to vertex-to-move
 end
 ; -----------------------------------------------------------
+
+; --------- TIME ----------
+to calculate_time
+	set time flor ticks / total_ticks
+end
+; -------------------------
