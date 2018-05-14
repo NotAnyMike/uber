@@ -244,6 +244,14 @@ end
 
 ; --------- TIME ----------
 to calculate_time
-	set time flor ticks / total_ticks
+
+	set time floor 24 * ticks / total_ticks
+
+	; correct color_p based on time
+
+	let color_p ceiling ( ticks / total_ticks * 150 + 100 )
+	ask patches [
+		set pcolor ( list color_p color_p color_p )
+	]
 end
 ; -------------------------
