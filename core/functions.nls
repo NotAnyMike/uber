@@ -201,9 +201,20 @@ to read_csv
 	file-close-all
 	file-open "distributions/org.csv"
 	let data csv:from-row file-read-line
+	let hour -1
+	let hour_old 100
+	let gm_hour []
+
 	while [not file-at-end?][
 		let row csv:from-row file-read-line
-		set gm_org lput row gm_org
+		set hour item 1 row
+
+		if hour > hour_old [
+			set gm_org lput gm_hour gm_org
+			set gm_hour []
+		]
+
+		set gm_hour lput row gm_hour
 	]
 	file-close
 end
@@ -211,18 +222,24 @@ end
 
 ; ------- span from gaussian mixture distribution --------
 
-to span_from_gaussian_mixture [ n threshold dists ]
-	if threshold = -1 [
-		set threshold random-float 1
-	]
-	ifelse item 1 item n dists >= threshold [
-		let mean_x item 3 item n dists
-		let mean_y item 4 item n dists
-		let std item 2 item n dists
-		span_with_mean_and_std mean_x mean_y std
+to span_from_gaussian_mixture [ m n threshold dists ]
+	ifelse item 1 item m dists < floor time [
+		; recursive
+		set m m + 1
+		span_from_gaussian_mixture m n threshold dists
 	][
-		set n n + 1
-		span_from_gaussian_mixture n threshold dists
+		if threshold = -1 [
+			set threshold random-float 1
+		]
+		ifelse item 1 item n item 2 item m dists >= threshold [
+			let mean_x item 3 item n item 2 item m dists
+			let mean_y item 4 item n item 2 item m dists
+			let std item 2 item n item 2 item m dists
+			span_with_mean_and_std mean_x mean_y std
+		][
+			set n n + 1
+			span_from_gaussian_mixture n threshold dists
+		]
 	]
 end
 
