@@ -38,6 +38,8 @@ to go
 		print self
 	]
 
+	calculate_mean_waiting_ticks
+
   tick
 end
 
@@ -278,3 +280,10 @@ to calculate_time
 	]
 end
 ; -------------------------
+
+; ----------- mean waiting ticks --------------
+to calculate_mean_waiting_ticks
+	let list_of_last_watings map [ i -> last i ] [ history_taxi ] of people with [ length history_taxi > 0 ]
+	if length list_of_last_watings = 0 [ set list_of_last_watings fput 0 list_of_last_watings ]
+	set mean_waiting_ticks mean list_of_last_watings
+end

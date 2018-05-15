@@ -78,7 +78,7 @@ INPUTBOX
 204
 87
 number_of_people
-100.0
+300.0
 1
 0
 Number
@@ -161,10 +161,10 @@ NIL
 HORIZONTAL
 
 PLOT
-850
-11
-1188
-154
+18
+488
+356
+631
 Count
 tick
 #
@@ -180,10 +180,10 @@ PENS
 "taxis being used" 1.0 0 -2674135 true "" "plot count drivers with [type-of-driver = \"taxi\" AND state != 2]"
 
 PLOT
-851
-161
-1189
-290
+361
+488
+699
+631
 People
 ticks
 %
@@ -237,7 +237,7 @@ radius_driver_policy_taxi
 radius_driver_policy_taxi
 0
 100
-50.0
+46.0
 1
 1
 NIL
@@ -254,10 +254,10 @@ People policies
 1
 
 PLOT
-852
-295
-1189
-449
+704
+488
+1041
+631
 uber vs taxis
 ticks
 ratio
@@ -293,6 +293,34 @@ time_string
 2
 1
 11
+
+PLOT
+18
+638
+355
+788
+plot 1
+NIL
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"default" 1.0 0 -16777216 true "" "plot list_of_last_watings"
+
+TEXTBOX
+15
+463
+783
+491
+----------------------- metrics ---------------------------
+11
+0.0
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
