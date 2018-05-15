@@ -3,6 +3,8 @@
 to setup
   clear-all
 
+  set time_string "00:00"
+
 	set total_ticks 10000
 
 	setup-importer ; Import graph
@@ -245,7 +247,11 @@ end
 ; --------- TIME ----------
 to calculate_time
 
-	set time floor 24 * ticks / total_ticks
+	set time 24 * ticks / total_ticks
+	let minutes floor ( floor ( ( time - floor time ) * 100 ) / 100 * 60 )
+  	if minutes < 10 [ set minutes word 0 minutes ]
+	set time_string ( word floor time ":" minutes )
+  	if time < 10  [ set time_string word "0" time_string ]
 
 	; correct color_p based on time
 
