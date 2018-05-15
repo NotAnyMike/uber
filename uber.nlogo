@@ -10,7 +10,6 @@ __includes [
   "person/functions.nls"
   "driver/functions.nls"
 ]
-
 @#$#@#$#@
 GRAPHICS-WINDOW
 408
@@ -283,6 +282,17 @@ perfect_memory
 1
 1
 -1000
+
+MONITOR
+783
+399
+840
+444
+time
+time_string
+2
+1
+11
 
 @#$#@#$#@
 ## WHAT IS IT?
