@@ -249,7 +249,7 @@ to calculate_time
 
 	; correct color_p based on time
 
-	let color_p ceiling ( ticks / total_ticks * 150 + 100 )
+	let color_p ceiling ( 100 - ( ticks / total_ticks * 100 ) ) 
 	ask patches [
 		set pcolor ( list color_p color_p color_p )
 	]
