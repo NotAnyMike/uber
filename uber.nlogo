@@ -330,7 +330,7 @@ BUTTON
 281
 187
 go new
-go\nexport_data_new\ncreate_csv_general_new
+go\nexport_data_new\n
 T
 1
 T
@@ -347,8 +347,42 @@ BUTTON
 374
 187
 go replace
-go\nexport_data_rep\ncreate_csv_general_rep
+go\nexport_data_rep\n
 T
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+209
+187
+281
+222
+ general info
+create_csv_general_new
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+285
+188
+374
+222
+general info -R
+create_csv_general_rep
+NIL
 1
 T
 OBSERVER
