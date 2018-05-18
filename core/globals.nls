@@ -1,5 +1,6 @@
 globals [ 
 	gm_org
+	gm_dest
 	time
 	time_string
 	total_ticks

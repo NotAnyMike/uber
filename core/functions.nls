@@ -9,7 +9,8 @@ to setup
 	set total_ticks 10000
 
 	setup-importer ; Import graph
-	read_csv
+	set gm_org read_csv "distributions/org.csv"
+	set gm_dest read_csv "distributions/dest.csv"
 
   create-persons-fn ; Create turtle persons
   create-drivers-fn ; Create turtle driver
@@ -197,12 +198,13 @@ end
 ; ------- here dijkstra finish -----
 
 ; ------- read distribution from csv -------
-to read_csv
+to-report read_csv [file]
 	; create list
-	set gm_org []
+	let gm []
 
 	file-close-all
-	file-open "distributions/org.csv"
+	;file-open "distributions/org.csv"
+	file-open file
 	let data csv:from-row file-read-line
 	let hour -1
 	let hour_old 100
@@ -213,7 +215,7 @@ to read_csv
 		set hour item 1 row
 
 		if hour > hour_old [
-			set gm_org lput gm_hour gm_org
+			set gm lput gm_hour gm
 			set gm_hour []
 		]
 
@@ -221,16 +223,17 @@ to read_csv
 		set hour_old hour
 	]
 	file-close
+	report gm
 end
 ; -----------------------------------------
 
 ; ------- span from gaussian mixture distribution --------
 
-to span_from_gaussian_mixture [ m n threshold dists ]
+to-report place_from_gaussian_mixture [ m n threshold dists ]
 	ifelse item 1 item 0 item m dists < floor time [
 		; recursive
 		set m m + 1
-		span_from_gaussian_mixture m n threshold dists
+		report place_from_gaussian_mixture m n threshold dists
 	][
 		if threshold = -1 [
 			set threshold random-float 1
@@ -239,15 +242,15 @@ to span_from_gaussian_mixture [ m n threshold dists ]
 			let mean_x item 2 item n item m dists
 			let mean_y item 3 item n item m dists
 			let std item 4 item n item m dists
-			span_with_mean_and_std mean_x mean_y std
+			report place_with_mean_and_std mean_x mean_y std
 		][
 			set n n + 1
-			span_from_gaussian_mixture m n threshold dists
+			report place_from_gaussian_mixture m n threshold dists
 		]
 	]
 end
 
-to span_with_mean_and_std [ mean_x mean_y std ]
+to-report place_with_mean_and_std [ mean_x mean_y std ]
 	let xcord random-normal mean_x std
 	let ycord random-normal mean_y std
 
@@ -256,10 +259,18 @@ to span_with_mean_and_std [ mean_x mean_y std ]
 	if xcord < 0 [set xcord 0]
 	if ycord < 0 [set ycord 0]
 
-	set xcor xcord
-	set ycor ycord
+	let vertex-to-move min-one-of (vertices) [ distancexy xcord ycord ]
 
-	let vertex-to-move min-one-of (vertices) [ distance myself ]
+	; old code back where this function spaned the agent
+	;set xcor xcord
+	;set ycor ycord
+
+	report vertex-to-move
+
+end
+
+to span_from_gaussian_mixture [ m n threshold dists ]
+	let vertex-to-move place_from_gaussian_mixture 0 0 -1 dists
 	set current_vertice vertex-to-move
 	move-to vertex-to-move
 end
