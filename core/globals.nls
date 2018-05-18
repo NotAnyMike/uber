@@ -3,5 +3,6 @@ globals [
 	time
 	time_string
 	total_ticks
-	mean_waiting_ticks
+	mean_waiting_ticks_taxi
+	mean_waiting_ticks_uber
 ]

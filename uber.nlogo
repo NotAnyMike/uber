@@ -165,9 +165,9 @@ PLOT
 488
 356
 631
-Count
+drivers being used
 tick
-#
+# of drivers
 0.0
 10.0
 0.0
@@ -176,8 +176,8 @@ true
 true
 "" ""
 PENS
-"ubers being used" 1.0 0 -16777216 true "" "plot count drivers with [type-of-driver = \"uber\" AND state != 2]"
-"taxis being used" 1.0 0 -2674135 true "" "plot count drivers with [type-of-driver = \"taxi\" AND state != 2]"
+"uber" 1.0 0 -16777216 true "" "plot count drivers with [type-of-driver = \"uber\" AND state != 2]"
+"taxi" 1.0 0 -2674135 true "" "plot count drivers with [type-of-driver = \"taxi\" AND state != 2]"
 
 PLOT
 361
@@ -188,15 +188,16 @@ People
 ticks
 %
 0.0
-1.0
+100.0
 0.0
-1.0
-true
+100.0
+false
 true
 "" ""
 PENS
-"waiting" 1.0 0 -16777216 true "" "plot (count people with [state = 1]) / number_of_people"
-"being transported" 1.0 0 -2674135 true "" "plot (count people with [state = 2]) / number_of_people"
+"ratio drivers / people" 1.0 0 -3026479 true "" "plot ( number_of_ubers + number_of_taxis ) / number_of_people * 100"
+"being transported" 1.0 0 -2674135 true "" "plot (count people with [state = 2]) / number_of_people * 100"
+"wating" 1.0 0 -16777216 true "" "plot (count people with [state = 1]) / number_of_people * 100"
 
 TEXTBOX
 216
@@ -237,7 +238,7 @@ radius_driver_policy_taxi
 radius_driver_policy_taxi
 0
 100
-46.0
+50.0
 1
 1
 NIL
@@ -299,18 +300,19 @@ PLOT
 638
 355
 788
-plot 1
-NIL
-NIL
+average waiting ticks
+#
+# ticks
 0.0
 10.0
 0.0
 10.0
 true
-false
+true
 "" ""
 PENS
-"default" 1.0 0 -16777216 true "" "plot list_of_last_watings"
+"uber" 1.0 0 -16777216 true "" "plot mean_waiting_ticks_uber"
+"taxi" 1.0 0 -5298144 true "" "plot mean_waiting_ticks_taxi"
 
 TEXTBOX
 15
@@ -664,7 +666,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
