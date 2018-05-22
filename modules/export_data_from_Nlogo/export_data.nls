@@ -6,7 +6,7 @@ end
 ;; Generando archivo csv con datos de observación xticks
 to create_csv
 	;;let turtles_list (list ([who] of person 431) ([xcor] of person 431) ([ycor] of person 431))
-	file-delete (word "modules/export_data_from_Nlogo/data/" observation "/data_turtles_" observation "_" ticks  ".csv")
+	file-delete (word "modules/export_data_from_Nlogo/data/" "/data_turtles_" observation "_" ticks  ".csv")
 	file-open (word "modules/export_data_from_Nlogo/data/" "data_turtles_" observation "_" ticks  ".csv")
 	file-type "ID," file-type"x," file-type "y," file-type "Heading," file-print "breed"
 	ask turtles [file-type who file-type "," file-type xcor file-type "," file-type ycor file-type "," file-type heading file-type "," file-print breed ]
@@ -20,6 +20,7 @@ end
 
 to export_data_new
 	if ticks mod xticks = 0 [create_csv_new]
+	if ticks = 10000 [file-close]
 end
 ;; Generando archivo csv con datos de observación xticks
 to create_csv_new
