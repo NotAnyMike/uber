@@ -12,7 +12,6 @@ __includes [
 
   "modules/export_data_from_Nlogo/export_data.nls"
 ]
-
 @#$#@#$#@
 GRAPHICS-WINDOW
 401
@@ -392,6 +391,17 @@ NIL
 NIL
 NIL
 1
+
+INPUTBOX
+304
+25
+402
+87
+num_ticks
+10000.0
+1
+0
+Number
 
 @#$#@#$#@
 ## WHAT IS IT?
