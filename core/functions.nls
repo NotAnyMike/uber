@@ -222,6 +222,8 @@ to-report read_csv [file]
 		set gm_hour lput row gm_hour
 		set hour_old hour
 	]
+	set gm lput gm_hour gm
+
 	file-close
 	report gm
 end
