@@ -79,7 +79,7 @@ to price-drive [path-d]
   let price-uber 0
   
   set numbers-path length path-d - 1
-  ;set range-path n-values numbers-path [ i -> i ]
+  set range-path n-values numbers-path [ [ i ] -> i ]
     
   foreach range-path [ [i] ->
     set f i + 1
@@ -87,11 +87,12 @@ to price-drive [path-d]
     set initial-ycor [ycor] of item i path-d
     set final-xcor [xcor] of item f path-d
     set final-ycor [ycor] of item f path-d
-    set magnitude (sqrt(((final-xcor - initial-xcor) * (final-xcor - initial-xcor)) + ((final-ycor - initial-ycor) * (final-ycor - initial-ycor)))) / 0.86
+    set magnitude (sqrt(((final-xcor - initial-xcor) ^ 2 ) + ((final-ycor - initial-ycor) ^ 2))) / 0.86
     set total-cost total-cost + magnitude
  ]
   
   ; Taxi (Cobs) price funciton approximation
+	print total-cost
   set price-taxi ((total-cost * 1000) * 0.8198) + 4020.7
   
   ; Uber price function aproximation
