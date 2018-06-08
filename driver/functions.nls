@@ -92,7 +92,6 @@ to price-drive [path-d]
  ]
   
   ; Taxi (Cobs) price funciton approximation
-	print total-cost
   set price-taxi ((total-cost * 1000) * 0.8198) + 4020.7
   
   ; Uber price function aproximation

@@ -9,8 +9,9 @@ to setup
 	set total_ticks 10000
 
 	setup-importer ; Import graph
-	set gm_org read_csv "distributions/org.csv"
-	set gm_dest read_csv "distributions/dest.csv"
+	set prob_of_service read_table "distributions/prob.csv"
+	set gm_org read_gm "distributions/org.csv"
+	set gm_dest read_gm "distributions/dest.csv"
 
   create-persons-fn ; Create turtle persons
   create-drivers-fn ; Create turtle driver
@@ -198,7 +199,30 @@ end
 ; ------- here dijkstra finish -----
 
 ; ------- read distribution from csv -------
-to-report read_csv [file]
+to-report read_table [file]
+	let prob []
+	let counter 0
+
+	file-close-all
+	file-open file
+	let data csv:from-row file-read-line
+
+	while [not file-at-end?][
+		let row csv:from-row file-read-line
+		repeat item 0 row - counter + 1 [
+			let entry []
+			set entry lput counter entry
+			set entry lput item 1 row entry
+			set prob lput entry prob
+			set counter counter + 1
+		]
+	]
+
+	file-close
+	report prob
+end
+
+to-report read_gm [file]
 	; create list
 	let gm []
 
