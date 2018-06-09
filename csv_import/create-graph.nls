@@ -45,17 +45,20 @@ to setup-importer
 			let toElement item 0 sort vertices with [id = item 2 row]
 
 			; create the link
-			create-edge-with toElement
+			create-edge-with toElement [ set thickness item 4 row / 6]
 
 			; Set the cost for that new link
 			ask edges with [end1 = fromElement and end2 = toElement] [
 				set pk item 0 row
 				set cost item 3 row
-				;set label item 3 row
+				set lenght item 3 row
+				set width item 4 row
 			]
 			ask edges with [end1 = toElement and end2 = fromElement] [
 				set pk item 0 row
 				set cost item 3 row
+				set lenght item 3 row
+				set width item 4 row
 				;set label item 3 row
 			]
 		]
