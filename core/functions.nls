@@ -330,7 +330,7 @@ to calculate_traffic
 	foreach sort edges [ 
 		[element] -> let inEdge length sort drivers with [ last_vertex = [ end1 ] of element and length path > 0 and item 0 path = [end2] of element ]
 		set inEdge inEdge + length sort drivers with [ last_vertex = [end2] of element and length path > 0 and item 0 path = [end1] of element ]
-		let weight ( [capacity] of element + 1 ) ^ ( 1 + ( inEdge / (number_of_taxis + number_of_ubers) ) )
+		let weight ( [capacity] of element + 1 ) ^ ( 1 + ( inEdge / (number_of_taxis + number_of_ubers) ) ) ; TODO improve the defintion of punishment for traffic
 		ask element	[ set cost dist * weight ]
 		ask element [ set color rgb ( 50 + 200 * inEdge / ( 0.05 * ( number_of_ubers + number_of_taxis) ) ) 50 50 ]
 	]
