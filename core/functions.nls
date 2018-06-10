@@ -174,15 +174,6 @@ to dijkstra [start_vertex end_vertex]
 	let current_driver self
 	ask end_vertex [ fill_path mypath current_driver	]
 
-	;foreach path [ [x] -> ask x [set size 2]]
-	;ask start_vertex [
-		;set color blue
-		;set size 4
-	;]
-	;ask end_vertex [
-		;set color red
-		;set size 4
-	;]
 end
 
 to fill_path [mypath driver_agent]
@@ -192,6 +183,7 @@ to fill_path [mypath driver_agent]
 	][
 		ask driver_agent[
 			set path mypath
+			print mypath
 		]
 	]
 end
