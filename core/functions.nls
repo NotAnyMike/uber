@@ -37,8 +37,7 @@ to go
   ]
 
 	ask drivers with [last_vertex = nobody] [
-		print "last_vertex empty"
-		print self
+		user-message word "last_vertex empty" self
 	]
 
 	calculate_mean_waiting_ticks
@@ -174,6 +173,10 @@ to dijkstra [start_vertex end_vertex]
 	let current_driver self
 	ask end_vertex [ fill_path mypath current_driver	]
 
+	if first [path] of current_driver != start_vertex or last [path] of current_driver != end_vertex [
+		user-message (word "WARNING: map is disconnected [from " start_vertex " to " end_vertex "]")
+	]
+
 end
 
 to fill_path [mypath driver_agent]
@@ -183,7 +186,6 @@ to fill_path [mypath driver_agent]
 	][
 		ask driver_agent[
 			set path mypath
-			print mypath
 		]
 	]
 end
