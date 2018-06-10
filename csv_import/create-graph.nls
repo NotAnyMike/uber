@@ -51,14 +51,14 @@ to setup-importer
 			ask edges with [end1 = fromElement and end2 = toElement] [
 				set pk item 0 row
 				set cost item 3 row
-				set lenght item 3 row
-				set width item 4 row
+				set dist item 3 row
+				set capacity item 4 row
 			]
 			ask edges with [end1 = toElement and end2 = fromElement] [
 				set pk item 0 row
 				set cost item 3 row
-				set lenght item 3 row
-				set width item 4 row
+				set dist item 3 row
+				set capacity item 4 row
 				;set label item 3 row
 			]
 		]

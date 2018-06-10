@@ -18,6 +18,6 @@ undirected-link-breed [
 edges-own [
 	pk
 	cost
-	width
-	lenght
+	capacity
+	dist
 ]

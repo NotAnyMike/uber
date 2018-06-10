@@ -18,12 +18,12 @@ to setup
 
   reset-ticks
 end
-
 ; Go function --------------------------------------------------------------------
 to go
   if ticks = total_ticks [stop]
 
 	calculate_time
+	calculate_traffic
 
 	;; assign drivers to persons (for now choose any free driver randomly)
 	assing-drivers
@@ -329,4 +329,15 @@ to calculate_mean_waiting_ticks
 	let list_of_last_watings_uber map [ [i] -> last i ] [ history_uber ] of people with [ length history_uber > 0 ]
 	if length list_of_last_watings_uber = 0 [ set list_of_last_watings_uber fput 0 list_of_last_watings_uber ]
 	set mean_waiting_ticks_uber mean list_of_last_watings_uber
+end
+
+; ---------------- calculating traffic -----------------
+to calculate_traffic
+	foreach sort edges [ 
+		[element] -> let inEdge length sort drivers with [ last_vertex = [ end1 ] of element and length path > 0 and item 0 path = [end2] of element ]
+		set inEdge inEdge + length sort drivers with [ last_vertex = [end2] of element and length path > 0 and item 0 path = [end1] of element ]
+		let weight ( [capacity] of element + 1 ) ^ ( 1 + ( inEdge / (number_of_taxis + number_of_ubers) ) )
+		ask element	[ set cost dist * weight ]
+		ask element [ set color rgb ( 50 + 200 * inEdge / ( 0.05 * ( number_of_ubers + number_of_taxis) ) ) 50 50 ]
+	]
 end
