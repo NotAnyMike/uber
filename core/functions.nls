@@ -340,9 +340,9 @@ end
 to set_traffic_color
 	ask edges [set color gray]
 	let first_centile int ( ( length sort edges ) * 0.1 ) 
-	let top10 sublist sort-on [penalty] edges 0 first_centile
-	let top50 sublist sort-on [penalty] edges first_centile ( first_centile * 5 )
+	let top10 sublist sort-on [penalty] edges (length sort edges - first_centile) ( length sort edges)
+	let top50 sublist sort-on [penalty] edges (length sort edges - first_centile * 5) ( length sort edges)
 
-	foreach top10 [[elem] -> ask elem [set color red]]
 	foreach top50 [[elem] -> ask elem [set color yellow]]
+	foreach top10 [[elem] -> ask elem [set color red]]
 end
