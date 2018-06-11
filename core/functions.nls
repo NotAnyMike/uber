@@ -9,6 +9,9 @@ to setup
 	set total_ticks 10000
 
 	setup-importer ; Import graph
+	set max_capacity [capacity] of max-one-of edges [capacity]
+	set inEdge_ponderator 1
+
 	set prob_of_service read_table "distributions/prob.csv"
 	set gm_org read_gm "distributions/org.csv"
 	set gm_dest read_gm "distributions/dest.csv"
@@ -307,10 +310,6 @@ to calculate_time
 
 	; correct color_p based on time
 
-	let color_p ceiling ( 100 - ( ticks / total_ticks * 100 ) ) 
-	ask patches [
-		set pcolor ( list color_p color_p color_p )
-	]
 end
 ; -------------------------
 
@@ -330,8 +329,20 @@ to calculate_traffic
 	foreach sort edges [ 
 		[element] -> let inEdge length sort drivers with [ last_vertex = [ end1 ] of element and length path > 0 and item 0 path = [end2] of element ]
 		set inEdge inEdge + length sort drivers with [ last_vertex = [end2] of element and length path > 0 and item 0 path = [end1] of element ]
-		let weight ( [capacity] of element + 1 ) ^ ( 1 + ( inEdge / (number_of_taxis + number_of_ubers) ) ) ; TODO improve the defintion of punishment for traffic
-		ask element	[ set cost dist * weight ]
-		ask element [ set color rgb ( 50 + 200 * inEdge / ( 0.05 * ( number_of_ubers + number_of_taxis) ) ) 50 50 ]
+		ask element [ set penalty (( 1 + inEdge ) * inEdge_ponderator )^( 1 + max_capacity - capacity) ] 
+
+		ask element	[ set cost dist * penalty ]
 	]
+
+	set_traffic_color
+end
+
+to set_traffic_color
+	ask edges [set color gray]
+	let first_centile int ( ( length sort edges ) * 0.1 ) 
+	let top10 sublist sort-on [penalty] edges 0 first_centile
+	let top50 sublist sort-on [penalty] edges first_centile ( first_centile * 5 )
+
+	foreach top10 [[elem] -> ask elem [set color red]]
+	foreach top50 [[elem] -> ask elem [set color yellow]]
 end

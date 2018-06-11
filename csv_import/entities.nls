@@ -19,5 +19,6 @@ edges-own [
 	pk
 	cost
 	capacity
+	penalty
 	dist
 ]
