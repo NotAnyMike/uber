@@ -12,6 +12,7 @@ to setup
 	set max_capacity [capacity] of max-one-of edges [capacity]
 	set inEdge_ponderator 1
 	set min_penalty 1
+	set max_speed [dist] of min-on-of [dist] edges
 
 	set prob_of_service read_table "distributions/prob.csv"
 	set gm_org read_gm "distributions/org.csv"
