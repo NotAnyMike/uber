@@ -1,3 +1,10 @@
 globals [ 
+	prob_of_service
 	gm_org
+	gm_dest
+	time
+	time_string
+	total_ticks
+	mean_waiting_ticks_taxi
+	mean_waiting_ticks_uber
 ]
