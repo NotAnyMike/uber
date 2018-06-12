@@ -32,6 +32,10 @@ to go
 		print self
 	]
 
+export_data_new
+export_grl_data
+
+
   tick
 end
 
