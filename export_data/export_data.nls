@@ -7,14 +7,14 @@ end
 ;;GENERAR NUEVA OBSERVACIÓN 
 
 to export_data_new
- 
+  if ticks = num_ticks [user-message (word "Asegurese de ejecutar GRAPHS.ipynb en uber -> export_data, antes de continuar.")]
 	if ticks mod xticks = 0 [create_csv_new]
   
 end
 ;; Generando archivo csv con datos de observación xticks
 to create_csv_new
 	;;file-delete (word "modules/export_data_from_Nlogo/data/" "data_turtles_" observation "_" ticks  ".csv")
-	file-open (word "modules/export_data_from_Nlogo/data/_data_turtles__" ticks  "_.csv")
+	file-open (word "export_data/_data_turtles__" ticks  "_.csv")
 	file-type "ID," file-type"x," file-type "y," file-type "Heading," file-print "breed"
 	ask turtles [file-type who file-type "," file-type xcor file-type "," file-type ycor file-type "," file-type heading file-type "," file-print breed ]
 
@@ -33,7 +33,7 @@ end
 to createx_csv
 	;;let turtles_list (list ([who] of person 431) ([xcor] of person 431) ([ycor] of person 431))
 	;;file-delete "modules/export_data_from_Nlogo/data/data_turtles.csv"
-	file-open (word "modules/export_data_from_Nlogo/data/" "btn_data_turtles_" ticks   "_.csv")
+	file-open (word "export_data/" "btn_data_turtles_" ticks   "_.csv")
 	file-type "ID," file-type"x," file-type "y," file-type "Heading," file-print "breed"
 	ask turtles [file-type who file-type "," file-type xcor file-type "," file-type ycor file-type "," file-type heading file-type "," file-print breed ]
 
@@ -54,7 +54,7 @@ end
 to create_csv_grl
 	;;let turtles_list (list ([who] of person 431) ([xcor] of person 431) ([ycor] of person 431))
 	;;file-delete (word "modules/export_data_from_Nlogo/data/" "GENERAL_" observation "_" ticks  ".csv")
-	file-open (word "modules/export_data_from_Nlogo/data/_GENERAL_.csv")
+	file-open (word "export_data/_GENERAL_.csv")
 	file-type "#_PEOPLE," file-type"#_UBERS," file-type "#_TAXIS," file-print "xticks" 
 	ask turtle 0 [file-type "," file-type number_of_people file-type "," file-type number_of_ubers file-type "," file-type number_of_taxis file-type "," file-print xticks ]
 

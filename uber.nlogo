@@ -10,7 +10,7 @@ __includes [
   "person/functions.nls"
   "driver/functions.nls"
 
-  "modules/export_data_from_Nlogo/export_data.nls"
+  "export_data/export_data.nls"
 ]
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -63,7 +63,7 @@ BUTTON
 204
 187
 go
-go
+go\nexport_data_new\nexport_grl_data
 T
 1
 T
@@ -308,7 +308,7 @@ INPUTBOX
 303
 150
 xticks
-100.0
+10.0
 1
 0
 Number
@@ -319,7 +319,7 @@ INPUTBOX
 305
 87
 num_ticks
-1000.0
+100.0
 1
 0
 Number
@@ -676,7 +676,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0
+NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
