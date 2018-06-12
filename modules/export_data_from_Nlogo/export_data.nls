@@ -9,8 +9,6 @@ end
 to export_data_new
  
 	if ticks mod xticks = 0 [create_csv_new]
-  if ticks = num_ticks [beep]
-  if ticks = num_ticks [user-message (word "Antes de una nueva simulación, ejecute la función graph_generator() del Notebook: GRAPHS.ipynb. Para finalizar esta simulación presione DETENER.")]
   
 end
 ;; Generando archivo csv con datos de observación xticks

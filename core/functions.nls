@@ -14,7 +14,7 @@ end
 
 ; Go function --------------------------------------------------------------------
 to go
-  if ticks = num_ticks [stop]
+  if ticks = num_ticks + 1 [stop]
 
 	;; assign drivers to persons (for now choose any free driver randomly)
 	assing-drivers
