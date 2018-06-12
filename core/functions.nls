@@ -11,6 +11,7 @@ to setup
 	setup-importer ; Import graph
 	set max_capacity [capacity] of max-one-of edges [capacity]
 	set inEdge_ponderator 1
+	set min_penalty 1
 
 	set prob_of_service read_table "distributions/prob.csv"
 	set gm_org read_gm "distributions/org.csv"
@@ -341,7 +342,9 @@ to set_traffic_color
 	ask edges [set color gray]
 	let first_centile int ( ( length sort edges ) * 0.1 ) 
 	let top10 sublist sort-on [penalty] edges (length sort edges - first_centile) ( length sort edges)
+	set top10 filter [ [elem] -> [penalty] of elem > min_penalty ] top10
 	let top50 sublist sort-on [penalty] edges (length sort edges - first_centile * 5) ( length sort edges)
+	set top50 filter [ [elem] -> [penalty] of elem > min_penalty ] top50
 
 	foreach top50 [[elem] -> ask elem [set color yellow]]
 	foreach top10 [[elem] -> ask elem [set color red]]
