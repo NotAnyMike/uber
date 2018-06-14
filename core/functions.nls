@@ -12,7 +12,7 @@ to setup
 	set max_capacity [capacity] of max-one-of edges [capacity]
 	set inEdge_ponderator 1
 	set min_penalty 1
-  set min_max_speed 0.001
+  set min_max_speed 0.5
 	set max_speed [dist] of min-one-of edges with [member? self (filter [[elem] -> [ dist ] of elem > min_max_speed ] sort edges) ]  [dist]
 
 	set prob_of_service read_table "distributions/prob.csv"
@@ -101,9 +101,14 @@ to go-towards [from-turtle to-turtle]
     ifelse distance to-turtle != 0 [
 
       set heading towards to-turtle
+      let from_vertex [id] of last_vertex
+      let to_vertex [id] of first path
+      let penalty2 1
+      ifelse from_vertex = to_vertex [set penalty2 1][set penalty2 [penalty] of edge from_vertex to_vertex]
+      let speed max_speed / penalty2
 
-      ifelse abs(xcord - xcor) > max_speed OR abs(ycord - ycor) > max_speed [
-        forward max_speed ;TODO correct by penalty
+      ifelse abs(xcord - xcor) > speed OR abs(ycord - ycor) > speed [
+        forward speed ;TODO correct by penalty
       ][
         forward distance to-turtle ;TODO correct by penalty
 				move-to to-turtle
