@@ -102,10 +102,10 @@ to go-towards [from-turtle to-turtle]
 
       set heading towards to-turtle
 
-      ifelse abs(xcord - xcor) > 1 OR abs(ycord - ycor) > 1 [
-        forward 1
+      ifelse abs(xcord - xcor) > max_speed OR abs(ycord - ycor) > max_speed [
+        forward max_speed ;TODO correct by penalty
       ][
-        forward distance to-turtle
+        forward distance to-turtle ;TODO correct by penalty
 				move-to to-turtle
       ]
     ][move-to to-turtle]
