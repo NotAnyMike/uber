@@ -334,6 +334,24 @@ TEXTBOX
 0.0
 1
 
+PLOT
+361
+639
+699
+789
+max penalty by tick
+NIL
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"default" 1.0 0 -16777216 true "" "plot [penalty] of max-one-of edges [penalty]"
+
 @#$#@#$#@
 ## WHAT IS IT?
 
