@@ -46,7 +46,7 @@ BUTTON
 110
 187
 setup
-setup\ncreate_csv_grl\nconsult
+setup\ncreate_csv_grl\n
 NIL
 1
 T
@@ -63,7 +63,7 @@ BUTTON
 204
 187
 go
-go\nexport_data_new\nexport_grl_data
+go\n
 T
 1
 T

@@ -14,6 +14,8 @@ end
 
 ; Go function --------------------------------------------------------------------
 to go
+  export_data_new
+  export_grl_data
   if ticks = num_ticks + 1 [stop]
 
 	;; assign drivers to persons (for now choose any free driver randomly)

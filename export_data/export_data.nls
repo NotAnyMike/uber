@@ -7,7 +7,7 @@ end
 ;;GENERAR NUEVA OBSERVACIÓN 
 
 to export_data_new
-  if ticks = num_ticks [user-message (word "Asegurese de ejecutar GRAPHS.ipynb en uber -> export_data, antes de continuar.")]
+  ;;if ticks = num_ticks [user-message (word "Asegurese de ejecutar GRAPHS.ipynb en uber -> export_data, antes de continuar.")]
 	if ticks mod xticks = 0 [create_csv_new]
   
 end
