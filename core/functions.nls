@@ -2,7 +2,9 @@
 
 to setup
   clear-all
-
+  
+  get_date ; Get date and time 
+  
 	setup-importer ; Import graph
 	read_csv
 

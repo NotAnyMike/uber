@@ -1,4 +1,12 @@
 globals[date_time]
+
+;;-------------------------------------------------------------------------------------------------
+
+;;FECHA
+
+to get_date
+   set date_time (word (substring date-and-time 16 27)"___"(substring date-and-time 0 2)"-"(substring date-and-time 3 5)"-"(substring date-and-time 6 8))
+end
 ;;-------------------------------------------------------------------------------------------------
 
 to consult
@@ -46,11 +54,7 @@ to createx_csv
 end
 
 ;;-------------------------------------------------------------------------------------------------
-;;FECHA
 
-to get_date
-   set date_time (word (substring date-and-time 16 27)"_"(substring date-and-time 0 2)"-"(substring date-and-time 3 5)"-"(substring date-and-time 6 8))
-end
 
 ;;INFORMACIÓN GENERAL
 
@@ -62,10 +66,10 @@ end
 ;; Generando archivo csv con datos GENERALES
 
 to create_csv_grl
-  set date_time (word (substring date-and-time 16 27)"_"(substring date-and-time 0 2)"-"(substring date-and-time 3 5)"-"(substring date-and-time 6 8))
+  set date_time (word (substring date-and-time 16 27)"___"(substring date-and-time 0 2)"-"(substring date-and-time 3 5)"-"(substring date-and-time 6 8))
 	;;let turtles_list (list ([who] of person 431) ([xcor] of person 431) ([ycor] of person 431))
 	;;file-delete (word "modules/export_data_from_Nlogo/data/" "GENERAL_" observation "_" ticks  ".csv")
-	file-open (word "export_data/"date_time"_GENERAL_.csv")
+	file-open (word "export_data/"date_time"_GENERAL.csv")
 	file-type "#_PEOPLE," file-type"#_UBERS," file-type "#_TAXIS," file-print "xticks" 
 	ask turtle 0 [file-type "," file-type number_of_people file-type "," file-type number_of_ubers file-type "," file-type number_of_taxis file-type "," file-print xticks ]
 

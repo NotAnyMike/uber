@@ -46,7 +46,7 @@ BUTTON
 110
 187
 setup
-setup\ncreate_csv_grl\nget_date
+setup\n\ncreate_csv_grl\n
 NIL
 1
 T
