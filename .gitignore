@@ -1,5 +1,5 @@
 *.swp
 *.swo
 *.tmp.nlogo
-**/.ipybn_checkpoints/
+**/.ipynb_checkpoints
 export_data
