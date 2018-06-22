@@ -6,6 +6,7 @@ globals[date_time]
 
 to get_date
    set date_time (word (substring date-and-time 16 27)"___"(substring date-and-time 0 2)"-"(substring date-and-time 3 5)"-"(substring date-and-time 6 8))
+   print word "date is " date_time
 end
 ;;-------------------------------------------------------------------------------------------------
 
