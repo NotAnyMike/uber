@@ -80,7 +80,7 @@ INPUTBOX
 204
 87
 number_of_people
-100.0
+300.0
 1
 0
 Number
@@ -163,13 +163,13 @@ NIL
 HORIZONTAL
 
 PLOT
-850
-11
-1188
-154
-Count
+18
+488
+356
+631
+drivers being used
 tick
-#
+# of drivers
 0.0
 10.0
 0.0
@@ -178,27 +178,28 @@ true
 true
 "" ""
 PENS
-"ubers being used" 1.0 0 -16777216 true "" "plot count drivers with [type-of-driver = \"uber\" AND state != 2]"
-"taxis being used" 1.0 0 -2674135 true "" "plot count drivers with [type-of-driver = \"taxi\" AND state != 2]"
+"uber" 1.0 0 -16777216 true "" "plot count drivers with [type-of-driver = \"uber\" AND state != 2]"
+"taxi" 1.0 0 -2674135 true "" "plot count drivers with [type-of-driver = \"taxi\" AND state != 2]"
 
 PLOT
-851
-161
-1189
-290
+361
+488
+699
+631
 People
 ticks
 %
 0.0
-1.0
+100.0
 0.0
-1.0
-true
+100.0
+false
 true
 "" ""
 PENS
-"waiting" 1.0 0 -16777216 true "" "plot (count people with [state = 1]) / number_of_people"
-"being transported" 1.0 0 -2674135 true "" "plot (count people with [state = 2]) / number_of_people"
+"ratio drivers / people" 1.0 0 -3026479 true "" "plot ( number_of_ubers + number_of_taxis ) / number_of_people * 100"
+"being transported" 1.0 0 -2674135 true "" "plot (count people with [state = 2]) / number_of_people * 100"
+"wating" 1.0 0 -16777216 true "" "plot (count people with [state = 1]) / number_of_people * 100"
 
 TEXTBOX
 216
@@ -256,10 +257,10 @@ People policies
 1
 
 PLOT
-852
-295
-1189
-449
+704
+488
+1041
+631
 uber vs taxis
 ticks
 ratio
@@ -676,7 +677,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

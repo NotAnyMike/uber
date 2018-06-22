@@ -2,11 +2,18 @@
 
 to setup
   clear-all
-  
   get_date ; Get date and time 
   
+
+  set time_string "00:00"
+	set time 0
+
+	set total_ticks 10000
+
 	setup-importer ; Import graph
-	read_csv
+	set prob_of_service read_table "distributions/prob.csv"
+	set gm_org read_gm "distributions/org.csv"
+	set gm_dest read_gm "distributions/dest.csv"
 
   create-persons-fn ; Create turtle persons
   create-drivers-fn ; Create turtle driver
@@ -19,6 +26,8 @@ to go
   export_data_new
   ;;export_grl_data
   if ticks = num_ticks + 1 [stop]
+
+	calculate_time
 
 	;; assign drivers to persons (for now choose any free driver randomly)
 	assing-drivers
@@ -36,9 +45,9 @@ to go
 		print self
 	]
 
-;export_data_new
-;export_grl_data
-
+	;export_data_new
+	;export_grl_data
+	calculate_mean_waiting_ticks
 
   tick
 end
@@ -53,7 +62,7 @@ to create-persons-fn
     set shape "default"
     set color white
     set size 1
-		span_from_gaussian_mixture 0 -1 gm_org
+		span_from_gaussian_mixture 0 0 -1 gm_org
   ]
 end
 
@@ -196,39 +205,84 @@ end
 ; ------- here dijkstra finish -----
 
 ; ------- read distribution from csv -------
-to read_csv
-	; create list
-	set gm_org []
+to-report read_table [file]
+	let prob []
+	let counter 0
 
 	file-close-all
-	file-open "distributions/org.csv"
+	file-open file
 	let data csv:from-row file-read-line
+
 	while [not file-at-end?][
 		let row csv:from-row file-read-line
-		set gm_org lput row gm_org
+		repeat item 0 row - counter + 1 [
+			let entry []
+			set entry lput counter entry
+			set entry lput item 1 row entry
+			set prob lput entry prob
+			set counter counter + 1
+		]
 	]
+
 	file-close
+	report prob
+end
+
+to-report read_gm [file]
+	; create list
+	let gm []
+
+	file-close-all
+	;file-open "distributions/org.csv"
+	file-open file
+	let data csv:from-row file-read-line
+	let hour -1
+	let hour_old 100
+	let gm_hour []
+
+	while [not file-at-end?][
+		let row csv:from-row file-read-line
+		set hour item 1 row
+
+		if hour > hour_old [
+			set gm lput gm_hour gm
+			set gm_hour []
+		]
+
+		set gm_hour lput row gm_hour
+		set hour_old hour
+	]
+	set gm lput gm_hour gm
+
+	file-close
+	report gm
 end
 ; -----------------------------------------
 
 ; ------- span from gaussian mixture distribution --------
 
-to span_from_gaussian_mixture [ n threshold dists ]
-	if threshold = -1 [
-		set threshold random-float 1
-	]
-	ifelse item 1 item n dists >= threshold [
-		let mean_x item 3 item n dists
-		let mean_y item 4 item n dists
-		let std item 2 item n dists
-		span_with_mean_and_std mean_x mean_y std
+to-report place_from_gaussian_mixture [ m n threshold dists ]
+	ifelse item 1 item 0 item m dists < floor time [
+		; recursive
+		set m m + 1
+		report place_from_gaussian_mixture m n threshold dists
 	][
-		set n n + 1
-		span_from_gaussian_mixture n threshold dists
+		if threshold = -1 [
+			set threshold random-float 1
+		]
+		ifelse item 5 item n item m dists >= threshold [
+			let mean_x item 2 item n item m dists
+			let mean_y item 3 item n item m dists
+			let std item 4 item n item m dists
+			report place_with_mean_and_std mean_x mean_y std
+		][
+			set n n + 1
+			report place_from_gaussian_mixture m n threshold dists
+		]
 	]
 end
 
-to span_with_mean_and_std [ mean_x mean_y std ]
+to-report place_with_mean_and_std [ mean_x mean_y std ]
 	let xcord random-normal mean_x std
 	let ycord random-normal mean_y std
 
@@ -237,11 +291,48 @@ to span_with_mean_and_std [ mean_x mean_y std ]
 	if xcord < 0 [set xcord 0]
 	if ycord < 0 [set ycord 0]
 
-	set xcor xcord
-	set ycor ycord
+	let vertex-to-move min-one-of (vertices) [ distancexy xcord ycord ]
 
-	let vertex-to-move min-one-of (vertices) [ distance myself ]
+	; old code back where this function spaned the agent
+	;set xcor xcord
+	;set ycor ycord
+
+	report vertex-to-move
+
+end
+
+to span_from_gaussian_mixture [ m n threshold dists ]
+	let vertex-to-move place_from_gaussian_mixture 0 0 -1 dists
 	set current_vertice vertex-to-move
 	move-to vertex-to-move
 end
 ; -----------------------------------------------------------
+
+; --------- TIME ----------
+to calculate_time
+
+	set time 24 * ticks / total_ticks
+	let minutes floor ( floor ( ( time - floor time ) * 100 ) / 100 * 60 )
+  	if minutes < 10 [ set minutes word 0 minutes ]
+	set time_string ( word floor time ":" minutes )
+  	if time < 10  [ set time_string word "0" time_string ]
+
+	; correct color_p based on time
+
+	let color_p ceiling ( 100 - ( ticks / total_ticks * 100 ) ) 
+	ask patches [
+		set pcolor ( list color_p color_p color_p )
+	]
+end
+; -------------------------
+
+; ----------- mean waiting ticks --------------
+to calculate_mean_waiting_ticks
+	let list_of_last_watings_taxi map [ [i] -> last i ] [ history_taxi ] of people with [ length history_taxi > 0 ]
+	if length list_of_last_watings_taxi = 0 [ set list_of_last_watings_taxi fput 0 list_of_last_watings_taxi ]
+	set mean_waiting_ticks_taxi mean list_of_last_watings_taxi
+
+	let list_of_last_watings_uber map [ [i] -> last i ] [ history_uber ] of people with [ length history_uber > 0 ]
+	if length list_of_last_watings_uber = 0 [ set list_of_last_watings_uber fput 0 list_of_last_watings_uber ]
+	set mean_waiting_ticks_uber mean list_of_last_watings_uber
+end

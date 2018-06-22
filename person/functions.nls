@@ -2,13 +2,14 @@
 
 to person-act 
 	if state = 0 [
-		if random 100 < 1 [
-			let current_position current_vertice
+		if random 100 < item 1 item int time prob_of_service [
+			span_from_gaussian_mixture 0 0 -1 gm_org	
+
 			; Changing his status
 			set_state_person 1
 
 			; Selecting a different vertice
-			set destination one-of vertices with [self != current_position]
+			set destination place_from_gaussian_mixture 0 0 -1 gm_dest
 		]
 	]
 end
