@@ -78,7 +78,7 @@ INPUTBOX
 204
 87
 number_of_people
-0.0
+1.0
 1
 0
 Number
@@ -89,7 +89,7 @@ INPUTBOX
 204
 150
 number_of_taxis
-0.0
+1.0
 1
 0
 Number
@@ -100,7 +100,7 @@ INPUTBOX
 110
 150
 number_of_ubers
-0.0
+1.0
 1
 0
 Number
@@ -143,7 +143,7 @@ CHOOSER
 choosing_driver_policy_code_uber
 choosing_driver_policy_code_uber
 "closest" "fifo" "randomly"
-0
+2
 
 SLIDER
 213
@@ -351,6 +351,23 @@ false
 "" ""
 PENS
 "default" 1.0 0 -16777216 true "" "plot [penalty] of max-one-of edges [penalty]"
+
+BUTTON
+418
+413
+523
+447
+Connected?
+check_connectivity
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
