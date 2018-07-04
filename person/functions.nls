@@ -38,8 +38,8 @@ to-report uber? [current_person]
 	let n length [history_uber] of current_person
 	repeat n [
 	;foreach [history_uber] of current_person [
-		set uber-hist uber-hist + item i [history_uber] of current_person / ( i + 1 )
-		set taxi-hist taxi-hist + item i [history_taxi] of current_person / ( i + 1 )
+		set uber-hist uber-hist + item i [history_uber] of current_person / ( i + 1 ) ^ 2
+		set taxi-hist taxi-hist + item i [history_taxi] of current_person / ( i + 1 ) ^ 2
 		set i i + 1
 		if perfect_memory [set i 0]
 	]
@@ -54,13 +54,18 @@ to-report uber? [current_person]
 		]
 		set taxi-hist 0
 	][
-		; in order to avoid dividing by zero
-		ifelse uber-hist = 0 [
+		ifelse taxi-hist = uber-hist [
+			set uber-hist 0
 			set taxi-hist 0
 		][
-			set taxi-hist 1 - (taxi-hist / uber-hist)
+			; in order to avoid dividing by zero
+			ifelse uber-hist = 0 [
+				set taxi-hist 0
+			][
+				set taxi-hist 1 - (taxi-hist / uber-hist)
+			]
+			set uber-hist 0
 		]
-		set uber-hist 0
 	]
 	; -----------------------------------------------------
 
