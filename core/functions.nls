@@ -30,7 +30,7 @@ end
 to go
   export_data_new
   ;;export_grl_data
-  if ticks = num_ticks + 1 [stop]
+  if ticks = num_ticks [stop]
 
 	calculate_time
 	calculate_traffic
