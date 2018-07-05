@@ -7,4 +7,7 @@ globals [
 	total_ticks
 	mean_waiting_ticks_taxi
 	mean_waiting_ticks_uber
+	min_penalty
+	max_speed
+	min_max_speed
 ]

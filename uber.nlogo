@@ -91,7 +91,7 @@ INPUTBOX
 204
 150
 number_of_taxis
-25.0
+50.0
 1
 0
 Number
@@ -102,7 +102,7 @@ INPUTBOX
 110
 150
 number_of_ubers
-25.0
+50.0
 1
 0
 Number
@@ -145,7 +145,7 @@ CHOOSER
 choosing_driver_policy_code_uber
 choosing_driver_policy_code_uber
 "closest" "fifo" "randomly"
-0
+2
 
 SLIDER
 213
@@ -309,7 +309,7 @@ INPUTBOX
 303
 150
 xticks
-10.0
+100.0
 1
 0
 Number
@@ -320,7 +320,7 @@ INPUTBOX
 305
 87
 num_ticks
-100.0
+1000.0
 1
 0
 Number
@@ -334,6 +334,71 @@ NIL
 11
 0.0
 1
+
+PLOT
+361
+639
+699
+789
+max penalty by tick
+NIL
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"default" 1.0 0 -16777216 true "" "plot [penalty] of max-one-of edges [penalty]"
+
+BUTTON
+408
+406
+513
+440
+Connected?
+check_connectivity
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+PLOT
+18
+637
+355
+789
+Average waiting ticks
+#
+ticks
+0.0
+10.0
+0.0
+10.0
+true
+true
+"" ""
+PENS
+"uber" 1.0 0 -16777216 true "" "plot mean_waiting_ticks_uber"
+"taxi" 1.0 0 -2674135 true "" "plot mean_waiting_ticks_taxi"
+
+MONITOR
+773
+396
+830
+441
+time
+time_string
+2
+1
+11
 
 @#$#@#$#@
 ## WHAT IS IT?

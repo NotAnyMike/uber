@@ -11,6 +11,12 @@ to setup
 	set total_ticks 10000
 
 	setup-importer ; Import graph
+	set max_capacity [capacity] of max-one-of edges [capacity]
+	set inEdge_ponderator 1 ;w
+	set min_penalty 1
+  set min_max_speed 0.2
+	set max_speed [dist] of min-one-of edges with [member? self (filter [[elem] -> [ dist ] of elem > min_max_speed ] sort edges) ]  [dist]
+
 	set prob_of_service read_table "distributions/prob.csv"
 	set gm_org read_gm "distributions/org.csv"
 	set gm_dest read_gm "distributions/dest.csv"
@@ -20,7 +26,6 @@ to setup
 
   reset-ticks
 end
-
 ; Go function --------------------------------------------------------------------
 to go
   export_data_new
@@ -28,6 +33,7 @@ to go
   if ticks = num_ticks + 1 [stop]
 
 	calculate_time
+	calculate_traffic
 
 	;; assign drivers to persons (for now choose any free driver randomly)
 	assing-drivers
@@ -41,8 +47,7 @@ to go
   ]
 
 	ask drivers with [last_vertex = nobody] [
-		print "last_vertex empty"
-		print self
+		user-message word "last_vertex empty" self
 	]
 
 	;export_data_new
@@ -102,11 +107,16 @@ to go-towards [from-turtle to-turtle]
     ifelse distance to-turtle != 0 [
 
       set heading towards to-turtle
+      let from_vertex [id] of last_vertex
+      let to_vertex [id] of first path
+      let penalty2 1
+      ifelse from_vertex = to_vertex [set penalty2 1][set penalty2 [penalty] of edge from_vertex to_vertex]
+      let speed max_speed / penalty2
 
-      ifelse abs(xcord - xcor) > 1 OR abs(ycord - ycor) > 1 [
-        forward 1
+      ifelse abs(xcord - xcor) > speed OR abs(ycord - ycor) > speed [
+        forward speed ;TODO correct by penalty
       ][
-        forward distance to-turtle
+        forward distance to-turtle ;TODO correct by penalty
 				move-to to-turtle
       ]
     ][move-to to-turtle]
@@ -180,15 +190,10 @@ to dijkstra [start_vertex end_vertex]
 	let current_driver self
 	ask end_vertex [ fill_path mypath current_driver	]
 
-	;foreach path [ [x] -> ask x [set size 2]]
-	;ask start_vertex [
-		;set color blue
-		;set size 4
-	;]
-	;ask end_vertex [
-		;set color red
-		;set size 4
-	;]
+	if first [path] of current_driver != start_vertex or last [path] of current_driver != end_vertex [
+		user-message (word "WARNING: map is disconnected [from " start_vertex " to " end_vertex "]")
+	]
+
 end
 
 to fill_path [mypath driver_agent]
@@ -319,10 +324,6 @@ to calculate_time
 
 	; correct color_p based on time
 
-	let color_p ceiling ( 100 - ( ticks / total_ticks * 100 ) ) 
-	ask patches [
-		set pcolor ( list color_p color_p color_p )
-	]
 end
 ; -------------------------
 
@@ -335,4 +336,29 @@ to calculate_mean_waiting_ticks
 	let list_of_last_watings_uber map [ [i] -> last i ] [ history_uber ] of people with [ length history_uber > 0 ]
 	if length list_of_last_watings_uber = 0 [ set list_of_last_watings_uber fput 0 list_of_last_watings_uber ]
 	set mean_waiting_ticks_uber mean list_of_last_watings_uber
+end
+
+; ---------------- calculating traffic -----------------
+to calculate_traffic
+	foreach sort edges [ 
+		[element] -> let inEdge length sort drivers with [ last_vertex = [ end1 ] of element and length path > 0 and item 0 path = [end2] of element ]
+		set inEdge inEdge + length sort drivers with [ last_vertex = [end2] of element and length path > 0 and item 0 path = [end1] of element ]
+		ask element [ set penalty (( 1 + inEdge ) * inEdge_ponderator )^( 1 + max_capacity - capacity) ] 
+
+		ask element	[ set cost dist * penalty ]
+	]
+
+	set_traffic_color
+end
+
+to set_traffic_color
+	ask edges [set color gray]
+	let first_centile int ( ( length sort edges ) * 0.1 ) 
+	let top10 sublist sort-on [penalty] edges (length sort edges - first_centile) ( length sort edges)
+	set top10 filter [ [elem] -> [penalty] of elem > min_penalty ] top10
+	let top50 sublist sort-on [penalty] edges (length sort edges - first_centile * 5) ( length sort edges)
+	set top50 filter [ [elem] -> [penalty] of elem > min_penalty ] top50
+
+	foreach top50 [[elem] -> ask elem [set color yellow]]
+	foreach top10 [[elem] -> ask elem [set color red]]
 end

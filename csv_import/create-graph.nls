@@ -45,17 +45,20 @@ to setup-importer
 			let toElement item 0 sort vertices with [id = item 2 row]
 
 			; create the link
-			create-edge-with toElement
+			create-edge-with toElement [ set thickness item 4 row / 6]
 
 			; Set the cost for that new link
 			ask edges with [end1 = fromElement and end2 = toElement] [
 				set pk item 0 row
 				set cost item 3 row
-				;set label item 3 row
+				set dist item 3 row
+				set capacity item 4 row
 			]
 			ask edges with [end1 = toElement and end2 = fromElement] [
 				set pk item 0 row
 				set cost item 3 row
+				set dist item 3 row
+				set capacity item 4 row
 				;set label item 3 row
 			]
 		]
@@ -63,4 +66,35 @@ to setup-importer
 	file-close
 
   reset-ticks
+end
+
+to check_connectivity
+	ask vertices [set color white]
+	ask edges [set color white]
+	confirm_connectivity vertex 0
+	ifelse empty? sort edges with [color = white][
+		user-message "the map is connect"
+	][
+		user-message "the map is NOT connected"
+	]
+end
+
+to confirm_connectivity [some_vertex]
+
+	if some_vertex = nobody [
+		set some_vertex one-of vertices
+		ask edges [
+			set color white
+			set thickness 0.1
+		]	
+		ask vertices [
+			set color white
+		]
+	]
+
+	ask some_vertex [
+		set color blue		
+		ask my-links [set color blue]
+		ask link-neighbors with [color != blue] [confirm_connectivity self]
+	]
 end
