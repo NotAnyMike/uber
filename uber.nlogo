@@ -370,6 +370,36 @@ NIL
 NIL
 1
 
+PLOT
+18
+637
+355
+789
+Average waiting ticks
+#
+ticks
+0.0
+10.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"uber" 1.0 0 -16777216 true "" "plot mean_waiting_ticks_uber"
+"taxi" 1.0 0 -2674135 true "" "plot mean_waiting_ticks_taxi"
+
+MONITOR
+773
+396
+830
+441
+time
+time_string
+2
+1
+11
+
 @#$#@#$#@
 ## WHAT IS IT?
 
