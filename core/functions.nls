@@ -2,6 +2,8 @@
 
 to setup
   clear-all
+  get_date ; Get date and time 
+  
 
   set time_string "00:00"
 	set time 0
@@ -26,7 +28,9 @@ to setup
 end
 ; Go function --------------------------------------------------------------------
 to go
-  if ticks = total_ticks [stop]
+  export_data_new
+  ;;export_grl_data
+  if ticks = num_ticks + 1 [stop]
 
 	calculate_time
 	calculate_traffic
@@ -46,6 +50,8 @@ to go
 		user-message word "last_vertex empty" self
 	]
 
+	;export_data_new
+	;export_grl_data
 	calculate_mean_waiting_ticks
 
   tick

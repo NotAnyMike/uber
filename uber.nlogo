@@ -9,13 +9,15 @@ __includes [
 
   "person/functions.nls"
   "driver/functions.nls"
+
+  "export_data/export_data.nls"
 ]
 @#$#@#$#@
 GRAPHICS-WINDOW
-411
-13
-848
-451
+401
+10
+838
+448
 -1
 -1
 13.0
@@ -43,8 +45,8 @@ BUTTON
 154
 110
 187
-NIL
-setup\n
+setup
+setup\n\ncreate_csv_grl\n
 NIL
 1
 T
@@ -60,8 +62,8 @@ BUTTON
 154
 204
 187
-NIL
 go
+go\n
 T
 1
 T
@@ -138,7 +140,7 @@ choosing_customer_policy_code
 CHOOSER
 213
 254
-407
+397
 299
 choosing_driver_policy_code_uber
 choosing_driver_policy_code_uber
@@ -148,7 +150,7 @@ choosing_driver_policy_code_uber
 SLIDER
 213
 303
-407
+397
 336
 radius_driver_policy_uber
 radius_driver_policy_uber
@@ -220,9 +222,9 @@ Taxi policies
 1
 
 CHOOSER
-215
+214
 368
-406
+397
 413
 choosing_driver_policy_code_taxi
 choosing_driver_policy_code_taxi
@@ -232,7 +234,7 @@ choosing_driver_policy_code_taxi
 SLIDER
 215
 417
-407
+396
 450
 radius_driver_policy_taxi
 radius_driver_policy_taxi
@@ -284,52 +286,51 @@ perfect_memory
 1
 -1000
 
-MONITOR
-783
-399
-840
-444
-time
-time_string
-2
+BUTTON
+297
+187
+395
+245
+Export Data
+\ncreatex_csv
+NIL
 1
-11
-
-PLOT
-18
-638
-355
-788
-average waiting ticks
-#
-# ticks
-0.0
-10.0
-0.0
-10.0
-true
-true
-"" ""
-PENS
-"uber" 1.0 0 -16777216 true "" "plot mean_waiting_ticks_uber"
-"taxi" 1.0 0 -5298144 true "" "plot mean_waiting_ticks_taxi"
-
-TEXTBOX
-15
-463
-1000
-491
---------------------------------------------------------------------- metrics ---------------------------------------------------------------------
-11
-0.0
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
 1
 
+INPUTBOX
+206
+90
+303
+150
+xticks
+10.0
+1
+0
+Number
+
+INPUTBOX
+207
+27
+305
+87
+num_ticks
+100.0
+1
+0
+Number
+
 TEXTBOX
-209
-54
-359
-82
-<- Max of users asking for services x 2
+335
+44
+485
+62
+NIL
 11
 0.0
 1
