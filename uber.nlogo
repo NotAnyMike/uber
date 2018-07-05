@@ -80,7 +80,7 @@ INPUTBOX
 204
 87
 number_of_people
-1.0
+300.0
 1
 0
 Number
@@ -91,7 +91,7 @@ INPUTBOX
 204
 150
 number_of_taxis
-1.0
+50.0
 1
 0
 Number
@@ -102,7 +102,7 @@ INPUTBOX
 110
 150
 number_of_ubers
-1.0
+50.0
 1
 0
 Number
@@ -309,7 +309,7 @@ INPUTBOX
 303
 150
 xticks
-10.0
+100.0
 1
 0
 Number
@@ -320,7 +320,7 @@ INPUTBOX
 305
 87
 num_ticks
-100.0
+1000.0
 1
 0
 Number
@@ -354,10 +354,10 @@ PENS
 "default" 1.0 0 -16777216 true "" "plot [penalty] of max-one-of edges [penalty]"
 
 BUTTON
-418
-413
-523
-447
+408
+406
+513
+440
 Connected?
 check_connectivity
 NIL
@@ -383,7 +383,7 @@ ticks
 0.0
 10.0
 true
-false
+true
 "" ""
 PENS
 "uber" 1.0 0 -16777216 true "" "plot mean_waiting_ticks_uber"
