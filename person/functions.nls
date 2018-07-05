@@ -70,7 +70,10 @@ to-report uber? [current_person]
 	; -----------------------------------------------------
 
 
-	; calculating heuristic familiarity -------------------
+	; calculating heuristic familiarity (close people)-----
+	; -----------------------------------------------------
+
+	; calculating heuristic familiarity (last service)-----
 	; -----------------------------------------------------
 
 	; calculating price heuristic -------------------------
