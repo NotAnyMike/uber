@@ -9,6 +9,7 @@ people-own [
 	last_status_change
 	history_uber ; Uber's memory
 	history_taxi ; Taxi's memory
+	services_type_history ; History of types of services taken
 ]
 ; state would be 0 or 1 refering to inactive (i.e doing nothing) and active (wating for a driver or being transported)
 ; destination-x and y are the coordinates to the place it needs to be transported

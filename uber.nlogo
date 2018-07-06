@@ -41,10 +41,10 @@ ticks
 30.0
 
 BUTTON
-12
-154
-110
-187
+309
+28
+397
+61
 setup
 setup\n\ncreate_csv_grl\n
 NIL
@@ -58,10 +58,10 @@ NIL
 1
 
 BUTTON
-112
-154
-204
-187
+310
+66
+397
+99
 go
 go\n
 T
@@ -145,7 +145,7 @@ CHOOSER
 choosing_driver_policy_code_uber
 choosing_driver_policy_code_uber
 "closest" "fifo" "randomly"
-2
+0
 
 SLIDER
 213
@@ -193,7 +193,7 @@ ticks
 100.0
 0.0
 100.0
-false
+true
 true
 "" ""
 PENS
@@ -287,10 +287,10 @@ perfect_memory
 -1000
 
 BUTTON
-297
-187
-395
-245
+310
+105
+398
+141
 Export Data
 \ncreatex_csv
 NIL
@@ -306,10 +306,10 @@ NIL
 INPUTBOX
 206
 90
-303
+305
 150
 xticks
-100.0
+1000.0
 1
 0
 Number
@@ -319,21 +319,11 @@ INPUTBOX
 27
 305
 87
-num_ticks
-1000.0
+total_ticks
+10000.0
 1
 0
 Number
-
-TEXTBOX
-335
-44
-485
-62
-NIL
-11
-0.0
-1
 
 PLOT
 361
@@ -399,6 +389,46 @@ time_string
 2
 1
 11
+
+PLOT
+705
+639
+1042
+789
+decision rule values
+NIL
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"default" 1.0 0 -16777216 true "" "plot count turtles"
+
+INPUTBOX
+13
+154
+162
+214
+NUMBER_LAST_SERVICES
+1.0
+1
+0
+Number
+
+INPUTBOX
+166
+154
+305
+214
+SOCIAL_CIRCLE_RADIUS
+1.0
+1
+0
+Number
 
 @#$#@#$#@
 ## WHAT IS IT?

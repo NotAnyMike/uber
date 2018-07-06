@@ -7,8 +7,8 @@ to setup
 
   set time_string "00:00"
 	set time 0
-
-	set total_ticks 10000
+	set TAXI_CODE 0
+	set UBER_CODE 1
 
 	setup-importer ; Import graph
 	set max_capacity [capacity] of max-one-of edges [capacity]
@@ -30,7 +30,7 @@ end
 to go
   export_data_new
   ;;export_grl_data
-  if ticks = num_ticks [stop]
+  if ticks = total_ticks [stop]
 
 	calculate_time
 	calculate_traffic
@@ -63,6 +63,7 @@ to create-persons-fn
   create-people number_of_people [
 		set history_uber []
 		set history_taxi []
+		set services_type_history []
 
     set shape "default"
     set color white
