@@ -77,11 +77,13 @@ to-report uber? [current_person]
 
 
 	; calculating familiarity heuristic (close people)-----
-	let social_circle people with [distance current_person <= SOCIAL_CIRCLE_RADIUS]
+	let social_circle sort people with [distance current_person <= SOCIAL_CIRCLE_RADIUS]
 	if SOCIAL_CIRCLE_RADIUS = 0 [set social_circle []]
 	let familiarity_circle 0
 	foreach social_circle [[close] ->
-		set familiarity_circle familiarity_circle + ( first [services_type_history] of close / length social_circle )
+		if length [services_type_history] of close > 0 [
+			set familiarity_circle familiarity_circle + ( first [services_type_history] of close / length social_circle )
+		]
 	]
 	; -----------------------------------------------------
 

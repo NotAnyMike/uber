@@ -396,17 +396,18 @@ PLOT
 1042
 789
 decision rule values
-NIL
+ticks
 NIL
 0.0
-10.0
+1.0
 0.0
-10.0
+0.0
 true
-false
+true
 "" ""
 PENS
-"default" 1.0 0 -16777216 true "" "plot count turtles"
+"uber fn" 1.0 0 -16777216 true "" "plot mean [uber_fn] of people"
+"taxi fn" 1.0 0 -5298144 true "" "plot mean [taxi_fn] of people with"
 
 INPUTBOX
 13
@@ -425,7 +426,7 @@ INPUTBOX
 305
 214
 SOCIAL_CIRCLE_RADIUS
-1.0
+0.0
 1
 0
 Number
