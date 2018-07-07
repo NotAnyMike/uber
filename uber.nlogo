@@ -406,8 +406,8 @@ true
 true
 "" ""
 PENS
-"uber fn" 1.0 0 -16777216 true "" "plot mean [uber_fn] of people"
-"taxi fn" 1.0 0 -5298144 true "" "plot mean [taxi_fn] of people with"
+"uber fn" 1.0 0 -16777216 true "" "ifelse empty? [uber_fn] of people [plot 0][\nplot mean [uber_fn] of people\n]\n"
+"taxi fn" 1.0 0 -5298144 true "" "ifelse empty? [taxi_fn] of people [plot 0][\nplot mean [taxi_fn] of people\n]"
 
 INPUTBOX
 13
@@ -426,10 +426,31 @@ INPUTBOX
 305
 214
 SOCIAL_CIRCLE_RADIUS
-0.0
+1.0
 1
 0
 Number
+
+PLOT
+18
+795
+356
+945
+Desagregated values
+ticks
+NIL
+0.0
+10.0
+0.0
+0.0
+true
+true
+"" ""
+PENS
+"uber history" 1.0 0 -16777216 true "" "plot mean [uber_history_value] of people"
+"taxi history" 1.0 0 -7500403 true "" "plot mean [taxi_history_value] of people"
+"social circle" 1.0 0 -2674135 true "" "plot mean [familiarity_circle_value] of people"
+"last value" 1.0 0 -955883 true "" "plot mean [familiarity_last_value] of people"
 
 @#$#@#$#@
 ## WHAT IS IT?

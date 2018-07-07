@@ -102,8 +102,8 @@ to-report uber? [current_person]
 	; -----------------------------------------------------
 
 	; adding all together ---------------------------------
-	set uber uber-hist + familiarity_last + familiarity_circle
-	set taxi taxi-hist + n_last_services - familiarity_last + length social_circle - familiarity_circle
+	set uber uber-hist + familiarity_last; + familiarity_circle
+	set taxi taxi-hist + ( n_last_services - familiarity_last ) ;+ ( length social_circle - familiarity_circle )
 	; -----------------------------------------------------
 
 	ask current_person [
