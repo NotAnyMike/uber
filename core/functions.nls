@@ -10,6 +10,10 @@ to setup
 	set TAXI_CODE 0
 	set UBER_CODE 1
 
+	; ----------- graph radius ------------
+	ask patch 31 13 [set pcolor red]
+	; -------------------------------------
+
 	setup-importer ; Import graph
 	set max_capacity [capacity] of max-one-of edges [capacity]
 	set inEdge_ponderator 1 ;w

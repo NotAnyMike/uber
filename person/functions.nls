@@ -77,7 +77,12 @@ to-report uber? [current_person]
 
 
 	; calculating familiarity heuristic (close people)-----
-
+	let social_circle people with [distance current_person <= SOCIAL_CIRCLE_RADIUS]
+	if SOCIAL_CIRCLE_RADIUS = 0 [set social_circle []]
+	let familiarity_circle 0
+	foreach social_circle [[close] ->
+		set familiarity_circle familiarity_circle + ( first [services_type_history] of close / length social_circle )
+	]
 	; -----------------------------------------------------
 
 	; calculating familiarity heuristic (last service)-----
@@ -95,9 +100,18 @@ to-report uber? [current_person]
 	; -----------------------------------------------------
 
 	; adding all together ---------------------------------
-	set uber uber-hist + familiarity_last
-	set taxi taxi-hist + n_last_services - familiarity_last 
+	set uber uber-hist + familiarity_last + familiarity_circle
+	set taxi taxi-hist + n_last_services - familiarity_last + length social_circle - familiarity_circle
 	; -----------------------------------------------------
+
+	ask current_person [
+		set uber_history_value uber-hist
+		set taxi_history_value taxi-hist
+		set familiarity_circle_value familiarity_circle
+		set familiarity_last_value familiarity_last
+		set uber_fn uber
+		set taxi_fn taxi
+	]
 
 	ifelse uber > taxi [
 		report true
