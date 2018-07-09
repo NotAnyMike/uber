@@ -448,9 +448,10 @@ true
 "" ""
 PENS
 "uber history" 1.0 0 -16777216 true "" "plot mean [uber_history_value] of people"
-"taxi history" 1.0 0 -7500403 true "" "plot mean [taxi_history_value] of people"
+"taxi history" 1.0 0 -10899396 true "" "plot mean [taxi_history_value] of people"
 "social circle" 1.0 0 -2674135 true "" "plot mean [familiarity_circle_value] of people"
 "last value" 1.0 0 -955883 true "" "plot mean [familiarity_last_value] of people"
+"0.5" 1.0 0 -7500403 true "" "plot 0.5"
 
 @#$#@#$#@
 ## WHAT IS IT?
