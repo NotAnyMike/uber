@@ -37,8 +37,14 @@ to-report uber? [current_person]
 	let i 0
 	let n length [history_uber] of current_person
 	repeat n [
-	;foreach [history_uber] of current_person [
 		set uber-hist uber-hist + item i [history_uber] of current_person / ( i + 1 ) ^ 2
+		set i i + 1
+		if perfect_memory [set i 0]
+	]
+
+	set i 0
+	set n length [history_taxi] of current_person
+	repeat n [
 		set taxi-hist taxi-hist + item i [history_taxi] of current_person / ( i + 1 ) ^ 2
 		set i i + 1
 		if perfect_memory [set i 0]
@@ -70,19 +76,44 @@ to-report uber? [current_person]
 	; -----------------------------------------------------
 
 
-	; calculating heuristic familiarity (close people)-----
+	; calculating familiarity heuristic (close people)-----
+	let social_circle sort people with [distance current_person <= SOCIAL_CIRCLE_RADIUS and length services_type_history > 0]
+	if SOCIAL_CIRCLE_RADIUS = 0 [set social_circle []]
+	let familiarity_circle 0
+	foreach social_circle [[close] ->
+		if length [services_type_history] of close > 0 [
+			set familiarity_circle familiarity_circle + ( first [services_type_history] of close / length social_circle )
+		]
+	]
 	; -----------------------------------------------------
 
-	; calculating heuristic familiarity (last service)-----
+	; calculating familiarity heuristic (last service)-----
+	let familiarity_last 0
+	let n_last_services NUMBER_LAST_SERVICES
+	if n_last_services > length services_type_history [set n_last_services length services_type_history]
+	set i 0
+	repeat n_last_services [
+		set familiarity_last ( item i services_type_history / n_last_services )	+ familiarity_last
+		set i i + 1
+	]
 	; -----------------------------------------------------
 
 	; calculating price heuristic -------------------------
 	; -----------------------------------------------------
 
 	; adding all together ---------------------------------
-	set uber uber-hist
-	set taxi taxi-hist
+	set uber uber-hist + familiarity_last + familiarity_circle
+	set taxi taxi-hist + ( n_last_services - familiarity_last ) + ( length social_circle - familiarity_circle )
 	; -----------------------------------------------------
+
+	ask current_person [
+		set uber_history_value uber-hist
+		set taxi_history_value taxi-hist
+		set familiarity_circle_value familiarity_circle
+		set familiarity_last_value familiarity_last
+		set uber_fn uber
+		set taxi_fn taxi
+	]
 
 	ifelse uber > taxi [
 		report true
@@ -102,11 +133,13 @@ to set_state_person [value]
 		if is-driver? own-driver [
 			ifelse [type-of-driver] of own-driver = "taxi" [
 				set history_taxi fput (ticks - last_status_change) history_taxi
-				set history_uber fput 0 history_uber
+				set services_type_history fput TAXI_CODE services_type_history
+				;set history_uber fput 0 history_uber
 			][
 				if [type-of-driver] of own-driver = "uber" [
 					set history_uber fput (ticks - last_status_change) history_uber
-					set history_taxi fput 0 history_taxi
+					set services_type_history fput UBER_CODE services_type_history
+					;set history_taxi fput 0 history_taxi
 				]
 			]
 		]

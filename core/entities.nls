@@ -9,8 +9,15 @@ people-own [
 	last_status_change
 	history_uber ; Uber's memory
 	history_taxi ; Taxi's memory
+	services_type_history ; History of types of services taken
+	familiarity_circle_value ; variable to store the familiarity heuristic that has to do with the social circle
+	familiarity_last_value; to store the heuristic related to the last service taken
+	uber_history_value ; to store the value of the history on ubers
+	taxi_history_value ; to store the value of the history on taxis
+	uber_fn ; to store the value of the uber fn
+	taxi_fn ; to store the value of the taxi fn
 ]
-; state would be 0 or 1 refering to inactive (i.e doing nothing) and active (wating for a driver or being transported)
+; state would be 0 or 1 referring to inactive (i.e doing nothing) and active (wating for a driver or being transported)
 ; destination-x and y are the coordinates to the place it needs to be transported
 ; own-driver is the driver that is or will take her there, it could be empty when the turtle is in state 0
 ; wating is the variable of how long the person has been waiting
