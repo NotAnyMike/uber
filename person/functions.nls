@@ -109,8 +109,10 @@ to-report uber? [current_person]
 	ask current_person [
 		set uber_history_value uber-hist
 		set taxi_history_value taxi-hist
-		set familiarity_circle_value familiarity_circle
-		set familiarity_last_value familiarity_last
+		set familiarity_circle_value_uber familiarity_circle
+		set familiarity_circle_value_taxi length social_circle - familiarity_circle
+		set familiarity_last_value_uber n_last_services - familiarity_last
+		set familiarity_last_value_taxi familiarity_last
 		set uber_fn uber
 		set taxi_fn taxi
 	]
