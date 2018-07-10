@@ -44,7 +44,6 @@ to action-2-driver
 	;go-towards self item 0 path
 	move-in-path
 end
-
 to action-0-driver
 	; if position is equal of customer: ask costumer to get in and change state
 	ifelse xcor = [xcor] of customer and ycor = [ycor] of customer [
@@ -93,7 +92,6 @@ to cost-drive [path-d]
   ; Uber price function aproximation
   set price-uber (total-cost * 708.48) + 3533.3 + 500 * (demand - supply) 
 end
-
 
 to action-1-driver
 	ifelse xcor = [xcor] of [destination] of customer and ycor = [ycor] of [destination] of customer [
