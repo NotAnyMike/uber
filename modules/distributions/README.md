@@ -6,7 +6,8 @@ From the data in the Bogota mobility survey of 2015, the distributions of taxi u
 
 ### Early Morning (00:00 Hs - 05:00 Hs )
 
-![A test image](.\imgs\Bivariate graphs\Time Blocks\Origin\early_morning.png)
+<img src=".\imgs\Bivariate graphs\Time Blocks\Origin\early_morning.png"
+     style="float: left; margin-right: 10px;" />
 
 ### Morning (06:00 Hs - 11:00 Hs)
 
@@ -15,28 +16,34 @@ From the data in the Bogota mobility survey of 2015, the distributions of taxi u
 
 ### Late (12:00 Hs - 17:00 Hs)
 
-![A test image](.\imgs\Bivariate graphs\Time Blocks\Origin\late.png)
+<img src=".\imgs\Bivariate graphs\Time Blocks\Origin\late.png"
+     style="float: left; margin-right: 10px;" />
 
 ### Night (18:00 Hs - 23:00 Hs)
 
-![A test image](.\imgs\Bivariate graphs\Time Blocks\Origin\night.png)
+<img src=".\imgs\Bivariate graphs\Time Blocks\Origin\night.png"
+     style="float: left; margin-right: 10px;" />
 
 ## Destination of the service:
 
-### Early Morning (00:00 Hs - 05:00 Hs )
+### Early Morning (00:00 Hs - 05:00 Hs)
 
-![A test image](.\imgs\Bivariate graphs\Time Blocks\Arrive\early_morning.png)
+<img src=".\imgs\Bivariate graphs\Time Blocks\Arrive\early_morning.png"
+     style="float: left; margin-right: 10px;" />
 
 ### Morning (06:00 Hs - 11:00 Hs)
 
-![A test image](.\imgs\Bivariate graphs\Time Blocks\Arrive\morning.png)
+<img src=".\imgs\Bivariate graphs\Time Blocks\Arrive\morning.png"
+     style="float: left; margin-right: 10px;" />
 
 ### Late (12:00 Hs - 17:00 Hs)
 
-![A test image](.\imgs\Bivariate graphs\Time Blocks\Arrive\late.png)
+<img src=".\imgs\Bivariate graphs\Time Blocks\Arrive\late.png"
+     style="float: left; margin-right: 10px;" />
 
 ### Night (18:00 Hs - 23:00 Hs)
 
-![A test image](.\imgs\Bivariate graphs\Time Blocks\Arrive\night.png)
+<img src=".\imgs\Bivariate graphs\Time Blocks\Arrive\night.png"
+     style="float: left; margin-right: 10px;" />
 
 
