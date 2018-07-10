@@ -80,6 +80,7 @@ to cost-drive [path-d]
     set magnitude [cost] of edge a b
     set total-cost total-cost + magnitude
  ]
+  set total-cost total-cost / 0.2761045 ;; This equatuion transform netlogo distance in real distance (It isn't planet curvature)
   price-taxi total-cost 
   price-uber total-cost 
 end
