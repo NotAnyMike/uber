@@ -86,18 +86,27 @@ end
 
 to price-taxi [total-cost]
   let Tprice 0
-  set Tprice ((total-cost * 1000) * 0.8198) + 4020.7
+  ask drivers [
+    if type-of-driver = "taxi" [
+      set Tprice ((total-cost * 1000) * 0.8198) + 4020.7
+    ] 
+		;driver-act ; This is a function that define states of the turtle
+  ]
   print Tprice
 end
 
 to price-uber [total-cost]
   let Uprice 0
   let supply 0
-  let demand 0xsd  
+  let demand 0
   set supply count drivers with [type-of-driver = "uber" and state = 0]
   set demand count people with [state = 0]
-  
-  set Uprice (total-cost * 708.48) + 3533.3 + 500 * (demand - supply) 
+  ask drivers [
+    if type-of-driver = "uber" [
+      set Uprice (total-cost * 708.48) + 3533.3 + 500 * (demand - supply)
+    ] 
+		;driver-act ; This is a function that define states of the turtle
+  ]  
   print Uprice
 end 
 
