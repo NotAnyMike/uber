@@ -10,7 +10,8 @@ From the data in the Bogota mobility survey of 2015, the distributions of taxi u
 
 ### Morning (06:00 Hs - 11:00 Hs)
 
-![A test image](.\imgs\Bivariate graphs\Time Blocks\Origin\morning.png)
+<img src=".\imgs\Bivariate graphs\Time Blocks\Origin\morning.png"
+	 style="float: left; margin-right: 10px;" />
 
 ### Late (12:00 Hs - 17:00 Hs)
 
