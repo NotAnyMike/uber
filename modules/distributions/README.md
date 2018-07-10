@@ -4,6 +4,11 @@ From the data in the Bogota mobility survey of 2015, the distributions of taxi u
 
 ## Origin of the service:
 
+### Gif of each Hour
+
+<img src='./imgs/Bivariate graphs/Per hour/Origin/GIF_ORI.png'
+     style="float: left; margin-right: 10px;" />
+
 ### Early Morning (00:00 Hs - 05:00 Hs )
 
 <img src=".\imgs\Bivariate graphs\Time Blocks\Origin\early_morning.png"
@@ -30,6 +35,11 @@ From the data in the Bogota mobility survey of 2015, the distributions of taxi u
      style="float: left; margin-right: 10px;" />
 
 ## Destination of the service:
+
+### Gif of each Hour
+
+<img src='./imgs/Bivariate graphs/Per hour/Arrive/GIF_ARR.png'
+     style="float: left; margin-right: 10px;" />
 
 ### Early Morning (00:00 Hs - 05:00 Hs)
 
