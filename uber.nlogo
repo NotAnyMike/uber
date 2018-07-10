@@ -489,6 +489,51 @@ PENS
 "uber" 1.0 0 -16777216 true "" "ifelse length [familiarity_last_value_uber] of people > 0 [\nplot mean [familiarity_last_value_uber] of people][\nplot 0]"
 "taxi" 1.0 0 -2674135 true "" "ifelse length [familiarity_last_value_taxi] of people > 0 [\nplot mean [familiarity_last_value_taxi] of people][\nplot 0]"
 
+SLIDER
+845
+415
+1017
+448
+social_circle_w
+social_circle_w
+0
+1
+0.0
+0.01
+1
+NIL
+HORIZONTAL
+
+SLIDER
+845
+379
+1017
+412
+last_values_w
+last_values_w
+0
+1
+0.0
+0.01
+1
+NIL
+HORIZONTAL
+
+SLIDER
+845
+343
+1017
+376
+delay_history_w
+delay_history_w
+0
+1
+1.0
+0.01
+1
+NIL
+HORIZONTAL
+
 @#$#@#$#@
 ## WHAT IS IT?
 

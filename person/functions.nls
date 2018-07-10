@@ -75,16 +75,15 @@ to-report uber? [current_person]
 	]
 	; -----------------------------------------------------
 
-
 	; calculating familiarity heuristic (close people)-----
-	let social_circle sort people with [distance current_person <= SOCIAL_CIRCLE_RADIUS and length services_type_history > 0]
+	let social_circle sort people with [distance current_person < SOCIAL_CIRCLE_RADIUS and length services_type_history > 0]
 	if SOCIAL_CIRCLE_RADIUS = 0 [set social_circle []]
 	let familiarity_circle 0
 	foreach social_circle [[close] ->
-		if length [services_type_history] of close > 0 [
-			set familiarity_circle familiarity_circle + ( first [services_type_history] of close / length social_circle )
-		]
+		set familiarity_circle familiarity_circle + ( first [services_type_history] of close / length social_circle )
 	]
+	let familiarity_circle_taxi 0
+	if length social_circle > 0 [set familiarity_circle_taxi 1 - familiarity_circle]
 	; -----------------------------------------------------
 
 	; calculating familiarity heuristic (last service)-----
@@ -96,23 +95,25 @@ to-report uber? [current_person]
 		set familiarity_last ( item i services_type_history / n_last_services )	+ familiarity_last
 		set i i + 1
 	]
+	let familiarity_last_taxi 0
+	if n_last_services > 0 [set familiarity_last_taxi 1 - familiarity_last]
 	; -----------------------------------------------------
 
 	; calculating price heuristic -------------------------
 	; -----------------------------------------------------
 
 	; adding all together ---------------------------------
-	set uber uber-hist + familiarity_last + familiarity_circle
-	set taxi taxi-hist + ( n_last_services - familiarity_last ) + ( length social_circle - familiarity_circle )
+	set uber ( delay_history_w * uber-hist ) + ( last_values_w * familiarity_last ) + ( social_circle_w * familiarity_circle )
+	set taxi ( delay_history_w * taxi-hist ) + ( last_values_w * familiarity_last_taxi ) + (social_circle_w * familiarity_circle_taxi )
 	; -----------------------------------------------------
 
 	ask current_person [
 		set uber_history_value uber-hist
 		set taxi_history_value taxi-hist
 		set familiarity_circle_value_uber familiarity_circle
-		set familiarity_circle_value_taxi length social_circle - familiarity_circle
-		set familiarity_last_value_uber n_last_services - familiarity_last
-		set familiarity_last_value_taxi familiarity_last
+		set familiarity_circle_value_taxi 1 - familiarity_circle_taxi
+		set familiarity_last_value_uber 1 - familiarity_last
+		set familiarity_last_value_taxi familiarity_last_taxi
 		set uber_fn uber
 		set taxi_fn taxi
 	]
