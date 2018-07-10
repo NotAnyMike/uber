@@ -436,7 +436,7 @@ PLOT
 795
 356
 945
-Desagregated values
+delay history
 ticks
 NIL
 0.0
@@ -447,11 +447,92 @@ true
 true
 "" ""
 PENS
-"uber history" 1.0 0 -16777216 true "" "plot mean [uber_history_value] of people"
-"taxi history" 1.0 0 -10899396 true "" "plot mean [taxi_history_value] of people"
-"social circle" 1.0 0 -2674135 true "" "plot mean [familiarity_circle_value] of people"
-"last value" 1.0 0 -955883 true "" "plot mean [familiarity_last_value] of people"
+"uber" 1.0 0 -16777216 true "" "ifelse length [uber_history_value] of people > 0 [\nplot mean [uber_history_value] of people][\nplot 0]"
+"taxi" 1.0 0 -2674135 true "" "ifelse length [taxi_history_value] of people > 0 [\nplot mean [taxi_history_value] of people][\nplot 0]"
 "0.5" 1.0 0 -7500403 true "" "plot 0.5"
+
+PLOT
+361
+796
+698
+946
+social circle (familiarity)
+ticks
+NIL
+0.0
+10.0
+0.0
+0.5
+true
+true
+"" ""
+PENS
+"taxi" 1.0 0 -2674135 true "" "ifelse length [familiarity_circle_value_taxi] of people > 0 [\nplot mean [familiarity_circle_value_taxi] of people][\nplot 0]"
+"uber" 1.0 0 -16777216 true "" "ifelse length [familiarity_circle_value_uber] of people > 0 [\nplot mean [familiarity_circle_value_uber] of people][\nplot 0]"
+
+PLOT
+704
+796
+1042
+946
+Last value (familiarity)
+ticks
+NIL
+0.0
+10.0
+0.0
+0.5
+true
+true
+"" ""
+PENS
+"uber" 1.0 0 -16777216 true "" "ifelse length [familiarity_last_value_uber] of people > 0 [\nplot mean [familiarity_last_value_uber] of people][\nplot 0]"
+"taxi" 1.0 0 -2674135 true "" "ifelse length [familiarity_last_value_taxi] of people > 0 [\nplot mean [familiarity_last_value_taxi] of people][\nplot 0]"
+
+SLIDER
+845
+415
+1017
+448
+social_circle_w
+social_circle_w
+0
+1
+0.0
+0.01
+1
+NIL
+HORIZONTAL
+
+SLIDER
+845
+379
+1017
+412
+last_values_w
+last_values_w
+0
+1
+0.0
+0.01
+1
+NIL
+HORIZONTAL
+
+SLIDER
+845
+343
+1017
+376
+delay_history_w
+delay_history_w
+0
+1
+1.0
+0.01
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?

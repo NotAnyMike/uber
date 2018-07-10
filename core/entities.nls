@@ -10,8 +10,10 @@ people-own [
 	history_uber ; Uber's memory
 	history_taxi ; Taxi's memory
 	services_type_history ; History of types of services taken
-	familiarity_circle_value ; variable to store the familiarity heuristic that has to do with the social circle
-	familiarity_last_value; to store the heuristic related to the last service taken
+	familiarity_circle_value_uber ; variable to store the familiarity heuristic that has to do with the social circle
+	familiarity_circle_value_taxi
+	familiarity_last_value_uber; to store the heuristic related to the last service taken
+	familiarity_last_value_taxi
 	uber_history_value ; to store the value of the history on ubers
 	taxi_history_value ; to store the value of the history on taxis
 	uber_fn ; to store the value of the uber fn
