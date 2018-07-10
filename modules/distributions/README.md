@@ -24,6 +24,11 @@ From the data in the Bogota mobility survey of 2015, the distributions of taxi u
 <img src=".\imgs\Bivariate graphs\Time Blocks\Origin\night.png"
      style="float: left; margin-right: 10px;" />
 
+### GIF
+
+<img src=".\imgs\Bivariate graphs\Time Blocks\Origin\animTimeORI.png"
+     style="float: left; margin-right: 10px;" />
+
 ## Destination of the service:
 
 ### Early Morning (00:00 Hs - 05:00 Hs)
@@ -44,6 +49,11 @@ From the data in the Bogota mobility survey of 2015, the distributions of taxi u
 ### Night (18:00 Hs - 23:00 Hs)
 
 <img src=".\imgs\Bivariate graphs\Time Blocks\Arrive\night.png"
+     style="float: left; margin-right: 10px;" />
+
+### GIF
+
+<img src=".\imgs\Bivariate graphs\Time Blocks\Arrive\animTimeARR.png"
      style="float: left; margin-right: 10px;" />
 
 
