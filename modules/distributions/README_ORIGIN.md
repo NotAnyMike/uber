@@ -1,4 +1,4 @@
-# EVALUATING TIME BLOCKS FROM BOGOTA MOBILITY SURVEY
+# EVALUATING TIME BLOCKS FROM BOGOTA MOBILITY SURVEY (ORIGIN)
 
 From the data in the Bogota mobility survey of 2015, the distributions of taxi users in the city of Bogotá are obtained, highlighting significant variations in the blocks of time of the origin as shown below:
 
