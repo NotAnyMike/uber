@@ -2,71 +2,48 @@
 
 From the data in the Bogota mobility survey of 2015, the distributions of taxi users in the city of Bogotá are obtained, highlighting significant variations in the blocks of time as shown below:
 
-## Origin of the service:
+## ORIGIN OF THE SERVICE:
 
 ### Gif of each Hour
 
 <img src='./imgs/Bivariate graphs/Per hour/Origin/GIF_ORI.png'
      style="float: left; margin-right: 10px;" />
 
-# FIRST FORM
+# BEST BLOCKS TIME DISTRIBUTION (ORIGIN)
 
-### 6:00 Hs - 12:00Hs
-
-<img src='./imgs/Bivariate graphs/Other/Origin/6_12.png'
-     style="float: left; margin-right: 10px;" />
-
-### 13:00 Hs - 19:00 Hs
-
-<img src='./imgs/Bivariate graphs/Other/Origin/13_19.png'
-     style="float: left; margin-right: 10px;" />
-
-### 20:00 Hs - 05:00 Hs
-
-<img src='./imgs/Bivariate graphs/Other/Origin/20_5.png'
-     style="float: left; margin-right: 10px;" />
-
-### GIF
-
-<img src='./imgs/Bivariate graphs/Other/Origin/GIF_ORI.png'
-     style="float: left; margin-right: 10px;" />
-
-
-# SECOND FORM
-
-### Early Morning (00:00 Hs - 05:00 Hs)
+### 00:00 Hs - 05:00 Hs
 
 <img src=".\imgs\Bivariate graphs\Time Blocks\Origin\early_morning.png"
      style="float: left; margin-right: 10px;" />
 
-### Morning (06:00 Hs - 11:00 Hs)
+### 06:00 Hs - 11:00 Hs
 
 <img src=".\imgs\Bivariate graphs\Time Blocks\Origin\morning.png"
 	 style="float: left; margin-right: 10px;" />
 
-### Late (12:00 Hs - 17:00 Hs)
+### 12:00 Hs - 17:00 Hs
 
 <img src=".\imgs\Bivariate graphs\Time Blocks\Origin\late.png"
      style="float: left; margin-right: 10px;" />
 
-### Night (18:00 Hs - 23:00 Hs)
+### 18:00 Hs - 23:00 Hs
 
 <img src=".\imgs\Bivariate graphs\Time Blocks\Origin\night.png"
      style="float: left; margin-right: 10px;" />
 
 ### GIF
 
-<img src=".\imgs\Bivariate graphs\Time Blocks\Origin\animTimeORI.png"
+<img src=".\imgs\Bivariate graphs\Time Blocks\Origin\GIF_ORI.png"
      style="float: left; margin-right: 10px;" />
 
-## Destination of the service:
+## DESTINATION OF THE SERVICE:
 
 ### Gif of each Hour
 
 <img src='./imgs/Bivariate graphs/Per hour/Arrive/GIF_ARR.png'
      style="float: left; margin-right: 10px;" />
 
-# FIRST FORM
+# BEST BLOCKS TIME DISTRIBUTION (ARRIVE)
 
 ### 00:00 Hs - 05:00Hs
 
@@ -93,31 +70,22 @@ From the data in the Bogota mobility survey of 2015, the distributions of taxi u
 <img src='./imgs/Bivariate graphs/Other/Arrive/GIF_Arr.png'
      style="float: left; margin-right: 10px;" />
 
+# SUMMARY
 
-# SECOND FORM
+### Best time distribution for ORIGIN
 
-### Early Morning (00:00 Hs - 05:00 Hs)
+|  | TIME RANGE |
+| --- | --- |
+| 1 | 00:00 Hs - 05:00 Hs |  
+| 2 | 06:00 Hs - 11:00 Hs |
+| 3 | 12:00 Hs - 17:00 Hs |
+| 3 | 18:00 Hs - 23:00 Hs |
 
-<img src=".\imgs\Bivariate graphs\Time Blocks\Arrive\early_morning.png"
-     style="float: left; margin-right: 10px;" />
+### Best time distribution for ARRIVE
 
-### Morning (06:00 Hs - 11:00 Hs)
-
-<img src=".\imgs\Bivariate graphs\Time Blocks\Arrive\morning.png"
-     style="float: left; margin-right: 10px;" />
-
-### Late (12:00 Hs - 17:00 Hs)
-
-<img src=".\imgs\Bivariate graphs\Time Blocks\Arrive\late.png"
-     style="float: left; margin-right: 10px;" />
-
-### Night (18:00 Hs - 23:00 Hs)
-
-<img src=".\imgs\Bivariate graphs\Time Blocks\Arrive\night.png"
-     style="float: left; margin-right: 10px;" />
-
-### GIF
-
-<img src=".\imgs\Bivariate graphs\Time Blocks\Arrive\animTimeARR.png"
-     style="float: left; margin-right: 10px;" />
-
+|  | TIME RANGE |
+| --- | --- |
+| 1 | 00:00 Hs - 05:00 Hs |  
+| 2 | 06:00 Hs - 13:00 Hs |
+| 3 | 14:00 Hs - 19:00 Hs |
+| 3 | 20:00 Hs - 23:00 Hs |
