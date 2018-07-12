@@ -145,7 +145,7 @@ to move-in-path
 	][print "empty"]
 end
 ; ------- here starts dijkstra -------
-to dijkstra [start_vertex end_vertex]
+to-report dijkstra [start_vertex end_vertex]
 
   ;initialization
   ask vertices [
@@ -188,24 +188,33 @@ to dijkstra [start_vertex end_vertex]
 	;reconstruct path
 	let mypath fput end_vertex []
 	let current_driver self
-	ask end_vertex [ fill_path mypath current_driver	]
+	let final_path fill_path mypath end_vertex
+	;ask end_vertex [ fill_path mypath current_driver]
 
-	if first [path] of current_driver != start_vertex or last [path] of current_driver != end_vertex [
-		user-message (word "WARNING: map is disconnected [from " start_vertex " to " end_vertex "]")
-	]
+	;if first [path] of current_driver != start_vertex or last [path] of current_driver != end_vertex [
+		;user-message (word "WARNING: map is disconnected [from " start_vertex " to " end_vertex "]")
+	;]
 
+	report final_path
 end
 
-to fill_path [mypath driver_agent]
-	ifelse predecessor != nobody [
-		set mypath fput predecessor mypath
-		ask predecessor [fill_path mypath driver_agent]
-	][
-		ask driver_agent[
-			set path mypath
-		]
+to-report fill_path [mypath selected_vertex]
+	if [predecessor] of selected_vertex != nobody [
+		set mypath fput [predecessor] of selected_vertex mypath
+		set mypath fill_path mypath [predecessor] of selected_vertex
 	]
+	report mypath
 end
+;to fill_path [mypath driver_agent]
+	;ifelse predecessor != nobody [
+		;set mypath fput predecessor mypath
+		;ask predecessor [fill_path mypath driver_agent]
+	;][
+		;ask driver_agent[
+			;set path mypath
+		;]
+	;]
+;end
 
 ; ------- here dijkstra finish -----
 

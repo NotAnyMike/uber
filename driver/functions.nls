@@ -37,13 +37,14 @@ to action-2-driver
 		;asign it to path
 		let goal one-of vertices with [self != initial_vertex]
 		if goal != last_vertex [
-			dijkstra last_vertex goal
+			set path dijkstra last_vertex goal
 		]
 	]
 	;move to path
 	;go-towards self item 0 path
 	move-in-path
 end
+
 to action-0-driver
 	; if position is equal of customer: ask costumer to get in and change state
 	ifelse xcor = [xcor] of customer and ycor = [ycor] of customer [
@@ -52,10 +53,8 @@ to action-0-driver
 		]
 
     going-to-destination-change
-		dijkstra last_vertex [destination] of customer
-    
-    cost-drive path
-    
+		set path dijkstra last_vertex [destination] of customer
+     
 	][
 		; else move to customer
 		; go-towards self customer
@@ -63,7 +62,7 @@ to action-0-driver
 	]
 end
 
-to cost-drive [path-d]
+to-report total_cost [path-d]
   ;; This "function" evaluates path's cost of customer destination
   let a 0
   let b 0
@@ -81,32 +80,27 @@ to cost-drive [path-d]
     set total-cost total-cost + magnitude
  ]
   set total-cost total-cost / 0.2761045 ;; This equatuion transform netlogo distance in real distance (It isn't planet curvature)
-  price-taxi total-cost 
-  price-uber total-cost 
+	report total-cost
 end
 
-to price-taxi [total-cost]
-  ask drivers [
-    if type-of-driver = "taxi" [
-      let Tprice 0
-      set Tprice ((total-cost * 1000) * 0.8198) + 4020.7
-    ] 
-		;driver-act ; This is a function that define states of the turtle
-  ]
+to-report price-taxi [dpath]
+	let Tprice 0
+	let total-cost total_cost dpath
+	set Tprice ((total-cost * 1000) * 0.8198) + 4020.7
+	report Tprice
+	;driver-act ; This is a function that define states of the turtle
 end
 
-to price-uber [total-cost]
+to-report price-uber [dpath]
   let supply 0
   let demand 0
+	let Uprice 0
+	let total-cost total_cost dpath
   set supply count drivers with [type-of-driver = "uber" and state = 0]
   set demand count people with [state = 0]
-  ask drivers [
-    if type-of-driver = "uber" [
-      let Uprice 0
-      set Uprice (total-cost * 708.48) + 3533.3 + 500 * (demand - supply)
-    ] 
-		;driver-act ; This is a function that define states of the turtle
-  ]  
+	set Uprice (total-cost * 708.48) + 3533.3 + 500 * (demand - supply)
+	report Uprice
+	;driver-act ; This is a function that define states of the turtle
 end 
 
 to action-1-driver
@@ -195,7 +189,7 @@ to assignment_policy_fn_drivers [current_person]
 					set_state_person 2
 				]
 				set customer current_person 
-				dijkstra last_vertex [current_vertice] of current_person
+				set path dijkstra last_vertex [current_vertice] of current_person	
 
 			]
 		]
