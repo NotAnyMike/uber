@@ -16,6 +16,10 @@ people-own [
 	familiarity_last_value_taxi
 	uber_history_value ; to store the value of the history on ubers
 	taxi_history_value ; to store the value of the history on taxis
+	taxi_price_value
+	uber_price_value
+	taxi_price_norm_value
+	uber_price_norm_value
 	uber_fn ; to store the value of the uber fn
 	taxi_fn ; to store the value of the taxi fn
 ]

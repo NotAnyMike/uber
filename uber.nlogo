@@ -80,7 +80,7 @@ INPUTBOX
 204
 87
 number_of_people
-3.0
+300.0
 1
 0
 Number
@@ -91,7 +91,7 @@ INPUTBOX
 204
 150
 number_of_taxis
-0.0
+50.0
 1
 0
 Number
@@ -102,7 +102,7 @@ INPUTBOX
 110
 150
 number_of_ubers
-2.0
+50.0
 1
 0
 Number
@@ -240,7 +240,7 @@ radius_driver_policy_taxi
 radius_driver_policy_taxi
 0
 100
-50.0
+59.0
 1
 1
 NIL
@@ -498,7 +498,7 @@ social_circle_w
 social_circle_w
 0
 1
-0.0
+1.0
 0.01
 1
 NIL
@@ -513,7 +513,7 @@ last_values_w
 last_values_w
 0
 1
-0.0
+1.0
 0.01
 1
 NIL
@@ -526,6 +526,40 @@ SLIDER
 376
 delay_history_w
 delay_history_w
+0
+1
+1.0
+0.01
+1
+NIL
+HORIZONTAL
+
+PLOT
+18
+951
+356
+1101
+prices
+ticks
+NIL
+0.0
+10.0
+0.0
+0.0
+true
+true
+"" ""
+PENS
+"uber" 1.0 0 -16777216 true "" "if empty? [uber_price_norm_value] of people [\nplot 0][\nplot mean [uber_price_norm_value] of people]"
+"taxi" 1.0 0 -5298144 true "" "if empty? [taxi_price_norm_value] of people [\nplot 0][\nplot mean [taxi_price_norm_value] of people]"
+
+SLIDER
+845
+306
+1017
+339
+price_w
+price_w
 0
 1
 1.0
@@ -876,7 +910,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
