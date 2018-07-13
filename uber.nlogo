@@ -272,7 +272,7 @@ true
 false
 "" ""
 PENS
-"ratio" 1.0 0 -16777216 true "" "plot count people with [uber? self = true] / number_of_people"
+"ratio" 1.0 0 -16777216 true "" ";plot count people with [uber? self = true] / number_of_people\nifelse count people with [taxi_fn > uber_fn] = 0 [plot 0][\nplot count people with [uber_fn > taxi_fn] / (count people with [taxi_fn > uber_fn] + count people with [uber_fn > taxi_fn])\n]"
 ".5" 1.0 0 -3026479 true "" "plot 0.5"
 
 SWITCH
@@ -550,8 +550,8 @@ true
 true
 "" ""
 PENS
-"uber" 1.0 0 -16777216 true "" "if empty? [uber_price_norm_value] of people [\nplot 0][\nplot mean [uber_price_norm_value] of people]"
-"taxi" 1.0 0 -5298144 true "" "if empty? [taxi_price_norm_value] of people [\nplot 0][\nplot mean [taxi_price_norm_value] of people]"
+"uber" 1.0 0 -16777216 true "" "ifelse length [uber_price_norm_value] of people = 0[\nplot 0][\nplot mean [uber_price_norm_value] of people]"
+"taxi" 1.0 0 -5298144 true "" "ifelse length [taxi_price_norm_value] of people = 0 [\nplot 0][\nplot mean [taxi_price_norm_value] of people]"
 
 SLIDER
 845
@@ -562,11 +562,30 @@ price_w
 price_w
 0
 1
-1.0
+0.0
 0.01
 1
 NIL
 HORIZONTAL
+
+PLOT
+361
+953
+699
+1103
+real prices
+NIL
+NIL
+0.0
+10.0
+0.0
+0.0
+true
+true
+"" ""
+PENS
+"uber" 1.0 0 -16777216 true "" "ifelse empty? [uber_price_value] of people [\nplot 0][\nplot mean [uber_price_value] of people]"
+"taxi" 1.0 0 -2674135 true "" "ifelse empty? [taxi_price_value] of people [\nplot 0][\nplot mean [taxi_price_value] of people]"
 
 @#$#@#$#@
 ## WHAT IS IT?

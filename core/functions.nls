@@ -72,6 +72,7 @@ to create-persons-fn
     set shape "default"
     set color white
     set size 1
+		set destination nobody
 		span_from_gaussian_mixture 0 0 -1 gm_org
   ]
 end
