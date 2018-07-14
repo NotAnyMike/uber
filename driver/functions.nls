@@ -37,7 +37,7 @@ to action-2-driver
 		;asign it to path
 		let goal one-of vertices with [self != initial_vertex]
 		if goal != last_vertex [
-			dijkstra last_vertex goal
+			set path dijkstra last_vertex goal
 		]
 	]
 	;move to path
@@ -53,10 +53,8 @@ to action-0-driver
 		]
 
     going-to-destination-change
-		dijkstra last_vertex [destination] of customer
-    
-    price-drive path
-    
+		set path dijkstra last_vertex [destination] of customer
+     
 	][
 		; else move to customer
 		; go-towards self customer
@@ -64,47 +62,46 @@ to action-0-driver
 	]
 end
 
-to price-drive [path-d]
+to-report total_cost [path-d]
   ;; This "function" evaluates path's cost of customer destination
-  let initial-xcor 0
-  let initial-ycor 0
-  let final-xcor 0
-  let final-ycor 0
+  let a 0
+  let b 0
   let magnitude 0
   let total-cost 0
-  let f 0
   let numbers-path 0
   let range-path []
-  let price-taxi 0
-  let price-uber 0
   
   set numbers-path length path-d - 1
-  set range-path n-values numbers-path [ [ i ] -> i ]
-    
+  set range-path n-values (length path-d - 1) [ [ i ] -> i ] 
   foreach range-path [ [i] ->
-    set f i + 1
-    set initial-xcor [xcor] of item i path-d
-    set initial-ycor [ycor] of item i path-d
-    set final-xcor [xcor] of item f path-d
-    set final-ycor [ycor] of item f path-d
-    set magnitude (sqrt(((final-xcor - initial-xcor) ^ 2 ) + ((final-ycor - initial-ycor) ^ 2))) / 0.86
+    set a [who] of item i path-d 
+    set b [who] of item (i + 1) path-d
+    set magnitude [cost] of edge a b
     set total-cost total-cost + magnitude
  ]
-  
-  ; Taxi (Cobs) price funciton approximation
-  set price-taxi ((total-cost * 1000) * 0.8198) + 4020.7
-  
-  ; Uber price function aproximation
-  ;set price-uber (total-cost * 708.48) + 3533.3 + 500 * (Estados de personas libres (count) Estados conductores (libres) )
-  
-  ;; Retornar los valores y clasificar los precios para uber y taxi
-  
-  ;print price-taxi
-  ;print price-uber
-  ;print total-cost
-
+  set total-cost total-cost / 0.2761045 ;; This equatuion transform netlogo distance in real distance (It isn't planet curvature)
+	report total-cost
 end
 
+to-report price-taxi [dpath]
+	let Tprice 0
+	let total-cost total_cost dpath
+	set Tprice ((total-cost * 1000) * 0.8198) + 4020.7
+	report Tprice
+	;driver-act ; This is a function that define states of the turtle
+end
+
+to-report price-uber [dpath]
+  let supply 0
+  let demand 0
+	let Uprice 0
+	let total-cost total_cost dpath
+  set supply count drivers with [type-of-driver = "uber" and state = 0]
+  set demand count people with [state = 0]
+	set Uprice (total-cost * 708.48) + 3533.3 + 500 * (demand - supply)
+	report Uprice
+	;driver-act ; This is a function that define states of the turtle
+end 
 
 to action-1-driver
 	ifelse xcor = [xcor] of [destination] of customer and ycor = [ycor] of [destination] of customer [
@@ -192,7 +189,7 @@ to assignment_policy_fn_drivers [current_person]
 					set_state_person 2
 				]
 				set customer current_person 
-				dijkstra last_vertex [current_vertice] of current_person
+				set path dijkstra last_vertex [current_vertice] of current_person	
 
 			]
 		]

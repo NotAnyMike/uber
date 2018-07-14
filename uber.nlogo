@@ -41,10 +41,10 @@ ticks
 30.0
 
 BUTTON
-12
-154
-110
-187
+309
+28
+397
+61
 setup
 setup\n\ncreate_csv_grl\n
 NIL
@@ -58,10 +58,10 @@ NIL
 1
 
 BUTTON
-112
-154
-204
-187
+310
+66
+397
+99
 go
 go\n
 T
@@ -193,7 +193,7 @@ ticks
 100.0
 0.0
 100.0
-false
+true
 true
 "" ""
 PENS
@@ -240,7 +240,7 @@ radius_driver_policy_taxi
 radius_driver_policy_taxi
 0
 100
-50.0
+59.0
 1
 1
 NIL
@@ -272,7 +272,7 @@ true
 false
 "" ""
 PENS
-"ratio" 1.0 0 -16777216 true "" "plot count people with [uber? self = true] / number_of_people"
+"ratio" 1.0 0 -16777216 true "" ";plot count people with [uber? self = true] / number_of_people\nifelse count people with [taxi_fn > uber_fn] = 0 [plot 0][\nplot count people with [uber_fn > taxi_fn] / (count people with [taxi_fn > uber_fn] + count people with [uber_fn > taxi_fn])\n]"
 ".5" 1.0 0 -3026479 true "" "plot 0.5"
 
 SWITCH
@@ -287,10 +287,10 @@ perfect_memory
 -1000
 
 BUTTON
-297
-187
-395
-245
+310
+105
+398
+141
 Export Data
 \ncreatex_csv
 NIL
@@ -306,10 +306,10 @@ NIL
 INPUTBOX
 206
 90
-303
+305
 150
 xticks
-100.0
+1000.0
 1
 0
 Number
@@ -319,21 +319,11 @@ INPUTBOX
 27
 305
 87
-num_ticks
-1000.0
+total_ticks
+10000.0
 1
 0
 Number
-
-TEXTBOX
-335
-44
-485
-62
-NIL
-11
-0.0
-1
 
 PLOT
 361
@@ -399,6 +389,203 @@ time_string
 2
 1
 11
+
+PLOT
+705
+639
+1042
+789
+decision rule values
+ticks
+NIL
+0.0
+1.0
+0.0
+0.0
+true
+true
+"" ""
+PENS
+"uber fn" 1.0 0 -16777216 true "" "ifelse empty? [uber_fn] of people [plot 0][\nplot mean [uber_fn] of people\n]\n"
+"taxi fn" 1.0 0 -5298144 true "" "ifelse empty? [taxi_fn] of people [plot 0][\nplot mean [taxi_fn] of people\n]"
+
+INPUTBOX
+13
+154
+162
+214
+NUMBER_LAST_SERVICES
+1.0
+1
+0
+Number
+
+INPUTBOX
+166
+154
+305
+214
+SOCIAL_CIRCLE_RADIUS
+1.0
+1
+0
+Number
+
+PLOT
+18
+795
+356
+945
+delay history
+ticks
+NIL
+0.0
+10.0
+0.0
+0.0
+true
+true
+"" ""
+PENS
+"uber" 1.0 0 -16777216 true "" "ifelse length [uber_history_value] of people > 0 [\nplot mean [uber_history_value] of people][\nplot 0]"
+"taxi" 1.0 0 -2674135 true "" "ifelse length [taxi_history_value] of people > 0 [\nplot mean [taxi_history_value] of people][\nplot 0]"
+"0.5" 1.0 0 -7500403 true "" "plot 0.5"
+
+PLOT
+361
+796
+698
+946
+social circle (familiarity)
+ticks
+NIL
+0.0
+10.0
+0.0
+0.5
+true
+true
+"" ""
+PENS
+"taxi" 1.0 0 -2674135 true "" "ifelse length [familiarity_circle_value_taxi] of people > 0 [\nplot mean [familiarity_circle_value_taxi] of people][\nplot 0]"
+"uber" 1.0 0 -16777216 true "" "ifelse length [familiarity_circle_value_uber] of people > 0 [\nplot mean [familiarity_circle_value_uber] of people][\nplot 0]"
+
+PLOT
+704
+796
+1042
+946
+Last value (familiarity)
+ticks
+NIL
+0.0
+10.0
+0.0
+0.5
+true
+true
+"" ""
+PENS
+"uber" 1.0 0 -16777216 true "" "ifelse length [familiarity_last_value_uber] of people > 0 [\nplot mean [familiarity_last_value_uber] of people][\nplot 0]"
+"taxi" 1.0 0 -2674135 true "" "ifelse length [familiarity_last_value_taxi] of people > 0 [\nplot mean [familiarity_last_value_taxi] of people][\nplot 0]"
+
+SLIDER
+845
+415
+1017
+448
+social_circle_w
+social_circle_w
+0
+1
+1.0
+0.01
+1
+NIL
+HORIZONTAL
+
+SLIDER
+845
+379
+1017
+412
+last_values_w
+last_values_w
+0
+1
+1.0
+0.01
+1
+NIL
+HORIZONTAL
+
+SLIDER
+845
+343
+1017
+376
+delay_history_w
+delay_history_w
+0
+1
+1.0
+0.01
+1
+NIL
+HORIZONTAL
+
+PLOT
+18
+951
+356
+1101
+prices
+ticks
+NIL
+0.0
+10.0
+0.0
+0.0
+true
+true
+"" ""
+PENS
+"uber" 1.0 0 -16777216 true "" "ifelse length [uber_price_norm_value] of people = 0[\nplot 0][\nplot mean [uber_price_norm_value] of people]"
+"taxi" 1.0 0 -5298144 true "" "ifelse length [taxi_price_norm_value] of people = 0 [\nplot 0][\nplot mean [taxi_price_norm_value] of people]"
+
+SLIDER
+845
+306
+1017
+339
+price_w
+price_w
+0
+1
+0.0
+0.01
+1
+NIL
+HORIZONTAL
+
+PLOT
+361
+953
+699
+1103
+real prices
+NIL
+NIL
+0.0
+10.0
+0.0
+0.0
+true
+true
+"" ""
+PENS
+"uber" 1.0 0 -16777216 true "" "ifelse empty? [uber_price_value] of people [\nplot 0][\nplot mean [uber_price_value] of people]"
+"taxi" 1.0 0 -2674135 true "" "ifelse empty? [taxi_price_value] of people [\nplot 0][\nplot mean [taxi_price_value] of people]"
 
 @#$#@#$#@
 ## WHAT IS IT?
