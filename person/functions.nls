@@ -133,14 +133,43 @@ to-report uber? [current_person]
 	]
 
 	ifelse uber > taxi [
-		report true
+		report call-uber
 	][
 		ifelse uber = taxi [
 			; if tie chose randomly
-			report one-of [true false]
+			let to_return one-of [true false]
+			ifelse to_return = true [
+				report call-uber
+			][
+				report call-taxi
+			]
+		][	
+			report call-taxi
+		]
+	]
+end
+
+to-report call-taxi
+	ifelse count drivers with [type-of-driver = "taxi" and state = 2] = 0 [
+		ifelse count drivers with [type-of-driver = "uber" and state = 2] = 0 [
+			report false
+		][
+			report true
+		]
+	][
+		report false
+	]
+end
+
+to-report call-uber
+	ifelse count drivers with [type-of-driver = "uber" and state = 2] = 0 [
+		ifelse count drivers with [type-of-driver = "taxi" and state = 2] = 0 [
+			report true
 		][
 			report false
 		]
+	][
+		report true
 	]
 end
 
