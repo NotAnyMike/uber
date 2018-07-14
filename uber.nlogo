@@ -327,9 +327,9 @@ Number
 
 PLOT
 361
-639
+638
 699
-789
+788
 max penalty by tick
 NIL
 NIL
@@ -338,10 +338,10 @@ NIL
 0.0
 10.0
 true
-false
+true
 "" ""
 PENS
-"default" 1.0 0 -16777216 true "" "plot [penalty] of max-one-of edges [penalty]"
+"max" 1.0 0 -8053223 true "" "plot [penalty] of max-one-of edges [penalty]"
 
 BUTTON
 408
@@ -586,6 +586,24 @@ true
 PENS
 "uber" 1.0 0 -16777216 true "" "ifelse empty? [uber_price_value] of people [\nplot 0][\nplot mean [uber_price_value] of people]"
 "taxi" 1.0 0 -2674135 true "" "ifelse empty? [taxi_price_value] of people [\nplot 0][\nplot mean [taxi_price_value] of people]"
+
+PLOT
+705
+953
+1042
+1103
+avg penalty
+NIL
+NIL
+0.0
+10.0
+0.0
+0.0
+true
+false
+"" ""
+PENS
+"default" 1.0 0 -16777216 true "" "plot mean [penalty] of edges"
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -929,7 +947,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.2
+NetLogo 6.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
