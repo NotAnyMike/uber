@@ -113,10 +113,10 @@ to set_state_person [value]
 	]
 
   ifelse [state] of person who = 1 and [value] of person who = 2 [
-		export_agent_situation 1
+		export_agent_situation 0
 	][
 		if [state] of person who = 2 and [value] of person who = 0 [
-			export_agent_situation 0
+			export_agent_situation 1
 		]
 	]
   
@@ -126,10 +126,10 @@ to set_state_person [value]
 end 
 
 
-;----------- export_person_situation (origin[0],arrive[1]) ---------
-to export_agent_situation [ origin ]
+;----------- export_person_situation (arrival[0],arrive[1]) ---------
+to export_agent_situation [ arrival ]
   file-open (word "export_data/" date_time "__situation.csv")
-  ask person who [file-type who file-type "," file-type origin  file-type "," file-type xcor file-type "," file-type ycor file-type "," file-print ticks]
+  ask person who [file-type who file-type "," file-type arrival  file-type "," file-type xcor file-type "," file-type ycor file-type "," file-print ticks]
   file-close 
 end
 ;-------------------------------------------------------------------
