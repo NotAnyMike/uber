@@ -34,8 +34,8 @@ GRAPHICS-WINDOW
 32
 0
 32
-1
-1
+0
+0
 1
 ticks
 30.0
@@ -145,7 +145,7 @@ CHOOSER
 choosing_driver_policy_code_uber
 choosing_driver_policy_code_uber
 "closest" "fifo" "randomly"
-1
+0
 
 SLIDER
 213
@@ -240,7 +240,7 @@ radius_driver_policy_taxi
 radius_driver_policy_taxi
 0
 100
-59.0
+50.0
 1
 1
 NIL
@@ -309,7 +309,7 @@ INPUTBOX
 305
 150
 xticks
-1000.0
+10000.0
 1
 0
 Number
@@ -320,7 +320,7 @@ INPUTBOX
 305
 87
 total_ticks
-10000.0
+100000.0
 1
 0
 Number
@@ -562,7 +562,7 @@ price_w
 price_w
 0
 1
-0.0
+1.0
 0.01
 1
 NIL
@@ -604,6 +604,25 @@ false
 "" ""
 PENS
 "default" 1.0 0 -16777216 true "" "plot mean [penalty] of edges"
+
+PLOT
+362
+1118
+701
+1268
+Drivers free
+ticks
+Numbers
+0.0
+0.0
+0.0
+0.0
+true
+true
+"" ""
+PENS
+"uber-free" 1.0 0 -16777216 true "" "plot count drivers with [type-of-driver = \"uber\" and state = 2]"
+"taxi-free" 1.0 0 -8053223 true "" "plot count drivers with [type-of-driver = \"taxi\" and state = 2]"
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -947,7 +966,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0
+NetLogo 6.0.2
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

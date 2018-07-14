@@ -98,7 +98,7 @@ to-report price-uber [dpath]
 	let total-cost total_cost dpath
   set supply count drivers with [type-of-driver = "uber" and state = 0]
   set demand count people with [state = 0]
-	set Uprice (total-cost * 708.48) + 3533.3 + 500 * (demand - supply)
+	set Uprice (total-cost * 708.48) + 3533.3  + 500 * (demand - supply)
 	report Uprice
 	;driver-act ; This is a function that define states of the turtle
 end 

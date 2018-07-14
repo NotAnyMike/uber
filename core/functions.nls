@@ -358,7 +358,8 @@ to calculate_traffic
 	foreach sort edges [ 
 		[element] -> let inEdge length sort drivers with [ last_vertex = [ end1 ] of element and length path > 0 and item 0 path = [end2] of element ]
 		set inEdge inEdge + length sort drivers with [ last_vertex = [end2] of element and length path > 0 and item 0 path = [end1] of element ]
-		ask element [ set penalty (( 1 + inEdge ) * inEdge_ponderator )^( 1 + max_capacity - capacity) ] 
+		;ask element [ set penalty (( 1 + inEdge ) * inEdge_ponderator )^( 1 + max_capacity - capacity) ] 
+    ask element [ set penalty 1 + (inEdge) / (10 ^ ( capacity - 1)) ]
 
 		ask element	[ set cost dist * penalty ]
 	]
