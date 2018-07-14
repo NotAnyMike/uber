@@ -130,9 +130,8 @@ end
 
 to export_agent_situation
   let situation 0
-  let label_situation "origin"
-  if state = 2 [set situation 1 set label_situation "arrive"] 
-  file-open (word "export_data/" date_time "__situation__.csv")
+  if state = 2 [set situation 1 ] 
+  file-open (word "export_data/" date_time "__situation.csv")
   ask person who [file-type who file-type "," file-type situation  file-type "," file-type xcor file-type "," file-type ycor file-type "," file-print ticks]
   file-close
   
