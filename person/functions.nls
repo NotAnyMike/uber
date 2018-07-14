@@ -99,6 +99,7 @@ end
 ;----------- set_state_persons ---------
 to set_state_person [value]
 	if state = 1 AND value = 2 [
+    ;;agent_situation
 		if is-driver? own-driver [
 			ifelse [type-of-driver] of own-driver = "taxi" [
 				set history_taxi fput (ticks - last_status_change) history_taxi
@@ -111,28 +112,31 @@ to set_state_person [value]
 			]
 		]
 		
-	]
-  if [state] of person who = 1 and [value] of person who = 2 [
-         
-    ;;set date_time (word (substring date-and-time 16 27)"___"(substring date-and-time 0 2)"-"(substring date-and-time 3 5)"-"(substring date-and-time 6 8))
-    file-open (word "export_data/origin/" date_time "__org__.csv")
-    ;;file-type "ID," file-type"Position," file-type "x_org,"  file-type "y_org," file-print "tick,"
-    ask person who [file-type who file-type "," file-type state file-type "," file-type value file-type "," file-type xcor file-type "," file-type ycor file-type "," file-print ticks]
-
-    file-close
-  ]
-  if [state] of person who = 2 and [value] of person who = 0 [
-    ;;set date_time (word (substring date-and-time 16 27)"___"(substring date-and-time 0 2)"-"(substring date-and-time 3 5)"-"(substring date-and-time 6 8))
-    file-open (word "export_data/arrive/" date_time "__org__.csv")
-    ;;file-type "ID," file-type"Position," file-type "x_org,"  file-type "y_org," file-print "tick,"
-    ask person who [file-type who file-type "," file-type state file-type "," file-type value file-type "," file-type xcor file-type "," file-type ycor file-type "," file-print ticks]
+  	]
+    ;;if state = 2 AND value = 1 [
+      ;agent_situation
+    ;]
+  ifelse [state] of person who = 1 and [value] of person who = 2 [export_agent_situation][if [state] of person who = 2 and [value] of person who = 0[export_agent_situation]]
+  
     
-  ]
+  
 	;set last_status_change date-and-time
 	set state value
 	set last_status_change ticks
 end 
 
+
+;----------- export_person_situation (origin[0],arrive[1]) ---------
+
+to export_agent_situation
+  let situation 0
+  let label_situation "origin"
+  if state = 2 [set situation 1 set label_situation "arrive"] 
+  file-open (word "export_data/" date_time "__situation__.csv")
+  ask person who [file-type who file-type "," file-type situation  file-type "," file-type xcor file-type "," file-type ycor file-type "," file-print ticks]
+  file-close
+  
+end
 
 ;-----------------------------
 	

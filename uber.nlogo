@@ -145,7 +145,7 @@ CHOOSER
 choosing_driver_policy_code_uber
 choosing_driver_policy_code_uber
 "closest" "fifo" "randomly"
-2
+1
 
 SLIDER
 213
@@ -282,7 +282,7 @@ SWITCH
 336
 perfect_memory
 perfect_memory
-1
+0
 1
 -1000
 
