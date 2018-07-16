@@ -91,7 +91,7 @@ INPUTBOX
 204
 150
 number_of_taxis
-50.0
+200.0
 1
 0
 Number
@@ -102,7 +102,7 @@ INPUTBOX
 110
 150
 number_of_ubers
-50.0
+200.0
 1
 0
 Number
@@ -272,7 +272,7 @@ true
 false
 "" ""
 PENS
-"ratio" 1.0 0 -16777216 true "" ";plot count people with [uber? self = true] / number_of_people\nifelse count people with [taxi_fn > uber_fn] = 0 [plot 0][\nplot count people with [uber_fn > taxi_fn] / (count people with [taxi_fn > uber_fn] + count people with [uber_fn > taxi_fn])\n]"
+"ratio" 1.0 0 -16777216 true "" ";plot count people with [uber? self = true] / number_of_people\nifelse count people with [taxi_fn > 0 or uber_fn > 0] = 0 [plot 0][\nplot count people with [uber_fn > taxi_fn] / (count people with [taxi_fn > uber_fn] + count people with [uber_fn > taxi_fn])\n]"
 ".5" 1.0 0 -3026479 true "" "plot 0.5"
 
 SWITCH
@@ -282,7 +282,7 @@ SWITCH
 336
 perfect_memory
 perfect_memory
-0
+1
 1
 -1000
 
