@@ -100,16 +100,22 @@ to-report uber? [current_person]
 	; -----------------------------------------------------
 
 	; calculating price heuristic -------------------------
-	let dpath dijkstra [current_vertice] of current_person [destination] of current_person
-	let uber_price price-uber dpath
-	let taxi_price price-taxi dpath
-	let taxi_price_norm 1
-	let uber_price_norm 1
-	ifelse taxi_price > uber_price [
-		set taxi_price_norm uber_price / taxi_price
-	][
-		set uber_price_norm taxi_price / uber_price
-	]
+  let uber_price 1
+  let taxi_price 1
+  let taxi_price_norm 1
+  let uber_price_norm 1
+  if price_w > 0 [
+    	let dpath dijkstra [current_vertice] of current_person [destination] of current_person
+    	set uber_price price-uber dpath
+    	set taxi_price price-taxi dpath
+    	set taxi_price_norm 1
+    	set uber_price_norm 1
+    	ifelse taxi_price > uber_price [
+      		set taxi_price_norm uber_price / taxi_price
+    	][
+      		set uber_price_norm taxi_price / uber_price
+    	]
+  ]
 	; -----------------------------------------------------
 
 	; adding all together ---------------------------------
