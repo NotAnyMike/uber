@@ -46,7 +46,7 @@ BUTTON
 397
 61
 setup
-setup\n\ncreate_csv_grl\n
+setup\n\ncreate_situation \ncreate_csv_grl\n
 NIL
 1
 T
@@ -309,7 +309,7 @@ INPUTBOX
 305
 150
 xticks
-10000.0
+70.0
 1
 0
 Number
@@ -320,7 +320,7 @@ INPUTBOX
 305
 87
 total_ticks
-100000.0
+1690.0
 1
 0
 Number

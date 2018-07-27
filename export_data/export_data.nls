@@ -80,5 +80,11 @@ end
 
 ;;-------------------------------------------------------------------------------------------------
 
+to create_situation
+  ;;set date_time (word (substring date-and-time 16 27)"___"(substring date-and-time 0 2)"-"(substring date-and-time 3 5)"-"(substring date-and-time 6 8))
+  file-open (word "export_data/" date_time "__situation.csv")
+  file-type "ID" file-type "," file-type "arrival"  file-type "," file-type "xcor" file-type "," file-type "ycor" file-type "," file-print "ticks"
+  file-close
+end
 
 

@@ -214,7 +214,7 @@ end
 ;----------- export_person_situation (arrival[0],arrive[1]) ---------
 to export_agent_situation [ arrival ]
   file-open (word "export_data/" date_time "__situation.csv")
-  if ticks = 1 [file-type "ID" file-type "," file-type "arrival"  file-type "," file-type "xcor" file-type "," file-type "ycor" file-type "," file-print "ticks"]
+  ;;if ticks = 1 [file-type "ID" file-type "," file-type "arrival"  file-type "," file-type "xcor" file-type "," file-type "ycor" file-type "," file-print "ticks"]
   ask person who [file-type who file-type "," file-type arrival  file-type "," file-type xcor file-type "," file-type ycor file-type "," file-print ticks]
   file-close 
 end

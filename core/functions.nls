@@ -3,7 +3,7 @@
 to setup
   clear-all
   get_date ; Get date and time 
-  
+  ;;create_situation ; Crea csv para guardar datos de usuarios en la simulación 
 
   set time_string "00:00"
 	set time 0
@@ -32,6 +32,8 @@ to setup
 end
 ; Go function --------------------------------------------------------------------
 to go
+  
+  ;;create_situation 
   export_data_new
   ;;export_grl_data
   if ticks = total_ticks [stop]
