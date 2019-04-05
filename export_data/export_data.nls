@@ -29,7 +29,8 @@ to create_csv_new
 	;;file-delete (word "modules/export_data_from_Nlogo/data/" "data_turtles_" observation "_" ticks  ".csv")
 	file-open (word "export_data/"date_time"__" ticks  "_.csv")
 	file-type "ID," file-type"x," file-type "y," file-type "Heading," file-print "breed"
-	ask turtles [file-type who file-type "," file-type xcor file-type "," file-type ycor file-type "," file-type heading file-type "," file-print breed ]
+	ask people [file-type who file-type "," file-type xcor file-type "," file-type ycor file-type "," file-type heading file-type "," file-print breed ]
+	ask drivers [file-type who file-type "," file-type xcor file-type "," file-type ycor file-type "," file-type heading file-type "," file-print breed ]
 
 	;;file-type turtles_list
 	file-close
@@ -48,7 +49,8 @@ to createx_csv
 	;;file-delete "modules/export_data_from_Nlogo/data/data_turtles.csv"
 	file-open (word "export_data/" "btn_data_turtles_" ticks   "_.csv")
 	file-type "ID," file-type"x," file-type "y," file-type "Heading," file-print "breed"
-	ask turtles [file-type who file-type "," file-type xcor file-type "," file-type ycor file-type "," file-type heading file-type "," file-print breed ]
+	ask people [file-type who file-type "," file-type xcor file-type "," file-type ycor file-type "," file-type heading file-type "," file-print breed ]
+	ask drivers [file-type who file-type "," file-type xcor file-type "," file-type ycor file-type "," file-type heading file-type "," file-print breed ]
 
 	;;file-type turtles_list
 	file-close
