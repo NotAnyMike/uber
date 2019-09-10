@@ -80,7 +80,7 @@ INPUTBOX
 204
 87
 number_of_people
-300.0
+50.0
 1
 0
 Number
@@ -91,7 +91,7 @@ INPUTBOX
 204
 150
 number_of_taxis
-200.0
+2.0
 1
 0
 Number
@@ -102,7 +102,7 @@ INPUTBOX
 110
 150
 number_of_ubers
-200.0
+2.0
 1
 0
 Number
