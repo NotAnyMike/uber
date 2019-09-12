@@ -7,8 +7,8 @@ to setup
 
   set time_string "00:00"
 	set time 0
-	set TAXI_CODE 0
-	set UBER_CODE 1
+;	set TAXI_CODE 0
+;	set UBER_CODE 1
 
 	; ----------- graph radius ------------
 	ask patch 31 13 [set pcolor red]
@@ -21,9 +21,9 @@ to setup
   set min_max_speed 0.2
 	set max_speed [dist] of min-one-of edges with [member? self (filter [[elem] -> [ dist ] of elem > min_max_speed ] sort edges) ]  [dist]
 
-	set prob_of_service read_table "distributions/prob.csv"
-	set gm_org read_gm "distributions/org.csv"
-	set gm_dest read_gm "distributions/dest.csv"
+;	set prob_of_service read_table "distributions/prob.csv"
+;	set gm_org read_gm "distributions/org.csv"
+;	set gm_dest read_gm "distributions/dest.csv"
 
   create-persons-fn ; Create turtle persons
   create-drivers-fn ; Create turtle driver
@@ -31,350 +31,350 @@ to setup
   reset-ticks
 end
 ; Go function --------------------------------------------------------------------
-to go
-  export_data_new
-  ;;export_grl_data
-  if ticks = total_ticks [stop]
-
-	calculate_time
-	calculate_traffic
-
-	;; assign drivers to persons (for now choose any free driver randomly)
-	assing-drivers
-
-	ask people [
-		person-act ; This is a function that define states of the turtle
-	]
-
-  ask drivers [
-		driver-act ; This is a function that define states of the turtle
-  ]
-
-	ask drivers with [last_vertex = nobody] [
-		user-message word "last_vertex empty" self
-	]
-
-	;export_data_new
-	;export_grl_data
-	calculate_mean_waiting_ticks
-
-  tick
-end
+;to go
+;  export_data_new
+;  ;;export_grl_data
+;  if ticks = total_ticks [stop]
+;
+;	calculate_time
+;	calculate_traffic
+;
+;	;; assign drivers to persons (for now choose any free driver randomly)
+;	assing-drivers
+;
+;	ask people [
+;		person-act ; This is a function that define states of the turtle
+;	]
+;
+;  ask drivers [
+;		driver-act ; This is a function that define states of the turtle
+;  ]
+;
+;	ask drivers with [last_vertex = nobody] [
+;		user-message word "last_vertex empty" self
+;	]
+;
+;	;export_data_new
+;	;export_grl_data
+;	calculate_mean_waiting_ticks
+;
+;  tick
+;end
 
 ; --------- creating turtles ----------
 
-to create-persons-fn
-  create-people number_of_people [
-		set history_uber []
-		set history_taxi []
-		set services_type_history []
-
-    set shape "default"
-    set color white
-    set size 1
-		set destination nobody
-		span_from_gaussian_mixture 0 0 -1 gm_org
-  ]
-end
-
-to create-drivers-fn
-  create-drivers number_of_ubers [
-    setxy random-xcor random-ycor
-		let vertex-to-move min-one-of (vertices) [ distance myself ]
-    set shape "circle 2"
-    set color white
-    set size 0.5
-    set type-of-driver "uber"
-		set state 2
-		set path []
-		set last_vertex vertex-to-move
-    move-to  vertex-to-move
-  ]
-
-  create-drivers number_of_taxis [
-    setxy random-xcor random-ycor
-		let vertex-to-move min-one-of (vertices) [ distance myself ]
-    set shape "circle 2"
-    set color yellow
-    set size 0.5
-    set type-of-driver "taxi"
-		set state 2
-		set path []
-		set last_vertex vertex-to-move
-    move-to  vertex-to-move
-  ]
-end
-
-; --------- movement function --------------
-to go-towards [from-turtle to-turtle]
-  ask from-turtle [
-		let xcord [xcor] of to-turtle let ycord [ycor] of to-turtle
-
-    ifelse distance to-turtle != 0 [
-
-      set heading towards to-turtle
-      let from_vertex [id] of last_vertex
-      let to_vertex [id] of first path
-      let penalty2 1
-      ifelse from_vertex = to_vertex [set penalty2 1][set penalty2 [penalty] of edge from_vertex to_vertex]
-      let speed max_speed / penalty2
-
-      ifelse abs(xcord - xcor) > speed OR abs(ycord - ycor) > speed [
-        forward speed ;TODO correct by penalty
-      ][
-        forward distance to-turtle ;TODO correct by penalty
-				move-to to-turtle
-      ]
-    ][move-to to-turtle]
-  ]
-end
-
-; ------------ other functions -------------
-to assing-drivers
-	; for each person searching do 
-	; decide which policy to use for choosing the person
-	assignment_policy_fn_persons
-end
-
-; ------------ move through path function ------------
-to move-in-path 
-	; if path not empty
-	ifelse not empty? path [
-		ifelse distance item 0 path = 0 [
-			; check if current vertex is item 0 nd if true delete
-			set last_vertex item 0 path
-			set path remove-item 0 path	
-		][
-			; else move
-			go-towards self item 0 path
-		]
-	][print "empty"]
-end
-; ------- here starts dijkstra -------
-to-report dijkstra [start_vertex end_vertex]
-
-  ;initialization
-  ask vertices [
-    set expected-cost 1E50
-    set visited? false
-    set predecessor nobody
-		set size 0.3
-		set color white
-  ]
-
-	ask start_vertex [set expected-cost 0]
-
-  let current_vertex start_vertex
-  
-	while [current_vertex != end_vertex][
-		;create neighbors list
-		ask current_vertex [
-			ask in-edge-neighbors [
-				;correct cost of each neighbor
-
-				;calculte  new expected cost
-				let new_cost [expected-cost] of current_vertex + [cost] of edge-with current_vertex
-
-				;compare costs
-				if expected-cost > new_cost[
-					;set costs
-					set expected-cost new_cost
-					set predecessor current_vertex
-				]
-			]
-		]
-
-		;make current as visited
-		ask current_vertex [set visited? true]
-
-		;set current to the lowest of them all
-		set current_vertex min-one-of vertices with [visited? = false] [expected-cost]
-	]
-
-	;reconstruct path
-	let mypath fput end_vertex []
-	let current_driver self
-	let final_path fill_path mypath end_vertex
-	;ask end_vertex [ fill_path mypath current_driver]
-
-	;if first [path] of current_driver != start_vertex or last [path] of current_driver != end_vertex [
-		;user-message (word "WARNING: map is disconnected [from " start_vertex " to " end_vertex "]")
-	;]
-
-	report final_path
-end
-
-to-report fill_path [mypath selected_vertex]
-	if [predecessor] of selected_vertex != nobody [
-		set mypath fput [predecessor] of selected_vertex mypath
-		set mypath fill_path mypath [predecessor] of selected_vertex
-	]
-	report mypath
-end
-;to fill_path [mypath driver_agent]
-	;ifelse predecessor != nobody [
-		;set mypath fput predecessor mypath
-		;ask predecessor [fill_path mypath driver_agent]
-	;][
-		;ask driver_agent[
-			;set path mypath
-		;]
-	;]
+;to create-persons-fn
+;  create-people number_of_people [
+;		set history_uber []
+;		set history_taxi []
+;		set services_type_history []
+;
+;    set shape "default"
+;    set color white
+;    set size 1
+;		set destination nobody
+;		span_from_gaussian_mixture 0 0 -1 gm_org
+;  ]
+;end
+;
+;to create-drivers-fn
+;  create-drivers number_of_ubers [
+;    setxy random-xcor random-ycor
+;		let vertex-to-move min-one-of (vertices) [ distance myself ]
+;    set shape "circle 2"
+;    set color white
+;    set size 0.5
+;    set type-of-driver "uber"
+;		set state 2
+;		set path []
+;		set last_vertex vertex-to-move
+;    move-to  vertex-to-move
+;  ]
+;
+;  create-drivers number_of_taxis [
+;    setxy random-xcor random-ycor
+;		let vertex-to-move min-one-of (vertices) [ distance myself ]
+;    set shape "circle 2"
+;    set color yellow
+;    set size 0.5
+;    set type-of-driver "taxi"
+;		set state 2
+;		set path []
+;		set last_vertex vertex-to-move
+;    move-to  vertex-to-move
+;  ]
 ;end
 
-; ------- here dijkstra finish -----
-
-; ------- read distribution from csv -------
-to-report read_table [file]
-	let prob []
-	let counter 0
-
-	file-close-all
-	file-open file
-	let data csv:from-row file-read-line
-
-	while [not file-at-end?][
-		let row csv:from-row file-read-line
-		repeat item 0 row - counter + 1 [
-			let entry []
-			set entry lput counter entry
-			set entry lput item 1 row entry
-			set prob lput entry prob
-			set counter counter + 1
-		]
-	]
-
-	file-close
-	report prob
-end
-
-to-report read_gm [file]
-	; create list
-	let gm []
-
-	file-close-all
-	;file-open "distributions/org.csv"
-	file-open file
-	let data csv:from-row file-read-line
-	let hour -1
-	let hour_old 100
-	let gm_hour []
-
-	while [not file-at-end?][
-		let row csv:from-row file-read-line
-		set hour item 1 row
-
-		if hour > hour_old [
-			set gm lput gm_hour gm
-			set gm_hour []
-		]
-
-		set gm_hour lput row gm_hour
-		set hour_old hour
-	]
-	set gm lput gm_hour gm
-
-	file-close
-	report gm
-end
-; -----------------------------------------
-
-; ------- span from gaussian mixture distribution --------
-
-to-report place_from_gaussian_mixture [ m n threshold dists ]
-	ifelse item 1 item 0 item m dists < floor time [
-		; recursive
-		set m m + 1
-		report place_from_gaussian_mixture m n threshold dists
-	][
-		if threshold = -1 [
-			set threshold random-float 1
-		]
-		ifelse item 5 item n item m dists >= threshold [
-			let mean_x item 2 item n item m dists
-			let mean_y item 3 item n item m dists
-			let std item 4 item n item m dists
-			report place_with_mean_and_std mean_x mean_y std
-		][
-			set n n + 1
-			report place_from_gaussian_mixture m n threshold dists
-		]
-	]
-end
-
-to-report place_with_mean_and_std [ mean_x mean_y std ]
-	let xcord random-normal mean_x std
-	let ycord random-normal mean_y std
-
-	if xcord > max-x [set xcord max-x]
-	if ycord > max-y [set ycord max-y]
-	if xcord < 0 [set xcord 0]
-	if ycord < 0 [set ycord 0]
-
-	let vertex-to-move min-one-of (vertices) [ distancexy xcord ycord ]
-
-	; old code back where this function spaned the agent
-	;set xcor xcord
-	;set ycor ycord
-
-	report vertex-to-move
-
-end
-
-to span_from_gaussian_mixture [ m n threshold dists ]
-	let vertex-to-move place_from_gaussian_mixture 0 0 -1 dists
-	set current_vertice vertex-to-move
-	move-to vertex-to-move
-end
-; -----------------------------------------------------------
-
-; --------- TIME ----------
-to calculate_time
-
-	set time 24 * ticks / total_ticks
-	let minutes floor ( floor ( ( time - floor time ) * 100 ) / 100 * 60 )
-  	if minutes < 10 [ set minutes word 0 minutes ]
-	set time_string ( word floor time ":" minutes )
-  	if time < 10  [ set time_string word "0" time_string ]
-
-	; correct color_p based on time
-
-end
-; -------------------------
-
-; ----------- mean waiting ticks --------------
-to calculate_mean_waiting_ticks
-	let list_of_last_watings_taxi map [ [i] -> last i ] [ history_taxi ] of people with [ length history_taxi > 0 ]
-	if length list_of_last_watings_taxi = 0 [ set list_of_last_watings_taxi fput 0 list_of_last_watings_taxi ]
-	set mean_waiting_ticks_taxi mean list_of_last_watings_taxi
-
-	let list_of_last_watings_uber map [ [i] -> last i ] [ history_uber ] of people with [ length history_uber > 0 ]
-	if length list_of_last_watings_uber = 0 [ set list_of_last_watings_uber fput 0 list_of_last_watings_uber ]
-	set mean_waiting_ticks_uber mean list_of_last_watings_uber
-end
-
-; ---------------- calculating traffic -----------------
-to calculate_traffic
-	foreach sort edges [ 
-		[element] -> let inEdge length sort drivers with [ last_vertex = [ end1 ] of element and length path > 0 and item 0 path = [end2] of element ]
-		set inEdge inEdge + length sort drivers with [ last_vertex = [end2] of element and length path > 0 and item 0 path = [end1] of element ]
-		;ask element [ set penalty (( 1 + inEdge ) * inEdge_ponderator )^( 1 + max_capacity - capacity) ] 
-    ask element [ set penalty 1 + ((inEdge) / (10 ^ ( capacity - 1)) * 1 / ( count drivers / 100 ) ^ 2) ]
-
-		ask element	[ set cost dist * penalty ]
-	]
-
-	set_traffic_color
-end
-
-to set_traffic_color
-	ask edges [set color gray]
-	let first_centile int ( ( length sort edges ) * 0.1 ) 
-	let top10 sublist sort-on [penalty] edges (length sort edges - first_centile) ( length sort edges)
-	set top10 filter [ [elem] -> [penalty] of elem > min_penalty ] top10
-	let top50 sublist sort-on [penalty] edges (length sort edges - first_centile * 5) ( length sort edges)
-	set top50 filter [ [elem] -> [penalty] of elem > min_penalty ] top50
-
-	foreach top50 [[elem] -> ask elem [set color yellow]]
-	foreach top10 [[elem] -> ask elem [set color red]]
-end
+;; --------- movement function --------------
+;to go-towards [from-turtle to-turtle]
+;  ask from-turtle [
+;		let xcord [xcor] of to-turtle let ycord [ycor] of to-turtle
+;
+;    ifelse distance to-turtle != 0 [
+;
+;      set heading towards to-turtle
+;      let from_vertex [id] of last_vertex
+;      let to_vertex [id] of first path
+;      let penalty2 1
+;      ifelse from_vertex = to_vertex [set penalty2 1][set penalty2 [penalty] of edge from_vertex to_vertex]
+;      let speed max_speed / penalty2
+;
+;      ifelse abs(xcord - xcor) > speed OR abs(ycord - ycor) > speed [
+;        forward speed ;TODO correct by penalty
+;      ][
+;        forward distance to-turtle ;TODO correct by penalty
+;				move-to to-turtle
+;      ]
+;    ][move-to to-turtle]
+;  ]
+;end
+;
+;; ------------ other functions -------------
+;to assing-drivers
+;	; for each person searching do 
+;	; decide which policy to use for choosing the person
+;	assignment_policy_fn_persons
+;end
+;
+;; ------------ move through path function ------------
+;to move-in-path 
+;	; if path not empty
+;	ifelse not empty? path [
+;		ifelse distance item 0 path = 0 [
+;			; check if current vertex is item 0 nd if true delete
+;			set last_vertex item 0 path
+;			set path remove-item 0 path	
+;		][
+;			; else move
+;			go-towards self item 0 path
+;		]
+;	][print "empty"]
+;end
+;; ------- here starts dijkstra -------
+;to-report dijkstra [start_vertex end_vertex]
+;
+;  ;initialization
+;  ask vertices [
+;    set expected-cost 1E50
+;    set visited? false
+;    set predecessor nobody
+;		set size 0.3
+;		set color white
+;  ]
+;
+;	ask start_vertex [set expected-cost 0]
+;
+;  let current_vertex start_vertex
+;  
+;	while [current_vertex != end_vertex][
+;		;create neighbors list
+;		ask current_vertex [
+;			ask in-edge-neighbors [
+;				;correct cost of each neighbor
+;
+;				;calculte  new expected cost
+;				let new_cost [expected-cost] of current_vertex + [cost] of edge-with current_vertex
+;
+;				;compare costs
+;				if expected-cost > new_cost[
+;					;set costs
+;					set expected-cost new_cost
+;					set predecessor current_vertex
+;				]
+;			]
+;		]
+;
+;		;make current as visited
+;		ask current_vertex [set visited? true]
+;
+;		;set current to the lowest of them all
+;		set current_vertex min-one-of vertices with [visited? = false] [expected-cost]
+;	]
+;
+;	;reconstruct path
+;	let mypath fput end_vertex []
+;	let current_driver self
+;	let final_path fill_path mypath end_vertex
+;	;ask end_vertex [ fill_path mypath current_driver]
+;
+;	;if first [path] of current_driver != start_vertex or last [path] of current_driver != end_vertex [
+;		;user-message (word "WARNING: map is disconnected [from " start_vertex " to " end_vertex "]")
+;	;]
+;
+;	report final_path
+;end
+;
+;to-report fill_path [mypath selected_vertex]
+;	if [predecessor] of selected_vertex != nobody [
+;		set mypath fput [predecessor] of selected_vertex mypath
+;		set mypath fill_path mypath [predecessor] of selected_vertex
+;	]
+;	report mypath
+;end
+;;to fill_path [mypath driver_agent]
+;	;ifelse predecessor != nobody [
+;		;set mypath fput predecessor mypath
+;		;ask predecessor [fill_path mypath driver_agent]
+;	;][
+;		;ask driver_agent[
+;			;set path mypath
+;		;]
+;	;]
+;;end
+;
+;; ------- here dijkstra finish -----
+;
+;; ------- read distribution from csv -------
+;to-report read_table [file]
+;	let prob []
+;	let counter 0
+;
+;	file-close-all
+;	file-open file
+;	let data csv:from-row file-read-line
+;
+;	while [not file-at-end?][
+;		let row csv:from-row file-read-line
+;		repeat item 0 row - counter + 1 [
+;			let entry []
+;			set entry lput counter entry
+;			set entry lput item 1 row entry
+;			set prob lput entry prob
+;			set counter counter + 1
+;		]
+;	]
+;
+;	file-close
+;	report prob
+;end
+;
+;to-report read_gm [file]
+;	; create list
+;	let gm []
+;
+;	file-close-all
+;	;file-open "distributions/org.csv"
+;	file-open file
+;	let data csv:from-row file-read-line
+;	let hour -1
+;	let hour_old 100
+;	let gm_hour []
+;
+;	while [not file-at-end?][
+;		let row csv:from-row file-read-line
+;		set hour item 1 row
+;
+;		if hour > hour_old [
+;			set gm lput gm_hour gm
+;			set gm_hour []
+;		]
+;
+;		set gm_hour lput row gm_hour
+;		set hour_old hour
+;	]
+;	set gm lput gm_hour gm
+;
+;	file-close
+;	report gm
+;end
+;; -----------------------------------------
+;
+;; ------- span from gaussian mixture distribution --------
+;
+;to-report place_from_gaussian_mixture [ m n threshold dists ]
+;	ifelse item 1 item 0 item m dists < floor time [
+;		; recursive
+;		set m m + 1
+;		report place_from_gaussian_mixture m n threshold dists
+;	][
+;		if threshold = -1 [
+;			set threshold random-float 1
+;		]
+;		ifelse item 5 item n item m dists >= threshold [
+;			let mean_x item 2 item n item m dists
+;			let mean_y item 3 item n item m dists
+;			let std item 4 item n item m dists
+;			report place_with_mean_and_std mean_x mean_y std
+;		][
+;			set n n + 1
+;			report place_from_gaussian_mixture m n threshold dists
+;		]
+;	]
+;end
+;
+;to-report place_with_mean_and_std [ mean_x mean_y std ]
+;	let xcord random-normal mean_x std
+;	let ycord random-normal mean_y std
+;
+;	if xcord > max-x [set xcord max-x]
+;	if ycord > max-y [set ycord max-y]
+;	if xcord < 0 [set xcord 0]
+;	if ycord < 0 [set ycord 0]
+;
+;	let vertex-to-move min-one-of (vertices) [ distancexy xcord ycord ]
+;
+;	; old code back where this function spaned the agent
+;	;set xcor xcord
+;	;set ycor ycord
+;
+;	report vertex-to-move
+;
+;end
+;
+;to span_from_gaussian_mixture [ m n threshold dists ]
+;	let vertex-to-move place_from_gaussian_mixture 0 0 -1 dists
+;	set current_vertice vertex-to-move
+;	move-to vertex-to-move
+;end
+;; -----------------------------------------------------------
+;
+;; --------- TIME ----------
+;to calculate_time
+;
+;	set time 24 * ticks / total_ticks
+;	let minutes floor ( floor ( ( time - floor time ) * 100 ) / 100 * 60 )
+;  	if minutes < 10 [ set minutes word 0 minutes ]
+;	set time_string ( word floor time ":" minutes )
+;  	if time < 10  [ set time_string word "0" time_string ]
+;
+;	; correct color_p based on time
+;
+;end
+;; -------------------------
+;
+;; ----------- mean waiting ticks --------------
+;to calculate_mean_waiting_ticks
+;	let list_of_last_watings_taxi map [ [i] -> last i ] [ history_taxi ] of people with [ length history_taxi > 0 ]
+;	if length list_of_last_watings_taxi = 0 [ set list_of_last_watings_taxi fput 0 list_of_last_watings_taxi ]
+;	set mean_waiting_ticks_taxi mean list_of_last_watings_taxi
+;
+;	let list_of_last_watings_uber map [ [i] -> last i ] [ history_uber ] of people with [ length history_uber > 0 ]
+;	if length list_of_last_watings_uber = 0 [ set list_of_last_watings_uber fput 0 list_of_last_watings_uber ]
+;	set mean_waiting_ticks_uber mean list_of_last_watings_uber
+;end
+;
+;; ---------------- calculating traffic -----------------
+;to calculate_traffic
+;	foreach sort edges [ 
+;		[element] -> let inEdge length sort drivers with [ last_vertex = [ end1 ] of element and length path > 0 and item 0 path = [end2] of element ]
+;		set inEdge inEdge + length sort drivers with [ last_vertex = [end2] of element and length path > 0 and item 0 path = [end1] of element ]
+;		;ask element [ set penalty (( 1 + inEdge ) * inEdge_ponderator )^( 1 + max_capacity - capacity) ] 
+;    ask element [ set penalty 1 + ((inEdge) / (10 ^ ( capacity - 1)) * 1 / ( count drivers / 100 ) ^ 2) ]
+;
+;		ask element	[ set cost dist * penalty ]
+;	]
+;
+;	set_traffic_color
+;end
+;
+;to set_traffic_color
+;	ask edges [set color gray]
+;	let first_centile int ( ( length sort edges ) * 0.1 ) 
+;	let top10 sublist sort-on [penalty] edges (length sort edges - first_centile) ( length sort edges)
+;	set top10 filter [ [elem] -> [penalty] of elem > min_penalty ] top10
+;	let top50 sublist sort-on [penalty] edges (length sort edges - first_centile * 5) ( length sort edges)
+;	set top50 filter [ [elem] -> [penalty] of elem > min_penalty ] top50
+;
+;	foreach top50 [[elem] -> ask elem [set color yellow]]
+;	foreach top10 [[elem] -> ask elem [set color red]]
+;end
