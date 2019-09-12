@@ -10,7 +10,7 @@ to setup
 ;	set TAXI_CODE 0
 ;	set UBER_CODE 1
  set TRANSMILENIO_CODE 2
-
+ set number_of_transmilenio 45
 ;	; ----------- graph radius ------------
 ;	ask patch 31 13 [set pcolor red]
 ;	; -------------------------------------
@@ -105,13 +105,13 @@ to create-drivers-fn
 ;    move-to  vertex-to-move
 ;  ]
   create-drivers number_of_transmilenio [
-    setxy random-xcor random-ycor
+    setxy 0 7.392
 		let vertex-to-move min-one-of (vertices) [ distance myself ]
     set shape "circle 2"
     set color red
     set size 0.5
     set type-of-driver "transmilenio"
-		set state 2
+;		set state 2
 		set path []
 		set last_vertex vertex-to-move
     move-to  vertex-to-move
