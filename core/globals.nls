@@ -12,4 +12,5 @@ globals [
 	TAXI_CODE
 	UBER_CODE
   TRANSMILENIO_CODE
+  number_of_transmilenio
 ]
