@@ -11,4 +11,5 @@ globals [
 	min_max_speed
 	TAXI_CODE
 	UBER_CODE
+  TRANSMILENIO_CODE
 ]

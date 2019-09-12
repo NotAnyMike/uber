@@ -2,36 +2,37 @@
 
 to setup
   clear-all
-  get_date ; Get date and time 
+;  get_date ; Get date and time 
   
 
-  set time_string "00:00"
-	set time 0
+;  set time_string "00:00"
+;	set time 0
 ;	set TAXI_CODE 0
 ;	set UBER_CODE 1
+ set TRANSMILENIO_CODE 2
 
-	; ----------- graph radius ------------
-	ask patch 31 13 [set pcolor red]
-	; -------------------------------------
+;	; ----------- graph radius ------------
+;	ask patch 31 13 [set pcolor red]
+;	; -------------------------------------
 
 	setup-importer ; Import graph
-	set max_capacity [capacity] of max-one-of edges [capacity]
-	set inEdge_ponderator 1 ;w
-	set min_penalty 1
-  set min_max_speed 0.2
-	set max_speed [dist] of min-one-of edges with [member? self (filter [[elem] -> [ dist ] of elem > min_max_speed ] sort edges) ]  [dist]
+;	set max_capacity [capacity] of max-one-of edges [capacity]
+;	set inEdge_ponderator 1 ;w
+;	set min_penalty 1
+;  set min_max_speed 0.2
+;	set max_speed [dist] of min-one-of edges with [member? self (filter [[elem] -> [ dist ] of elem > min_max_speed ] sort edges) ]  [dist]
 
 ;	set prob_of_service read_table "distributions/prob.csv"
 ;	set gm_org read_gm "distributions/org.csv"
 ;	set gm_dest read_gm "distributions/dest.csv"
 
-  create-persons-fn ; Create turtle persons
+;  create-persons-fn ; Create turtle persons
   create-drivers-fn ; Create turtle driver
 
   reset-ticks
 end
 ; Go function --------------------------------------------------------------------
-;to go
+to go
 ;  export_data_new
 ;  ;;export_grl_data
 ;  if ticks = total_ticks [stop]
@@ -58,8 +59,8 @@ end
 ;	;export_grl_data
 ;	calculate_mean_waiting_ticks
 ;
-;  tick
-;end
+  tick
+end
 
 ; --------- creating turtles ----------
 
@@ -77,7 +78,7 @@ end
 ;  ]
 ;end
 ;
-;to create-drivers-fn
+to create-drivers-fn
 ;  create-drivers number_of_ubers [
 ;    setxy random-xcor random-ycor
 ;		let vertex-to-move min-one-of (vertices) [ distance myself ]
@@ -103,7 +104,19 @@ end
 ;		set last_vertex vertex-to-move
 ;    move-to  vertex-to-move
 ;  ]
-;end
+  create-drivers number_of_transmilenio [
+    setxy random-xcor random-ycor
+		let vertex-to-move min-one-of (vertices) [ distance myself ]
+    set shape "circle 2"
+    set color red
+    set size 0.5
+    set type-of-driver "transmilenio"
+		set state 2
+		set path []
+		set last_vertex vertex-to-move
+    move-to  vertex-to-move
+  ]
+end
 
 ;; --------- movement function --------------
 ;to go-towards [from-turtle to-turtle]
