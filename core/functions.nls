@@ -106,8 +106,7 @@ to create-drivers-fn
 ;  ]
   create-drivers number_of_transmilenio [
     setxy random-xcor random-ycor
-;		let vertex-to-move min-one-of (vertices) [ distance myself ]
-;    let vertex-to-move distance myself
+		let vertex-to-move min-one-of (vertices) [ distance myself ]
     set shape "circle 2"
     set color red
     set size 0.5
@@ -115,33 +114,37 @@ to create-drivers-fn
 ;		set state 2
 		set path []
 		set last_vertex vertex-to-move
-    move-to  vertex-to-move
+    move-to vertex-to-move
+    move-turtles
   ]
 end
 
+to move-turtles
+  ask turtles [right random 360 forward 1 ]
+end
 ;; --------- movement function --------------
-to go-towards [from-turtle to-turtle]
-  ask from-turtle [
-		let xcord [xcor] of to-turtle let ycord [ycor] of to-turtle
-
-    ifelse distance to-turtle != 0 [
-
-      set heading towards to-turtle
-      let from_vertex [id] of last_vertex
-      let to_vertex [id] of first path
-      let penalty2 1
-      ifelse from_vertex = to_vertex [set penalty2 1][set penalty2 [penalty] of edge from_vertex to_vertex]
-      let speed max_speed / penalty2
-
-      ifelse abs(xcord - xcor) > speed OR abs(ycord - ycor) > speed [
-        forward speed ;TODO correct by penalty
-      ][
-        forward distance to-turtle ;TODO correct by penalty
-				move-to to-turtle
-      ]
-    ][move-to to-turtle]
-  ]
-end
+;to go-towards [from-turtle to-turtle]
+;  ask from-turtle [
+;		let xcord [xcor] of to-turtle let ycord [ycor] of to-turtle
+;
+;    ifelse distance to-turtle != 0 [
+;
+;      set heading towards to-turtle
+;      let from_vertex [id] of last_vertex
+;      let to_vertex [id] of first path
+;      let penalty2 1
+;      ifelse from_vertex = to_vertex [set penalty2 1][set penalty2 [penalty] of edge from_vertex to_vertex]
+;      let speed max_speed / penalty2
+;
+;      ifelse abs(xcord - xcor) > speed OR abs(ycord - ycor) > speed [
+;        forward speed ;TODO correct by penalty
+;      ][
+;        forward distance to-turtle ;TODO correct by penalty
+;				move-to to-turtle
+;      ]
+;    ][move-to to-turtle]
+;  ]
+;end
 ;
 ;; ------------ other functions -------------
 ;to assing-drivers
@@ -151,19 +154,19 @@ end
 ;end
 ;
 ; ------------ move through path function ------------
-to move-in-path 
-	; if path not empty
-	ifelse not empty? path [
-		ifelse distance item 0 path = 0 [
-			; check if current vertex is item 0 nd if true delete
-			set last_vertex item 0 path
-			set path remove-item 0 path	
-		][
-			; else move
-			go-towards self item 0 path
-		]
-	][print "empty"]
-end
+;to move-in-path 
+;	; if path not empty
+;	ifelse not empty? path [
+;		ifelse distance item 0 path = 0 [
+;			; check if current vertex is item 0 nd if true delete
+;			set last_vertex item 0 path
+;			set path remove-item 0 path	
+;		][
+;			; else move
+;			go-towards self item 0 path
+;		]
+;	][print "empty"]
+;end
 ;; ------- here starts dijkstra -------
 ;to-report dijkstra [start_vertex end_vertex]
 ;
