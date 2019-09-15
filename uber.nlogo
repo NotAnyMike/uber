@@ -145,7 +145,7 @@ CHOOSER
 choosing_driver_policy_code_uber
 choosing_driver_policy_code_uber
 "closest" "fifo" "randomly"
-0
+2
 
 SLIDER
 213
@@ -309,7 +309,7 @@ INPUTBOX
 305
 150
 xticks
-10000.0
+20.0
 1
 0
 Number
@@ -320,7 +320,7 @@ INPUTBOX
 305
 87
 total_ticks
-100000.0
+1690.0
 1
 0
 Number

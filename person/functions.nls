@@ -213,7 +213,7 @@ end
 
 ;----------- export_person_situation (arrival[0],arrive[1]) ---------
 to export_agent_situation [ arrival ]
-  file-open (word "export_data/" date_time "__situation.csv")
+  file-open (word "export_data/" new_date_time "__situation.csv")
   ask person who [file-type who file-type "," file-type arrival  file-type "," file-type xcor file-type "," file-type ycor file-type "," file-print ticks]
   file-close 
 end

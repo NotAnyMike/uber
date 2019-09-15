@@ -1,12 +1,12 @@
-globals[date_time]
+globals[new_date_time]
 
 ;;-------------------------------------------------------------------------------------------------
 
 ;;FECHA
 
-to get_date
-   set date_time (word (substring date-and-time 16 27)"___"(substring date-and-time 0 2)"-"(substring date-and-time 3 5)"-"(substring date-and-time 6 8))
-   print word "date is " date_time
+to new_get_date
+   set new_date_time (word (substring date-and-time 16 27)"___"(substring date-and-time 0 2)"-"(substring date-and-time 3 5));;"-"(substring date-and-time 6 8))
+   print word "date is " new_date_time
 end
 ;;-------------------------------------------------------------------------------------------------
 
@@ -21,16 +21,81 @@ end
 to export_data_new
   ;;set fecha (word (substring date-and-time 16 27)"_"(substring date-and-time 0 2)"-"(substring date-and-time 3 5)"-"(substring date-and-time 6 8))
   ;;if ticks = total_ticks [user-message (word "Asegurese de ejecutar GRAPHS.ipynb en uber -> export_data, antes de continuar.")]
-	if ticks mod xticks = 0 [create_csv_new]
+	;;if ticks mod xticks = 0 [create_csv_new]
+  if ticks < total_ticks [create_csv_new]
   
 end
+
+;; Generando archivo base, contiene solo encabezados de columna
+
+to create_csv_col_names
+  file-open (word "export_data/"new_date_time"__.csv")
+  file-type "ID," 
+  file-type"x," 
+  file-type "y," 
+  file-type "Heading," 
+  file-type "State," 
+  file-type"current_vertice,"
+  file-type "Destination," 
+  file-type "Tick," 
+	file-type"own-driver,"
+	file-type"state,"
+	file-type"destination,"
+	file-type"last_status_change,"
+	file-type"history_uber," ; Uber's memory
+	file-type"history_taxi," ; Taxi's memory
+	file-type"services_type_history," ; History of types of services taken
+	file-type"familiarity_circle_value_uber," ; variable to store the familiarity heuristic that has to do with the social circle
+	file-type"familiarity_circle_value_taxi,"
+	file-type"familiarity_last_value_uber,"; to store the heuristic related to the last service taken
+	file-type"familiarity_last_value_taxi,"
+	file-type"uber_history_value,"; to store the value of the history on ubers
+	file-type"taxi_history_value," ; to store the value of the history on taxis
+	file-type"taxi_price_value,"
+	file-type"uber_price_value,"
+	file-type"taxi_price_norm_value,"
+	file-type"uber_price_norm_value,"
+	file-type"uber_fn," ; to store the value of the uber fn
+	file-type"taxi_fn," ; to store the value of the taxi fn
+  file-type"hidden," 
+  file-print "breed"   
+
+end
+
 ;; Generando archivo csv con datos de observación xticks
 to create_csv_new
 	;;file-delete (word "modules/export_data_from_Nlogo/data/" "data_turtles_" observation "_" ticks  ".csv")
-	file-open (word "export_data/"date_time"__" ticks  "_.csv")
-	file-type "ID," file-type"x," file-type "y," file-type "Heading," file-print "breed"
-	ask turtles [file-type who file-type "," file-type xcor file-type "," file-type ycor file-type "," file-type heading file-type "," file-print breed ]
-
+	file-open (word "export_data/"new_date_time"__.csv")  
+  	ask turtles with [breed = people] [file-type who file-type ","
+    file-type xcor file-type "," 
+    file-type ycor file-type "," 
+    file-type heading file-type "," 
+    file-type state file-type ","
+    file-type current_vertice file-type "," 
+    file-type destination file-type "," 
+    file-type ticks file-type "," 
+    file-type own-driver file-type ","
+	file-type state file-type ","
+	file-type destination file-type ","
+	file-type last_status_change file-type ","
+	file-type history_uber file-type ","; Uber's memory
+	file-type history_taxi file-type ","; Taxi's memory
+	file-type services_type_history file-type ","; History of types of services taken
+	file-type familiarity_circle_value_uber file-type ","; variable to store the familiarity heuristic that has to do with the social circle
+	file-type familiarity_circle_value_taxi file-type ","
+	file-type familiarity_last_value_uber file-type ","; to store the heuristic related to the last service taken
+	file-type familiarity_last_value_taxi file-type ","
+	file-type uber_history_value file-type ","; to store the value of the history on ubers
+	file-type taxi_history_value file-type ","; to store the value of the history on taxis
+	file-type taxi_price_value file-type ","
+	file-type uber_price_value file-type ","
+	file-type taxi_price_norm_value file-type ","
+	file-type uber_price_norm_value file-type ","
+	file-type uber_fn file-type ","; to store the value of the uber fn
+	file-type taxi_fn file-type ","; to store the value of the taxi fn
+  file-type hidden? file-type ","  
+    file-print breed ]
+  
 	;;file-type turtles_list
 	file-close
 end
@@ -67,10 +132,10 @@ end
 ;; Generando archivo csv con datos GENERALES
 
 to create_csv_grl
-  set date_time (word (substring date-and-time 16 27)"___"(substring date-and-time 0 2)"-"(substring date-and-time 3 5)"-"(substring date-and-time 6 8))
+  ;;set date_time (word (substring date-and-time 16 27)"___"(substring date-and-time 0 2)"-"(substring date-and-time 3 5)"-"(substring date-and-time 6 8))
 	;;let turtles_list (list ([who] of person 431) ([xcor] of person 431) ([ycor] of person 431))
 	;;file-delete (word "modules/export_data_from_Nlogo/data/" "GENERAL_" observation "_" ticks  ".csv")
-	file-open (word "export_data/"date_time"_GENERAL.csv")
+	file-open (word "export_data/"new_date_time"_GENERAL.csv")
 	file-type "#_PEOPLE," file-type"#_UBERS," file-type "#_TAXIS," file-print "xticks" 
 	ask turtle 0 [file-type "," file-type number_of_people file-type "," file-type number_of_ubers file-type "," file-type number_of_taxis file-type "," file-print xticks ]
 

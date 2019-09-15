@@ -2,8 +2,8 @@
 
 to setup
   clear-all
-  get_date ; Get date and time 
-  
+  new_get_date ; Get date and time 
+  create_csv_col_names
 
   set time_string "00:00"
 	set time 0
