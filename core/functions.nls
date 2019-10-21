@@ -115,14 +115,10 @@ to create-drivers-fn
 		set path []
 		set last_vertex vertex-to-move
     move-to vertex-to-move
-    move-turtles
   ]
 end
 
-to move-turtles
-  ask turtles [right random 360 forward 1 ]
-end
-;; --------- movement function --------------
+;------ movement function --------------
 ;to go-towards [from-turtle to-turtle]
 ;  ask from-turtle [
 ;		let xcord [xcor] of to-turtle let ycord [ycor] of to-turtle
