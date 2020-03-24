@@ -1,7 +1,7 @@
 absl-py==0.1.10
 apng==0.3.1
 appnope==0.1.0
-bleach==1.5.0
+bleach==3.1.2
 click==6.7
 click-plugins==1.0.3
 cligj==0.4.0
