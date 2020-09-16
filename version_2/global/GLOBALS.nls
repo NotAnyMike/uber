@@ -1,0 +1,20 @@
+;;;;;;;;;;;;;
+;; GLOBALS ;;
+;;;;;;;;;;;;;
+globals [
+  all_portales
+  portalesTo
+  prob_of_service
+	gm_org
+	gm_dest
+  time
+	time_string
+  horas_pico
+  indice_rec
+  
+   
+;  portal.norte-x portal.norte-y
+;  portal.sur-x portal.sur-y
+;  conectores
+ 
+]

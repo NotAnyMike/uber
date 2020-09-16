@@ -1,0 +1,44 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to setup-people
+  create-people number_of_people [
+    setxy random-xcor random-ycor
+    set shape "person"
+    set color magenta
+    set size 0.5
+;    set inicio one-of vertices
+    set llegada one-of vertices
+    set destination place_from_gaussian_mixture 0 0 -1 gm_dest
+		span_from_gaussian_mixture 0 0 -1 gm_org
+;    set inicio vertex 56
+;    set llegada vertex 53
+    
+  ]
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;  PROCEDIMIENTOS PERSONAS  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to move-people ;; lleva a las personas a la estacion mas cercana
+  ask people
+    [
+      let vertex-to-move min-one-of (vertices) [distance myself]
+      move-to vertex-to-move
+      set inicio vertex-to-move
+      
+      ifelse any? transmilenio-here = TRUE
+;      ifelse inicio = [origen.stop] of transmilenio-here
+      [
+;        ifelse member? llegada [path] of transmilenio-here; with [origen.stop = inicio] = TRUE 
+;        [
+          set color green
+          user-message (word "SOY " who " Y ESTE ME SIRVE :)")
+          beep
+;        ]
+;        []
+      ]
+      []
+    ]
+  
+end

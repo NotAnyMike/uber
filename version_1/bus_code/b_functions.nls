@@ -1,0 +1,214 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;  TRANSMILENIO ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+to setuptrans
+  
+  let Portales.who sort [who] of vertices with [tipo = "PORT"]
+
+
+  set portalesTo sort [who] of vertices with [tipo = "PORT"]
+  
+  foreach Portales.who [ 
+    n -> create-transmilenio length all_portales - 1 [
+      set shape "truck"
+      set color red           
+      setxy [xcor] of vertex n [ycor] of vertex n
+      set direct "DOWN"     
+      set size 0.6
+      set path [];list ("x") (origen.stop)
+      set recorridos 0
+       
+    
+      
+      ]  
+  ]
+    
+    foreach Portales.who [
+      m -> 
+      (foreach (sort [who] of transmilenio-on vertex m) (remove m portalesTo)
+        [ [o p] -> ask articulado o [
+;          set portalesTo remove m portalesTo
+          set portOri vertex m
+          set portDest vertex p
+          set origen.stop portOri 
+          set name_route word portOri portDest
+        ]
+      ])
+    ]
+  
+
+       
+  
+end
+
+to setup-bus-on-demand
+  create-transmilenio number_of_people / 2 [
+    setxy random-xcor random-ycor
+    set shape "truck"
+    set color blue
+    let sentido_bus ["DOWN" "UP"]
+    set direct item random 2 sentido_bus
+    set size 0.7
+    set path []
+;    set inicio one-of vertices
+;    set llegada one-of vertices
+    set destination place_from_gaussian_mixture 0 0 -1 gm_dest
+		span_from_gaussian_mixture 0 0 -1 gm_org
+;    set inicio vertex 56
+;    set llegada vertex 53
+    
+  ]
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;  PROCEDIMIENTOS TRANSMILENIO   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+to move-articulado
+  
+;  if [direct] of transmilenio = "DOWN";any? vertices with [direct = "DOWN"] = TRUE
+  let Portales.who sort [who] of vertices with [tipo = "PORT"]  ;[56	60	67	81	99	110	127	138	151]
+  let connector.id [0 11 19 26  37 41 50 53] 
+  let connector.path [
+    [54	57	1	1	1	1	1	1	1] ;0
+    [10	10	12	16	16	16	13	16	16] ;11
+    [12	12	61	12	12	12	20	12	12] ;19
+    [15	15	25	15	15	40	29	40	40] ;26
+    [18	18	18	68	82	38	38	38	38] ;37
+    [39	39	40	39	39	100	42	42	42] ;41
+    [36	36  36  36  36  36  111	51	51] ;50
+    [52	52	52	49	49	49	52	128	139];53
+  ]
+  
+  ;;;;;;; ARTICULADOS BAJANDO ;;;;;;;;;;;;;;
+  ask transmilenio with [direct = "DOWN"]  
+  [
+    ifelse member? [who] of origen.stop  connector.id  = TRUE
+    [      
+      let connector.position position [who] of origen.stop connector.id ; posicion del conector en el arreglo
+      let destination.position position [who] of portDest Portales.who ; posicion del portal de destino en el arreglo
+      set next.stop vertex item destination.position item connector.position connector.path
+      let next.stop_x [xcor] of next.stop
+      let next.stop_y [ycor] of next.stop
+      ;;; PRUEBA
+;      face next.stop
+;      fd 0.2
+      ;;;
+      facexy next.stop_x next.stop_y fd distance next.stop
+      ifelse [who] of origen.stop < [who] of next.stop 
+      [
+        set direct "UP"
+      ]
+      [
+        set direct "DOWN"
+      ]
+      set last.stop origen.stop
+      set origen.stop next.stop
+      set path remove-duplicates path
+      
+    ]
+    [
+      let origen origen.stop
+      
+      
+      set next.stop item 0 [end1] of edges with [end2 = origen and capacity = 4];of transmilenio]
+                                                                ;      set options.stop  [end2] of links with [end1 = id.origen.stop ]
+      let next.stop_x [xcor] of next.stop
+      let next.stop_y [ycor] of next.stop
+      ;;; PRUEBA
+;      face next.stop
+;      fd 0.2
+      ;;;
+      facexy next.stop_x next.stop_y fd distance next.stop
+      set last.stop origen.stop
+      set origen.stop next.stop
+      set next.stop item 0 [end1] of links with [end2 = origen ]
+      set path remove-duplicates path
+     
+    ]
+    set path remove-duplicates path
+     ]
+  
+  ;;;;;;; ARTICULADOS SUBIENDO;;;;;;;;;;;;;;
+  ask transmilenio with [direct = "UP"]  
+  [
+    ifelse member? [who] of origen.stop  connector.id  = TRUE
+    [      
+      let connector.position position [who] of origen.stop connector.id ; posicion del conector en el arreglo
+      let destination.position position [who] of portDest Portales.who ; posicion del portal de destino en el arreglo
+      set next.stop vertex item destination.position item connector.position connector.path
+      let next.stop_x [xcor] of next.stop
+      let next.stop_y [ycor] of next.stop
+      ;;; PRUEBA
+;      face next.stop
+;      fd 0.2
+      ;;;
+      facexy next.stop_x next.stop_y fd distance next.stop
+      ifelse [who] of origen.stop < [who] of next.stop 
+      [
+        set direct "UP"
+      ]
+      [
+        set direct "DOWN"
+      ]
+      set last.stop origen.stop
+      set origen.stop next.stop
+      set path remove-duplicates path
+
+      
+    ]
+    [
+      let origen origen.stop
+      
+      
+      set next.stop item 0 [end2] of edges with [end1 = origen and capacity = 4];of transmilenio]
+                                                                ;      set options.stop  [end2] of links with [end1 = id.origen.stop ]
+      let next.stop_x [xcor] of next.stop
+      let next.stop_y [ycor] of next.stop
+      ;;; PRUEBA
+;      face next.stop
+;      fd 0.2
+      ;;;
+      facexy next.stop_x next.stop_y fd distance next.stop
+      set last.stop origen.stop
+      set origen.stop next.stop
+      set next.stop item 0 [end2] of links with [end1 = origen ]
+      set path remove-duplicates path
+      
+      
+    ]
+    set path remove-duplicates path
+    
+     ]
+  
+  
+    
+  
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+to return-articulado
+  ;;; ESTA PARTE DUVUELVE AL ARTICULADO
+  ask transmilenio 
+  [
+    ifelse portdest = origen.stop
+    [
+      set portDest portOri
+      set portOri origen.stop
+      set direct "DOWN"
+      set recorridos recorridos + 1
+      
+    ]
+    []
+  ]
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; IDENTIFICANDO CAMINOS ;;;;;;;;;;;;;;;;;;;;;;
+
+to give-path
+  ask transmilenio [    
+    set path lput origen.stop path 
+  ]
+end

@@ -1,0 +1,97 @@
+extensions [nw table]
+;;;;;;;;;;;;;;;
+;; FUNCTIONS ;;
+;;;;;;;;;;;;;;;
+
+
+to setup
+  clear-all
+  ask patch 2 30 [set pcolor red]
+  
+  setup-importer
+  setup-importer-tm
+  setup-portales
+  setup-conectores
+
+  
+  set all_portales sort [id] of nodos with [tipo = "PORT"] 
+ 
+ 
+  setuptrans
+
+  set indice_rec [recorridos] of transmilenio
+  
+  correcciones
+
+  reset-ticks
+end
+
+
+;;;;;;;;;;;;;;;;;;;;;;; GO ;;;;;;;;;;;;;;;;;;;;;;
+
+to go
+;  set indice_rec [recorridos] of transmilenio
+  ask transmilenio [
+    move-articulado
+    return-articulado
+    give-path
+  ]
+  ;if [pcolor] of patch 2 30 = green [stop]
+  state_tm 
+  
+
+  tick
+end
+
+;=================== funciones =====================
+
+
+to setup-portales
+  ask nodos
+  [if tipo = "PORT" 
+    [set shape "house"
+     set color green
+     set label who
+     set size 0.6]
+  ]
+end
+
+to setup-conectores
+  ask nodos
+  [
+    if tipo = "ORI" 
+    [
+      set shape "circle"
+      set color yellow
+      set label who
+      set size 0.4
+    ]    
+  ]
+
+end
+
+to state_tm 
+  ask patch 2 30 
+  [
+    ifelse [recorridos] of min-one-of (transmilenio) [recorridos] > 0
+    [
+      set pcolor green
+      
+    ]
+    []
+  ]
+end
+
+to paint_tm
+  
+end
+
+
+; ===== CORRECCIONES =========
+
+to correcciones
+  ;ask vertex 102 [create-edge_tm-with vertex 103]
+  ask edges_tm with [capacity = 4] [
+    set color sky
+  ]
+end

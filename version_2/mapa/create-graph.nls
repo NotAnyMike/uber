@@ -1,0 +1,283 @@
+; here come all the functions
+
+extensions [csv]
+
+to setup-globals-importer
+	set default-expected-cost -1
+	set max-x 32
+	set max-y 32
+end
+
+;to setup-importer
+;
+;	setup-globals-importer
+;  let path_v ["/home/dfsandovalp/WORK/transporteBog/version_1/mapa/completo/vertices.csv" "/home/dfsandovalp/WORK/transporteBog/version_1/mapa/completo/vertices_e.csv"]
+;  let path_e ["/home/dfsandovalp/WORK/transporteBog/version_1/mapa/completo/edges.csv" "/home/dfsandovalp/WORK/transporteBog/version_1/mapa/completo/edges_e.csv"]
+;;  let breed1 ["vertices" "nodos"]
+;;  let breed2 [vertex nodo]
+;  
+; 
+;    
+;    ;====== MAPA COMPLETO =========
+;  file-open "/home/dfsandovalp/WORK/transporteBog/version_2/mapa/transmilenio/elevado/vertices.csv"
+;  
+;  while [ not file-at-end? ] [
+;		; Create variable row which is a list
+;    let row csv:from-row file-read-line
+;
+;    ; Create vertix
+;		create-vertices 1 [
+;			set id item 0 row
+;			setxy item 1 row * max-x item 2 row * max-y
+;      set tipo item 3 row
+;			set expected-cost default-expected-cost 
+;			set visited? false
+;			set predecessor nobody
+;
+;			set shape "dot"
+;			set size 0.3
+;			set color white
+;		]
+;  ]
+;  file-close 
+;  
+;  ;====== SOLO TRANSMILENIO ====================
+;  ;file-open "streets/verticesPru2.1.csv"
+;;  file-open "streets/new.verticesTOTAL.csv"
+;;  file-open "/home/dfsandovalp/WORK/transporteBog/version_1/mapa/transmilenio/vertices1.csv"
+;file-open "/home/dfsandovalp/WORK/transporteBog/version_2/mapa/transmilenio/elevado/vertices_e.csv"
+;  while [ not file-at-end? ] [
+;		; Create variable row which is a list
+;    let row csv:from-row file-read-line
+;
+;    ; Create vertix
+;		create-nodos 1 [
+;			set id item 0 row
+;			setxy item 1 row * max-x item 2 row * max-y
+;      set tipo item 3 row
+;			set expected-cost default-expected-cost 
+;			set visited? false
+;			set predecessor nobody
+;
+;			set shape "dot"
+;			set size 0.3
+;			set color white
+;		]
+;  ]
+;  file-close 
+;  
+;  
+;;  ; read the vertices.csv file and for each line create a vertix (node)
+;;  
+;;  ;====== MAPA COMPLETO =========
+;;  file-open "/home/dfsandovalp/WORK/transporteBog/version_2/mapa/transmilenio/elevado/vertices.csv"
+;;  ;====== SOLO TRANSMILENIO ====================
+;;  ;file-open "streets/verticesPru2.1.csv"
+;;;  file-open "streets/new.verticesTOTAL.csv"
+;;;  file-open "/home/dfsandovalp/WORK/transporteBog/version_1/mapa/transmilenio/vertices1.csv"
+;;  while [ not file-at-end? ] [
+;;		; Create variable row which is a list
+;;    let row csv:from-row file-read-line
+;;
+;;    ; Create vertix
+;;		create-vertices 1 [
+;;			set id item 0 row
+;;			setxy item 1 row * max-x item 2 row * max-y
+;;      set tipo item 3 row
+;;			set expected-cost default-expected-cost 
+;;			set visited? false
+;;			set predecessor nobody
+;;
+;;			set shape "dot"
+;;			set size 0.3
+;;			set color white
+;;		]
+;;  ]
+;;  file-close 
+;  
+;	; read the edges.csv file and for each line create a link
+;	
+;  ;============= MAPA COMPLETO ================
+;  file-open "/home/dfsandovalp/WORK/transporteBog/version_2/mapa/transmilenio/elevado/edges.csv"
+;  
+;  while [not file-at-end?] [
+;		; Create variable row which is a list
+;		let row csv:from-row file-read-line
+;
+;		; Create link --- this is a little inefficient
+;
+;		let fromElement item 0 sort vertices with [id = item 1 row]
+;		ask fromElement [
+;			; Get vertex at the other end
+;			let toElement item 0 sort vertices with [id = item 2 row]
+;
+;			; create the link
+;			create-edge-with toElement [ set thickness item 4 row / 6 ]
+;
+;			; Set the cost for that new link
+;			ask edges with [end1 = fromElement and end2 = toElement] [
+;				set pk item 0 row
+;				set cost item 3 row
+;				set dist item 3 row
+;				set capacity item 4 row
+;			]
+;			ask edges with [end1 = toElement and end2 = fromElement] [
+;				set pk item 0 row
+;				set cost item 3 row
+;				set dist item 3 row
+;				set capacity item 4 row
+;				;set label item 3 row
+;			]
+;		]
+; 
+;  ]
+;	file-close
+;
+;;  reset-ticks
+;  ;============= SOLO TRANSMILENIO ===============
+;  ;file-open "streets/edgesConectores1.csv"
+;;  file-open "streets/new.edgesTOTAL.csv"
+;;  file-open "/home/dfsandovalp/WORK/transporteBog/version_1/mapa/transmilenio/edges2.csv"
+;  file-open "/home/dfsandovalp/WORK/transporteBog/version_2/mapa/transmilenio/elevado/edges_e.csv"
+;	while [not file-at-end?] [
+;		; Create variable row which is a list
+;		let row csv:from-row file-read-line
+;
+;		; Create link --- this is a little inefficient
+;
+;		let fromElement item 0 sort nodos with [id = item 1 row]
+;		ask fromElement [
+;			; Get vertex at the other end
+;			let toElement item 0 sort nodos with [id = item 2 row]
+;
+;			; create the link
+;			create-edge_tm-with toElement [ set thickness item 4 row / 6  set color sky]
+;
+;			; Set the cost for that new link
+;			ask edges_tm with [end1 = fromElement and end2 = toElement] [
+;				set pk item 0 row
+;				set cost item 3 row
+;				set dist item 3 row
+;				set capacity item 4 row
+;			]
+;			ask edges_tm with [end1 = toElement and end2 = fromElement] [
+;				set pk item 0 row
+;				set cost item 3 row
+;				set dist item 3 row
+;				set capacity item 4 row
+;				;set label item 3 row
+;			]
+;		]
+; 
+;  ]
+;	file-close
+;
+;  reset-ticks
+;end
+
+to setup-importer
+
+	setup-globals-importer
+
+	; read the vertices.csv file and for each line create a vertix (node)
+  
+  ;====== MAPA COMPLETO =========
+  file-open "/home/dfsandovalp/WORK/transporteBog/version_2/mapa/base/vertices_brian.csv"
+  ;====== SOLO TRANSMILENIO ====================
+  ;file-open "streets/verticesPru2.1.csv"
+;  file-open "streets/new.verticesTOTAL.csv"
+;  file-open "/home/dfsandovalp/WORK/transporteBog/version_1/mapa/transmilenio/vertices1.csv"
+  while [ not file-at-end? ] [
+		; Create variable row which is a list
+    let row csv:from-row file-read-line
+
+    ; Create vertix
+		create-vertices 1 [
+			set id item 0 row
+			setxy item 1 row * max-x item 2 row * max-y
+      set tipo item 3 row
+			set expected-cost default-expected-cost 
+			set visited? false
+			set predecessor nobody
+
+			set shape "dot"
+			set size 0.3
+			set color white
+		]
+  ]
+  file-close 
+	; read the edges.csv file and for each line create a link
+	
+  ;============= MAPA COMPLETO ================
+  file-open "/home/dfsandovalp/WORK/transporteBog/version_2/mapa/base/edges_brian.csv"
+  ;============= SOLO TRANSMILENIO ===============
+  ;file-open "streets/edgesConectores1.csv"
+;  file-open "streets/new.edgesTOTAL.csv"
+;  file-open "/home/dfsandovalp/WORK/transporteBog/version_1/mapa/transmilenio/edges2.csv"
+	while [not file-at-end?] [
+		; Create variable row which is a list
+		let row csv:from-row file-read-line
+
+		; Create link --- this is a little inefficient
+
+		let fromElement item 0 sort vertices with [id = item 1 row]
+		ask fromElement [
+			; Get vertex at the other end
+			let toElement item 0 sort vertices with [id = item 2 row]
+
+			; create the link
+			create-edge-with toElement [ set thickness item 4 row / 6 ]
+
+			; Set the cost for that new link
+			ask edges with [end1 = fromElement and end2 = toElement] [
+				set pk item 0 row
+				set cost item 3 row
+				set dist item 3 row
+				set capacity item 4 row
+			]
+			ask edges with [end1 = toElement and end2 = fromElement] [
+				set pk item 0 row
+				set cost item 3 row
+				set dist item 3 row
+				set capacity item 4 row
+				;set label item 3 row
+			]
+		]
+ 
+  ]
+	file-close
+
+  reset-ticks
+end
+
+
+to check_connectivity
+	ask vertices [set color white]
+	ask edges [set color white]
+	confirm_connectivity vertex 0
+	ifelse empty? sort edges with [color = white][
+		user-message "the map is connect"
+	][
+		user-message "the map is NOT connected"
+	]
+end
+
+to confirm_connectivity [some_vertex]
+
+	if some_vertex = nobody [
+		set some_vertex one-of vertices
+		ask edges [
+			set color white
+			set thickness 0.1
+		]	
+		ask vertices [
+			set color white
+		]
+	]
+
+	ask some_vertex [
+		set color blue		
+		ask my-links [set color blue]
+		ask link-neighbors with [color != blue] [confirm_connectivity self]
+	]
+end

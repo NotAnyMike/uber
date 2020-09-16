@@ -2,7 +2,7 @@
 
 to setup
   clear-all
-  get_date ; Get date and time 
+;  get_date ; Get date and time 
   
 
   set time_string "00:00"
@@ -12,9 +12,11 @@ to setup
 
 	; ----------- graph radius ------------
 	ask patch 31 13 [set pcolor red]
+  ask patch 2 30 [set pcolor red]
 	; -------------------------------------
-
+;  setup-importer-tm
 	setup-importer ; Import graph
+  
 	set max_capacity [capacity] of max-one-of edges [capacity]
 	set inEdge_ponderator 1 ;w
 	set min_penalty 1
@@ -27,6 +29,24 @@ to setup
 
   create-persons-fn ; Create turtle persons
   create-drivers-fn ; Create turtle driver
+  
+  ; --------- setup transmilenio -------------------
+  
+  ask patch 2 30 [set pcolor red]
+  setup-importer-tm
+  
+  setup-portales
+  setup-conectores
+
+  
+  set all_portales sort [who] of nodos with [tipo = "PORT"] 
+ 
+ 
+  setuptrans
+
+  set indice_rec [recorridos] of transmilenio
+  
+  correcciones
 
   reset-ticks
 end
@@ -57,6 +77,16 @@ to go
 	;export_data_new
 	;export_grl_data
 	calculate_mean_waiting_ticks
+  
+  ; --------- go transmilenio ------------------
+  
+  ask transmilenio [
+    move-articulado
+    return-articulado
+    give-path
+  ]
+  ;if [pcolor] of patch 2 30 = green [stop]
+  state_tm 
 
   tick
 end
@@ -81,6 +111,7 @@ to create-drivers-fn
   create-drivers number_of_ubers [
     setxy random-xcor random-ycor
 		let vertex-to-move min-one-of (vertices) [ distance myself ]
+    set id-vertex-to-move [id] of vertex-to-move
     set shape "circle 2"
     set color white
     set size 0.5
@@ -88,12 +119,14 @@ to create-drivers-fn
 		set state 2
 		set path []
 		set last_vertex vertex-to-move
+;    set last_vertex vertex id-vertex-to-move
     move-to  vertex-to-move
   ]
 
   create-drivers number_of_taxis [
     setxy random-xcor random-ycor
 		let vertex-to-move min-one-of (vertices) [ distance myself ]
+    set id-vertex-to-move [id] of vertex-to-move
     set shape "circle 2"
     set color yellow
     set size 0.5
@@ -101,8 +134,52 @@ to create-drivers-fn
 		set state 2
 		set path []
 		set last_vertex vertex-to-move
+;    set last_vertex vertex id-vertex-to-move
     move-to  vertex-to-move
   ]
+end
+
+; --------- creating portal --------------
+to setup-portales
+  ask nodos
+  [if tipo = "PORT" 
+    [set shape "house"
+     set color green
+     set label who
+     set size 0.6]
+  ]
+end
+
+; --------- creating conects --------------
+to setup-conectores
+  ask nodos
+  [
+    if tipo = "ORI" 
+    [
+      set shape "circle"
+      set color yellow
+      set label who
+      set size 0.4
+    ]    
+  ]
+
+end
+; --------- all info path transmi  --------------
+to state_tm 
+  ask patch 2 30 
+  [
+    if[recorridos] of min-one-of (transmilenio) [recorridos] > 0
+    [
+      set pcolor green      
+    ]
+    
+  ]
+end
+
+; ===== CORRECCIONES =========
+
+to correcciones
+ 
 end
 
 ; --------- movement function --------------
@@ -113,10 +190,10 @@ to go-towards [from-turtle to-turtle]
     ifelse distance to-turtle != 0 [
 
       set heading towards to-turtle
-      let from_vertex [id] of last_vertex
-      let to_vertex [id] of first path
+      let from_vertex [who] of last_vertex
+      let to_vertex [who] of first path
       let penalty2 1
-      ifelse from_vertex = to_vertex [set penalty2 1][set penalty2 [penalty] of edge from_vertex to_vertex]
+      ifelse from_vertex = to_vertex [set penalty2 1][ifelse from_vertex < to_vertex [ set penalty2 [penalty] of edge from_vertex to_vertex][ carefully [ set penalty2 [penalty] of edge to_vertex from_vertex ] [ user-message (word who " " to_vertex " " from_vertex) ]]] ; problem is order of min max from to
       let speed max_speed / penalty2
 
       ifelse abs(xcord - xcor) > speed OR abs(ycord - ycor) > speed [

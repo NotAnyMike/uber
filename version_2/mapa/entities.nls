@@ -12,11 +12,38 @@ vertices-own [
 	predecessor
 ]
 
+breed [
+  nodos nodo
+]
+
+nodos-own [
+	id
+  tipo
+	expected-cost
+	visited? 
+	predecessor
+]
+
 undirected-link-breed [
 	edges edge
 ]
 
+
 edges-own [
+	pk
+	cost
+	capacity
+	penalty
+	dist
+]
+
+
+undirected-link-breed [
+	edges_tm edge_tm
+]
+
+
+edges_tm-own [
 	pk
 	cost
 	capacity

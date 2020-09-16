@@ -1,0 +1,211 @@
+extensions [nw table]
+;;;;;;;;;;;;;;;
+;; FUNCTIONS ;;
+;;;;;;;;;;;;;;;
+
+
+to setup
+  clear-all
+  ask patch 2 30 [set pcolor red]
+  setup-importer
+  setup-portales
+  setup-conectores
+;  setup-estaciones
+  
+  set all_portales sort [who] of vertices with [tipo = "PORT"] 
+ 
+  set prob_of_service read_table "distributions/prob.csv"
+	set gm_org read_gm "distributions/org.csv"
+	set gm_dest read_gm "distributions/dest.csv"
+  setuptrans
+;  repeat 2 [setuptrans]
+;  setup-transmilenio
+  setup-people
+  set indice_rec [recorridos] of transmilenio
+  
+  correcciones
+;  crear-vias
+;  set conectores (list )
+  reset-ticks
+end
+
+
+;;;;;;;;;;;;;;;;;;;;;;; GO ;;;;;;;;;;;;;;;;;;;;;;
+
+to go
+;  set indice_rec [recorridos] of transmilenio
+  ask transmilenio [
+    move-articulado
+    return-articulado
+    give-path
+  ]
+  ;if [pcolor] of patch 2 30 = green [stop]
+  state_tm 
+  
+;  ask transmilenio [mover-transmi-from-stop]
+;  move-people
+  tick
+end
+
+;=================== funciones =====================
+
+
+to setup-portales
+  ask vertices
+  [if tipo = "PORT" 
+    [set shape "house"
+     set color green
+     set label who
+     set size 0.6]
+  ]
+end
+
+to setup-conectores
+  ask vertices
+  [
+    if tipo = "ORI" 
+    [
+      set shape "circle"
+      set color yellow
+      set label who
+      set size 0.4
+    ]    
+  ]
+
+end
+
+to state_tm 
+  ask patch 2 30 
+  [
+    ifelse [recorridos] of min-one-of (transmilenio) [recorridos] > 0
+    [
+      set pcolor green
+      
+    ]
+    []
+  ]
+end
+
+to paint_tm
+  
+end
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; APLICANDO DISTRIBUCION GAUSIANA ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+; ------- read distribution from csv -------
+to-report read_table [file]
+	let prob []
+	let counter 0
+
+	file-close-all
+	file-open file
+	let data csv:from-row file-read-line
+
+	while [not file-at-end?][
+		let row csv:from-row file-read-line
+		repeat item 0 row - counter + 1 [
+			let entry []
+			set entry lput counter entry
+			set entry lput item 1 row entry
+			set prob lput entry prob
+			set counter counter + 1
+		]
+	]
+
+	file-close
+	report prob
+end
+
+to-report read_gm [file]
+	; create list
+	let gm []
+
+	file-close-all
+	;file-open "distributions/org.csv"
+	file-open file
+	let data csv:from-row file-read-line
+	let hour -1
+	let hour_old 100
+	let gm_hour []
+  set horas_pico []
+
+	while [not file-at-end?][
+		let row csv:from-row file-read-line
+		set hour item 1 row    
+    set horas_pico remove-duplicates lput hour horas_pico
+
+		if hour > hour_old [
+			set gm lput gm_hour gm
+			set gm_hour []
+		]
+
+		set gm_hour lput row gm_hour
+		set hour_old hour
+	]
+	set gm lput gm_hour gm
+
+	file-close
+	report gm
+end
+; -----------------------------------------
+
+; ------- span from gaussian mixture distribution --------
+
+to-report place_from_gaussian_mixture [ m n threshold dists ]
+	ifelse item 1 item 0 item m dists < floor time [
+		; recursive
+		set m m + 1
+		report place_from_gaussian_mixture m n threshold dists
+	][
+		if threshold = -1 [
+			set threshold random-float 1
+		]
+		ifelse item 5 item n item m dists >= threshold [
+			let mean_x item 2 item n item m dists
+			let mean_y item 3 item n item m dists
+			let std item 4 item n item m dists
+			report place_with_mean_and_std mean_x mean_y std
+		][
+			set n n + 1
+			report place_from_gaussian_mixture m n threshold dists
+		]
+	]
+end
+
+to-report place_with_mean_and_std [ mean_x mean_y std ]
+	let xcord random-normal mean_x std
+	let ycord random-normal mean_y std
+
+	if xcord > max-x [set xcord max-x]
+	if ycord > max-y [set ycord max-y]
+	if xcord < 0 [set xcord 0]
+	if ycord < 0 [set ycord 0]
+
+	let vertex-to-move min-one-of (vertices) [ distancexy xcord ycord ]
+
+	; old code back where this function spaned the agent
+	;set xcor xcord
+	;set ycor ycord
+
+	report vertex-to-move
+
+end
+
+to span_from_gaussian_mixture [ m n threshold dists ]
+	let vertex-to-move place_from_gaussian_mixture 0 0 -1 dists
+	set current_vertice vertex-to-move
+	move-to vertex-to-move
+end
+; -----------------------------------------------------------
+
+
+; ===== CORRECCIONES =========
+
+to correcciones
+  ;ask vertex 102 [create-edge_tm-with vertex 103]
+  ask edges with [capacity = 4] [
+    set color sky
+  ]
+end

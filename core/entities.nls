@@ -34,9 +34,31 @@ drivers-own [
 	path
 	state 
 	customer ; What's meaning this argument? 
+  
+  id-vertex-to-move
 	last_status_change
 	last_vertex ; the idea here is to use this vertex in order to be the first element in path to avoid flying cars
 ]
 ; state should be 0,1,2
+
+breed [transmilenio articulado]
+transmilenio-own [
+  path 
+  origen.stop  
+  last.stop  
+  next.stop   
+  direct
+  portOri
+  portDest
+  completed
+  name_route
+  recorridos
+  
+]
+
+breed [estaciones estacion]
+estaciones-own [
+  name-troncal
+]
 
 ;----------------------------------------------------------------------------------

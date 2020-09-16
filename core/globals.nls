@@ -1,4 +1,6 @@
 globals [ 
+  all_portales
+  portalesTo
 	prob_of_service
 	gm_org
 	gm_dest
@@ -11,4 +13,5 @@ globals [
 	min_max_speed
 	TAXI_CODE
 	UBER_CODE
+  indice_rec
 ]

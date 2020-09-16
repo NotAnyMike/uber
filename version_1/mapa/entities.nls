@@ -16,7 +16,19 @@ undirected-link-breed [
 	edges edge
 ]
 
+undirected-link-breed [
+	edges_tm edge_tm
+]
+
 edges-own [
+	pk
+	cost
+	capacity
+	penalty
+	dist
+]
+
+edges_tm-own [
 	pk
 	cost
 	capacity
